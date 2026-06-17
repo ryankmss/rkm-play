@@ -38,12 +38,12 @@
         .close-menu { font-size: 24px; color: var(--text-muted); cursor: pointer; font-weight: bold; }
         .menu-section-title { font-size: 11px; font-weight: bold; color: #666; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; margin-top: 30px; }
         
-        .menu-nav-list li a { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #1a1a1a; font-size: 16px; font-weight: bold; color: #fff; transition: color 0.2s; }
+        .menu-nav-list li a { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #1a1a1a; font-size: 16px; font-weight: bold; color: #fff; }
         .menu-nav-list li a.active { color: var(--orange); }
         .menu-nav-list li a span { color: #555; font-weight: normal; font-size: 18px; }
 
         .menu-card { display: flex; align-items: center; gap: 15px; background: #0f0f0f; border: 1px solid #1a1a1a; border-radius: 10px; padding: 15px; margin-bottom: 10px; text-align: left; }
-        .menu-card .feature-icon { width: 35px; height: 35px; font-size: 18px; margin: 0; flex-shrink: 0; display:flex; align-items:center; justify-content:center; }
+        .menu-card .feature-icon { width: 35px; height: 35px; font-size: 18px; margin: 0; flex-shrink: 0; }
         .menu-card-title { font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 2px; }
         .menu-card-desc { font-size: 11px; color: var(--text-muted); }
 
@@ -190,8 +190,8 @@
 
         <div class="menu-section-title">NAVEGAÇÃO</div>
         <ul class="menu-nav-list">
-            <li><a href="index.html" class="active">Início <span>›</span></a></li>
-            <li><a href="canais.html">Canais <span>›</span></a></li>
+            <li><a href="#">Início <span>›</span></a></li>
+            <li><a href="#" class="active">Canais <span>›</span></a></li>
             <li><a href="#">Esportes <span>›</span></a></li>
             <li><a href="#">Planos <span>›</span></a></li>
             <li><a href="#">Ajuda <span>›</span></a></li>
@@ -408,7 +408,7 @@
                 <div class="channel-item" style="color: #99ff33;">MEGAPIX</div>
             </div>
 
-            <a href="canais.html" class="btn btn-orange-outline">Ver todos os +360 canais →</a>
+            <a href="https://wa.me/5511984334348" target="_blank" class="btn btn-orange-outline">Ver todos os +360 canais →</a>
         </section>
 
         <section class="section-padding">
@@ -554,6 +554,18 @@
                     </div>
                 </div>
             </div>
+
+            <div class="depoimento-card">
+                <div class="stars">★★★★★</div>
+                <div class="depoimento-text">"Paguei via Pix, o código chegou na hora e em menos de 2 minutos já estava assistindo. Marido na TV, eu no celular, sem conflito. Recomendo demais."</div>
+                <div class="depoimento-author">
+                    <div class="avatar">F</div>
+                    <div class="author-info">
+                        <div class="author-name">Fernanda A.</div>
+                        <div class="author-meta">Cliente desde 2025 • Belo Horizonte/MG</div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section class="section-padding">
@@ -574,6 +586,30 @@
                     <summary>Funciona na minha TV?</summary>
                     <div class="faq-answer">Funciona perfeitamente em Smart TVs com sistema Android, TV Boxes, Fire TV Stick e outros dispositivos compatíveis.</div>
                 </details>
+                <details>
+                    <summary>Em quanto tempo recebo o acesso depois do pagamento?</summary>
+                    <div class="faq-answer">O envio é imediato e automático na sua tela logo após a confirmação do pagamento via Pix.</div>
+                </details>
+                <details>
+                    <summary>Em quantos aparelhos posso usar ao mesmo tempo?</summary>
+                    <div class="faq-answer">O plano padrão permite o acesso em até 2 ecrãs em simultâneo (ex: TV na sala e celular no quarto).</div>
+                </details>
+                <details>
+                    <summary>Posso cancelar quando quiser?</summary>
+                    <div class="faq-answer">Sim, não temos qualquer fidelização. O serviço funciona de forma pré-paga.</div>
+                </details>
+                <details>
+                    <summary>Tem suporte caso eu tenha problema?</summary>
+                    <div class="faq-answer">Sim, temos uma equipa de suporte humano disponível através do WhatsApp.</div>
+                </details>
+                <details>
+                    <summary>A RKM PLAY é a mesma coisa que o app antigo?</summary>
+                    <div class="faq-answer">A RKM PLAY é a evolução da plataforma, com servidores atualizados e maior estabilidade de sinal.</div>
+                </details>
+                <details>
+                    <summary>Como me proteger de sites falsos vendendo a RKM PLAY?</summary>
+                    <div class="faq-answer">Efetue a compra apenas através dos nossos canais e contatos oficiais.</div>
+                </details>
             </div>
         </section>
 
@@ -584,6 +620,12 @@
             <a href="https://wa.me/5511984334348" target="_blank" class="btn btn-orange">Começar agora por R$ 29,90 →</a>
             <div style="color:#666; font-size:12px; margin: 15px 0;">OU</div>
             <a href="https://wa.me/5511984334348" target="_blank" class="btn btn-green-outline">✔ Testar gratuitamente</a>
+
+            <div class="hero-checks" style="flex-direction: column; align-items: flex-start; text-align:left; margin-top:30px; gap:15px; border-top: 1px solid #1f1f1f; padding-top: 30px;">
+                <span><strong>Pix</strong> com confirmação em segundos</span>
+                <span><strong>Sem fidelidade</strong> — cancele quando quiser</span>
+                <span><strong>Suporte humano</strong> 7 dias por semana</span>
+            </div>
         </section>
 
         <div class="security-box">
@@ -605,8 +647,8 @@
                 <div class="footer-nav">
                     <h5>PRODUTO</h5>
                     <ul>
-                        <li><a href="index.html">Página inicial</a></li>
-                        <li><a href="canais.html">Lista de canais</a></li>
+                        <li>Página inicial</li>
+                        <li>Lista de canais</li>
                         <li>Esportes ao vivo</li>
                         <li>Planos e preços</li>
                     </ul>
@@ -619,6 +661,34 @@
                         <li>Baixar App Mobile</li>
                     </ul>
                 </div>
+                <div class="footer-nav">
+                    <h5>SUPORTE</h5>
+                    <ul>
+                        <li>Falar com Atendente</li>
+                        <li>(11) 98433-4348</li>
+                    </ul>
+                </div>
+                <div class="footer-nav">
+                    <h5>HORÁRIOS</h5>
+                    <ul>
+                        <li>Seg–Sex <span style="float:right">08–20h</span></li>
+                        <li>Sábado <span style="float:right">09–19h</span></li>
+                        <li>Domingo <span style="float:right">13–17h</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; text-align: left;">
+                <div class="verified-badge">
+                    <span class="dot-green"></span> CANAL OFICIAL VERIFICADO
+                </div>
+                <p style="margin-bottom: 30px; line-height: 1.6;">A RKM PLAY é vendida exclusivamente através do nosso canal de suporte via WhatsApp com o número (11) 98433-4348. Qualquer outro site, domínio ou vendedor não autorizado é golpe — não baixe o aplicativo de fontes desconhecidas.</p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2016–2026 RKM PLAY • todos os direitos reservados</p>
+                <p style="margin: 10px 0;">Termos e privacidade</p>
+                <p style="color:#a4c639; font-weight:bold; display:flex; align-items:center; justify-content:center; gap:5px;"><span style="font-size:16px;">👾</span> Exclusivo para dispositivos Android</p>
             </div>
         </footer>
 
@@ -635,12 +705,12 @@
 
         openMenuBtn.addEventListener('click', () => {
             sideMenu.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden'; // Impede a rolagem da página quando o menu está aberto
         });
 
         closeMenuBtn.addEventListener('click', () => {
             sideMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = 'auto'; // Restaura a rolagem
         });
     </script>
 </body>

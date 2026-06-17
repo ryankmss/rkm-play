@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RKM PLAY - Streaming All-In-One</title>
+    <style>
+        /* === VARIÁVEIS E GLOBAIS === */
+        :root {
+            --bg-color: #060606;
+            --card-bg: #111111;
+            --border-color: #222222;
+            --orange: #FF6600;
+            --green: #25D366;
+            --text-main: #FFFFFF;
+            --text-muted: #999999;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.5; padding-bottom: 80px; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        .container { max-width: 500px; margin: 0 auto; padding: 0 20px; overflow: hidden; }
+        .text-orange { color: var(--orange); }
+        .text-center { text-align: center; }
+
+        /* === TOP BAR & HEADER === */
+        .top-bar { background-color: var(--orange); color: #000; font-weight: bold; font-size: 12px; padding: 8px; text-align: center; white-space: nowrap; overflow: hidden; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--border-color); }
+        .logo-img { height: 40px; }
+        .menu-icon { font-size: 24px; cursor: pointer; }
+
+        /* === MENU LATERAL (MOBILE MENU) === */
+        .side-menu { position: fixed; top: 0; right: 0; width: 100%; height: 100vh; background-color: var(--bg-color); z-index: 9999; transform: translateX(100%); transition: transform 0.3s ease-in-out; overflow-y: auto; padding: 20px; }
+        .side-menu.active { transform: translateX(0); }
+        .side-menu-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 1px solid #1f1f1f; margin-bottom: 20px; }
+        .close-menu { font-size: 24px; color: var(--text-muted); cursor: pointer; font-weight: bold; }
+        .menu-section-title { font-size: 11px; font-weight: bold; color: #666; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; margin-top: 30px; }
+        
+        .menu-nav-list li a { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #1a1a1a; font-size: 16px; font-weight: bold; color: #fff; }
+        .menu-nav-list li a.active { color: var(--orange); }
+        .menu-nav-list li a span { color: #555; font-weight: normal; font-size: 18px; }
+
+        .menu-card { display: flex; align-items: center; gap: 15px; background: #0f0f0f; border: 1px solid #1a1a1a; border-radius: 10px; padding: 15px; margin-bottom: 10px; text-align: left; }
+        .menu-card .feature-icon { width: 35px; height: 35px; font-size: 18px; margin: 0; flex-shrink: 0; }
+        .menu-card-title { font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 2px; }
+        .menu-card-desc { font-size: 11px; color: var(--text-muted); }
+
+        .menu-support-card { display: flex; justify-content: space-between; align-items: center; background: #071a0d; border: 1px solid #10331a; border-radius: 10px; padding: 15px; margin-bottom: 30px; text-decoration: none; }
+        .menu-support-left { display: flex; align-items: center; gap: 12px; }
+        .menu-support-icon { color: var(--green); }
+        .menu-support-title { font-size: 14px; font-weight: bold; color: var(--green); margin-bottom: 2px; }
+        .menu-support-desc { font-size: 12px; color: #888; }
+        .menu-support-action { background: var(--green); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+        /* === TYPOGRAPHY & TAGS === */
+        .section-tag { display: inline-block; border: 1px solid var(--orange); color: var(--orange); padding: 5px 15px; border-radius: 20px; font-size: 10px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+        .section-tag-muted { display: inline-block; color: var(--orange); font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+        .h1-title { font-size: 32px; font-weight: 800; line-height: 1.1; margin-bottom: 15px; }
+        .h2-title { font-size: 28px; font-weight: 800; line-height: 1.2; margin-bottom: 15px; }
+        .p-subtitle { color: var(--text-muted); font-size: 15px; margin-bottom: 30px; }
+
+        /* === BUTTONS === */
+        .btn { display: block; width: 100%; padding: 18px; border-radius: 8px; font-size: 16px; font-weight: bold; text-align: center; cursor: pointer; border: none; margin-bottom: 15px; }
+        .btn-orange { background-color: var(--orange); color: #000; }
+        .btn-dark { background-color: #1a1a1a; color: #fff; border: 1px solid #333; }
+        .btn-green-outline { background-color: transparent; color: var(--green); border: 1px solid var(--green); }
+        .btn-orange-outline { background-color: transparent; color: var(--orange); border: 1px solid var(--orange); }
+
+        /* === HERO === */
+        .hero { text-align: center; padding: 40px 0; }
+        .hero .price-pill { display: inline-block; border: 1px solid #333; padding: 12px 24px; border-radius: 30px; font-size: 14px; margin-bottom: 25px; color: var(--text-muted); }
+        .hero .price-pill strong { color: var(--orange); font-size: 20px; }
+        .hero-checks { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; font-size: 13px; color: var(--text-muted); margin-top: 20px; }
+        .hero-checks span { display: flex; align-items: center; gap: 5px; }
+        .hero-checks span::before { content: '✔'; color: var(--green); font-weight: bold; }
+
+        /* === STATS === */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px 0; border-top: 1px solid var(--border-color); text-align: center; }
+        .stat-number { color: var(--orange); font-size: 28px; font-weight: 900; margin-bottom: 5px; }
+        .stat-text { color: var(--text-muted); font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
+
+        /* === COMPARATIVO === */
+        .comparativo { text-align: center; padding: 40px 0; }
+        .comp-box { background-color: var(--card-bg); border-radius: 12px; padding: 25px; margin-bottom: 20px; text-align: left; }
+        .comp-box-header { font-size: 11px; font-weight: bold; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+        .comp-box-header::before { content: ''; display: inline-block; width: 8px; height: 8px; background: #333; border-radius: 50%; }
+        .comp-row { display: flex; justify-content: space-between; border-bottom: 1px solid #1f1f1f; padding: 12px 0; font-size: 14px; color: #ccc; }
+        .comp-row:last-child { border-bottom: none; }
+        .comp-total { display: flex; justify-content: space-between; border-top: 1px solid #333; padding-top: 20px; margin-top: 10px; font-size: 18px; font-weight: bold; color: #fff; }
+        .vs-badge { width: 40px; height: 40px; background: #1a1a1a; border: 1px solid #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: -10px auto 10px auto; font-size: 12px; font-weight: bold; color: var(--text-muted); position: relative; z-index: 2; }
+        
+        .comp-box-aztv { border: 1px solid var(--orange); }
+        .comp-box-aztv .comp-box-header::before { background: var(--orange); }
+        .comp-box-aztv .comp-row { color: var(--text-muted); }
+        .comp-box-aztv .check { color: var(--green); font-weight: bold; background: rgba(37, 211, 102, 0.1); border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+        .comp-box-aztv .comp-total span:last-child { color: var(--orange); font-size: 24px; }
+
+        .economy-box { background-color: #05140a; border: 1px solid #0a2914; border-radius: 12px; padding: 30px 20px; text-align: center; margin: 30px 0; }
+        .economy-box h4 { color: #888; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+        .economy-box .eco-val { color: var(--green); font-size: 32px; font-weight: 900; margin-bottom: 15px; }
+        .economy-box .eco-desc { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+        .economy-box .eco-desc strong { color: #fff; }
+        .economy-box .eco-test { border-top: 1px dashed #1a3a24; padding-top: 20px; color: #aaa; font-size: 13px; margin-bottom: 20px; }
+
+        /* === CARDS GERAIS === */
+        .section-padding { padding: 50px 0; text-align: center; }
+        .feature-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px 20px; margin-bottom: 15px; text-align: center; }
+        .feature-icon { width: 40px; height: 40px; border: 1px solid var(--orange); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px auto; color: var(--orange); font-size: 20px; }
+        .feature-title { font-size: 16px; font-weight: bold; color: #fff; margin-bottom: 10px; }
+        .feature-desc { font-size: 14px; color: var(--text-muted); }
+
+        /* === FUTEBOL CARROSSEL === */
+        .carousel-wrapper { overflow: hidden; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 10px 0 40px 0; }
+        .carousel-track { display: flex; gap: 15px; width: max-content; animation: scroll-left 20s linear infinite; }
+        .carousel-track:hover { animation-play-state: paused; }
+        .logo-box { background: #fff; border-radius: 10px; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; padding: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        
+        /* === ANIMAÇÕES DE SCROLL === */
+        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 7.5px)); } }
+        @keyframes scroll-left-posters { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 5px)); } }
+        @keyframes scroll-right-posters { 0% { transform: translateX(calc(-50% - 5px)); } 100% { transform: translateX(0); } }
+
+        /* === CANAIS === */
+        .channels-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 30px 0; }
+        .channel-item { background: #151515; border-radius: 8px; height: 60px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 12px; border: 1px solid #222; }
+
+        /* === EM ALTA (POSTERS CARROSSEL DUPLO) === */
+        .posters-carousel-wrapper { overflow: hidden; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 5px 0; }
+        .posters-track { display: flex; gap: 10px; width: max-content; }
+        .posters-track.left { animation: scroll-left-posters 25s linear infinite; }
+        .posters-track.right { animation: scroll-right-posters 25s linear infinite; }
+        .posters-track:hover { animation-play-state: paused; }
+        
+        .poster-item { background-color: #222; border-radius: 8px; width: 120px; height: 180px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 8px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
+        .poster-title { font-size: 11px; font-weight: bold; text-align: center; width: 100%; text-shadow: 0 1px 3px rgba(0,0,0,0.8); z-index: 2; line-height: 1.2; }
+        .poster-item::before { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 50%); z-index: 1; }
+
+        /* === COMO FUNCIONA (STEPS) === */
+        .step-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px 20px; margin-bottom: 15px; text-align: center; }
+        .step-num { width: 30px; height: 30px; border: 1px solid var(--orange); color: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 15px auto; font-size: 14px; }
+
+        /* === DEPOIMENTOS === */
+        .depoimento-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; margin-bottom: 15px; text-align: center; }
+        .stars { color: #FFD700; font-size: 18px; margin-bottom: 15px; letter-spacing: 2px; }
+        .depoimento-text { font-size: 14px; color: var(--text-muted); font-style: italic; margin-bottom: 20px; line-height: 1.6; }
+        .depoimento-author { display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .avatar { width: 35px; height: 35px; border: 1px solid var(--orange); color: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
+        .author-info { text-align: left; }
+        .author-name { font-weight: bold; color: #fff; font-size: 14px; }
+        .author-meta { color: #666; font-size: 11px; }
+
+        /* === FAQ === */
+        .faq-container { margin: 30px 0; }
+        details { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+        summary { padding: 18px; font-size: 14px; font-weight: bold; color: #fff; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '⌄'; font-size: 12px; color: #666; }
+        details[open] summary::after { content: '⌃'; }
+        .faq-answer { padding: 0 18px 18px 18px; font-size: 14px; color: var(--text-muted); border-top: 1px solid #1f1f1f; margin-top: 5px; padding-top: 15px; }
+
+        /* === FOOTER & SECURITY === */
+        .security-box { border-top: 1px solid #1f1f1f; border-bottom: 1px solid #1f1f1f; padding: 40px 0; text-align: center; margin-top: 40px; }
+        .shield-icon { color: var(--orange); font-size: 28px; margin-bottom: 15px; }
+        .security-text { color: var(--text-muted); font-size: 13px; line-height: 1.6; }
+
+        footer { padding: 40px 0; font-size: 13px; color: var(--text-muted); }
+        .footer-status { display: flex; align-items: center; gap: 10px; background: #111; display: inline-flex; padding: 8px 16px; border-radius: 20px; margin: 20px 0 30px 0; font-size: 12px; }
+        .dot-red { width: 8px; height: 8px; background: #ff3b30; border-radius: 50%; }
+        .footer-nav { margin-bottom: 30px; }
+        .footer-nav h5 { color: #666; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; margin-top: 20px; }
+        .footer-nav ul li { margin-bottom: 10px; }
+        .verified-badge { border: 1px solid #332211; color: var(--orange); background: #1a0a00; padding: 8px 15px; border-radius: 20px; display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: bold; margin-bottom: 20px; }
+        .dot-green { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+        .footer-bottom { border-top: 1px solid #1f1f1f; padding-top: 20px; margin-top: 20px; font-size: 12px; text-align: center; }
+
+        /* === WHATSAPP FLOATING === */
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 1000; cursor: pointer; }
+        .whatsapp-float svg { width: 32px; height: 32px; fill: #fff; }
+    </style>
+</head>
+<body>
+
+    <div class="side-menu" id="side-menu">
+        <div class="side-menu-header">
+            <img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" class="logo-img" style="height: 30px;">
+            <div class="close-menu" id="close-menu">✕</div>
+        </div>
+
+        <div class="menu-section-title">NAVEGAÇÃO</div>
+        <ul class="menu-nav-list">
+            <li><a href="#">Início <span>›</span></a></li>
+            <li><a href="#" class="active">Canais <span>›</span></a></li>
+            <li><a href="#">Esportes <span>›</span></a></li>
+            <li><a href="#">Planos <span>›</span></a></li>
+            <li><a href="#">Ajuda <span>›</span></a></li>
+        </ul>
+
+        <div class="menu-section-title">BAIXAR O APP</div>
+        
+        <div class="menu-card">
+            <div class="feature-icon">📺</div>
+            <div>
+                <div class="menu-card-title">Baixar App TV</div>
+                <div class="menu-card-desc">Smart TV • TV Box • Android 7.0+</div>
+            </div>
+        </div>
+        
+        <div class="menu-card">
+            <div class="feature-icon">📱</div>
+            <div>
+                <div class="menu-card-title">Baixar App Mobile</div>
+                <div class="menu-card-desc">Smartphone • Tablet • Android 7.0+</div>
+            </div>
+        </div>
+
+        <div class="menu-section-title">SUPORTE</div>
+        <a href="https://wa.me/5511984334348" target="_blank" class="menu-support-card">
+            <div class="menu-support-left">
+                <svg viewBox="0 0 24 24" width="24" height="24" class="menu-support-icon" fill="currentColor"><path d="M12.031 2C6.486 2 2 6.486 2 12.031a9.99 9.99 0 001.328 4.966L2 22l5.163-1.328A9.97 9.97 0 0012.031 22c5.544 0 10.03-4.486 10.03-10.03S17.575 2 12.031 2zm5.545 14.51c-.228.644-1.284 1.233-1.802 1.341-.473.1-.966.14-1.503-.028-.277-.087-.648-.198-1.077-.354-2.484-.903-4.103-3.46-4.228-3.627-.124-.167-1.008-1.341-1.008-2.557 0-1.216.634-1.815.86-2.062.227-.247.495-.308.66-.308.165 0 .33 0 .474.008.15.008.35-.057.545.29.198.354.67 1.637.732 1.763.061.125.103.272.02.438-.083.166-.124.269-.248.414-.124.144-.263.313-.377.42-.124.116-.254.24-.11.488.144.248.643 1.054 1.368 1.706.932.84 1.714 1.096 1.961 1.22.247.124.392.103.536-.062.144-.165.62-.723.785-.97.165-.248.33-.207.557-.124.227.083 1.444.682 1.692.806.248.124.412.186.474.29.062.103.062.6-.165 1.243z"/></svg>
+                <div>
+                    <div class="menu-support-title">Falar com Atendente</div>
+                    <div class="menu-support-desc">+55 11 98433-4348</div>
+                </div>
+            </div>
+            <div class="menu-support-action">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12.031 2C6.486 2 2 6.486 2 12.031a9.99 9.99 0 001.328 4.966L2 22l5.163-1.328A9.97 9.97 0 0012.031 22c5.544 0 10.03-4.486 10.03-10.03S17.575 2 12.031 2zm5.545 14.51c-.228.644-1.284 1.233-1.802 1.341-.473.1-.966.14-1.503-.028-.277-.087-.648-.198-1.077-.354-2.484-.903-4.103-3.46-4.228-3.627-.124-.167-1.008-1.341-1.008-2.557 0-1.216.634-1.815.86-2.062.227-.247.495-.308.66-.308.165 0 .33 0 .474.008.15.008.35-.057.545.29.198.354.67 1.637.732 1.763.061.125.103.272.02.438-.083.166-.124.269-.248.414-.124.144-.263.313-.377.42-.124.116-.254.24-.11.488.144.248.643 1.054 1.368 1.706.932.84 1.714 1.096 1.961 1.22.247.124.392.103.536-.062.144-.165.62-.723.785-.97.165-.248.33-.207.557-.124.227.083 1.444.682 1.692.806.248.124.412.186.474.29.062.103.062.6-.165 1.243z"/></svg>
+            </div>
+        </a>
+    </div>
+
+    <div class="top-bar">
+        <marquee behavior="scroll" direction="left" scrollamount="4">
+            Não compre RKM PLAY em sites desconhecidos — você pode estar sendo enganado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Baixe o app apenas pelos nossos canais oficiais
+        </marquee>
+    </div>
+
+    <div class="container">
+        <header>
+            <img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" class="logo-img">
+            <div class="menu-icon" id="open-menu">☰</div>
+        </header>
+
+        <section class="hero">
+            <div class="section-tag">● STREAMING ALL-IN-ONE</div>
+            <h1 class="h1-title">Todos os streamings, canais e esportes em <span class="text-orange">um só app</span></h1>
+            <p class="p-subtitle">Netflix, HBO Max, Disney+, Prime Video, Premiere, SporTV e mais de 360 canais ao vivo. Pague uma vez por mês.</p>
+            
+            <div class="price-pill">
+                A partir de <strong>R$ 29,90</strong>/mês
+            </div>
+
+            <a href="https://wa.me/5511984334348" target="_blank" class="btn btn-orange">Quero economizar — começar agora →</a>
+            <a href="https://wa.me/5511984334348" target="_blank" class="btn btn-dark" style="display:flex; justify-content:center; align-items:center; gap:10px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                Teste grátis
+            </a>
+
+            <div class="hero-checks">
+                <span>Pix instantâneo</span>
+                <span>Acesso liberado em segundos</span>
+                <span>Sem fidelidade</span>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <div>
+                <div class="stat-number">+360</div>
+                <div class="stat-text">Canais ao vivo</div>
+            </div>
+            <div>
+                <div class="stat-number">+8.000</div>
+                <div class="stat-text">Filmes Full HD</div>
+            </div>
+            <div>
+                <div class="stat-number">+2.000</div>
+                <div class="stat-text">Séries atualizadas</div>
+            </div>
+            <div>
+                <div class="stat-number">24/7</div>
+                <div class="stat-text">Suporte Humano</div>
+            </div>
+        </section>
+
+        <section class="comparativo">
+            <div class="section-tag-muted">COMPARATIVO DE VALOR</div>
+            <h2 class="h2-title">Pague <span class="text-orange">R$ 29,90</span> em vez de R$ 295</h2>
+            <p class="p-subtitle">Pra ter uma biblioteca de filmes e séries equivalente à dos streamings tradicionais, você gastaria uma fortuna. Veja a diferença.</p>
+
+            <div class="comp-box">
+                <div class="comp-box-header">COMPRANDO SEPARADO</div>
+                <div class="comp-row"><span>Netflix Premium</span><span>R$ 55,90</span></div>
+                <div class="comp-row"><span>HBO Max</span><span>R$ 34,90</span></div>
+                <div class="comp-row"><span>Disney+</span><span>R$ 33,90</span></div>
+                <div class="comp-row"><span>Prime Video</span><span>R$ 19,90</span></div>
+                <div class="comp-row"><span>Premiere</span><span>R$ 89,90</span></div>
+                <div class="comp-row"><span>Globoplay (SporTV)</span><span>R$ 49,90</span></div>
+                <div class="comp-row"><span>Paramount+</span><span>R$ 19,90</span></div>
+                <div class="comp-total"><span>TOTAL/MÊS</span><span>R$ 304,30</span></div>
+            </div>
+
+            <div class="vs-badge">VS</div>
+
+            <div class="comp-box comp-box-aztv">
+                <div class="comp-box-header text-orange">RKM PLAY</div>
+                <div class="comp-row"><span>+8.000 filmes em Full HD</span><span class="check">✔</span></div>
+                <div class="comp-row"><span>+2.000 séries completas</span><span class="check">✔</span></div>
+                <div class="comp-row"><span>+360 canais ao vivo 24h</span><span class="check">✔</span></div>
+                <div class="comp-row"><span>Premiere + SporTV ao vivo</span><span class="check">✔</span></div>
+                <div class="comp-row"><span>Catálogo dos principais streamings</span><span class="check">✔</span></div>
+                <div class="comp-row"><span>Conteúdo adulto com senha</span><span class="check">✔</span></div>
+                <div class="comp-row"><span>2 telas simultâneas</span><span class="check">✔</span></div>
+                <div class="comp-total"><span>POR MÊS</span><span>R$ 29,90</span></div>
+            </div>
+
+            <div class="economy-box">
+                <h4>VOCÊ ECONOMIZA</h4>
+                <div class="eco-val">R$ 274,40 / mês</div>
+                <div class="eco-desc">No ano: <strong>R$ 3.292,80</strong> de economia • No anual de R$ 229,90 a economia chega a <strong>R$ 3.421,70</strong></div>
+                <div class="eco-test">Não acredita? <strong>Teste por 24h antes de pagar.</strong> Sem código, sem cadastro, sem cartão.</div>
+                <a href="https://wa.me/5511984334348" target="_blank" class="btn btn-green-outline">Testar gratuitamente →</a>
+            </div>
+
+            <a href="https://wa.me/5511984334348" target="_blank" class="btn btn-orange">Começar a economizar agora →</a>
+        </section>
+
+        <section class="section-padding">
+            <div class="section-tag-muted">O QUE TÁ INCLUSO</div>
+            <h2 class="h2-title">Tudo que você precisa, <span class="text-orange">em um só lugar</span></h2>
+            <p class="p-subtitle">Chega de pagar várias assinaturas separadas. A RKM PLAY reúne tudo em uma única conta.</p>
+
+            <div class="feature-card">
+                <div class="feature-icon">📺</div>
+                <div class="feature-title">+360 canais ao vivo 24h</div>
+                <div class="feature-desc">Abertos, fechados, esportivos, filmes, séries, infantil e adulto. Transmissão 24 horas, qualidade Full HD.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎥</div>
+                <div class="feature-title">+8.000 filmes em Full HD</div>
+                <div class="feature-desc">Catálogo atualizado semanalmente. Lançamentos do cinema toda semana, em qualidade 1080p.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📼</div>
+                <div class="feature-title">+2.000 séries completas</div>
+                <div class="feature-desc">Episódios novos toda semana. Todos os streamings num só lugar, sem precisar trocar de app.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏅</div>
+                <div class="feature-title">Premiere + SporTV</div>
+                <div class="feature-desc">Brasileirão, Champions League, Copa do Mundo 2026, NBA e todos os campeonatos ao vivo.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <div class="feature-title">2 telas simultâneas</div>
+                <div class="feature-desc">Use na sua TV e no seu celular ao mesmo tempo. Marido na TV, esposa no quarto, sem conflito.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-title">Adultos com senha</div>
+                <div class="feature-desc">Mais de 30 canais adultos disponíveis 24h. Acesso protegido por senha de 4 dígitos dentro do app.</div>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <div class="section-tag-muted">FUTEBOL AO VIVO</div>
+            <h2 class="h2-title">Todos os campeonatos <span class="text-orange">na sua tela</span></h2>
+            <p class="p-subtitle">Brasileirão, Champions League, Copa do Mundo, Libertadores, Premier League e mais — tudo ao vivo, em Full HD, sem travar.</p>
+            
+            <div class="carousel-wrapper">
+                <div class="carousel-track">
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">BRASILEIRÃO</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">CHAMPIONS</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LIBERTADORES</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">PREMIER L.</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LALIGA</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">BRASILEIRÃO</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">CHAMPIONS</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LIBERTADORES</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">PREMIER L.</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LALIGA</span></div>
+                </div>
+            </div>
+
+            <a href="https://wa.me/5511984334348" target="_blank" class="btn btn-orange">Assinar e assistir agora →</a>
+        </section>
+
+        <section class="section-padding">
+            <div class="section-tag-muted">PRINCIPAIS CANAIS</div>
+            <h2 class="h2-title">Os mais assistidos do Brasil, <span class="text-orange">todos na RKM PLAY</span></h2>
+            <p class="p-subtitle">HBO, SporTV, Premiere, ESPN, TNT, Discovery, Disney+, Paramount+ e mais 350. Sem precisar trocar de app.</p>
+
+            <div class="channels-grid">
+                <div class="channel-item">HBO</div>
+                <div class="channel-item" style="color: #ff3333;">sportv</div>
+                <div class="channel-item" style="color: #32CD32;">PREMIERE</div>
+                <div class="channel-item" style="color: #ff0000; font-style:italic;">ESPN</div>
+                <div class="channel-item">TNT</div>
+                <div class="channel-item" style="color: #00bfa5;">Discovery</div>
+                <div class="channel-item" style="color: #00ffcc;">WB</div>
+                <div class="channel-item" style="color: #ff6699;">MULTISHOW</div>
+                <div class="channel-item" style="color: #ff3333;">TELECINE</div>
+                <div class="channel-item" style="color: #cc9966;">HISTORY</div>
+                <div class="channel-item" style="color: #ff0000;">COMBATE</div>
+                <div class="channel-item" style="color: #fff;">AXN</div>
+                <div class="channel-item" style="color: #fff;">GLOBONEWS</div>
+                <div class="channel-item" style="color: #fff;">CARTOON</div>
+                <div class="channel-item" style="color: #99ff33;">MEGAPIX</div>
+            </div>
+
+            <a href="https://wa.me/5511984334348" target="_blank" class="btn btn-orange-outline">Ver todos os +360 canais →</a>
+        </section>
+
+        <section class="section-padding">
+            <div class="section-tag-muted">EM ALTA AGORA</div>
+            <h2 class="h2-title">Tudo isso e muito mais <span class="text-orange">no seu app</span></h2>
+            <p class="p-subtitle">Os filmes e séries que todo mundo está assistindo, atualizados toda semana.</p>
+
+            <div class="posters-carousel-wrapper">
+                <div class="posters-track left">
+                    <div class="poster-item" style="background:#1a202c;"><div class="poster-title">THE BOYS</div></div>
+                    <div class="poster-item" style="background:#2d3748;"><div class="poster-title">BRIDGERTON</div></div>
+                    <div class="poster-item" style="background:#2c1b18;"><div class="poster-title">HOUSE OF THE DRAGON</div></div>
+                    <div class="poster-item" style="background:#3a0000;"><div class="poster-title">DEADPOOL & WOLVERINE</div></div>
+                    <div class="poster-item" style="background:#001f3f;"><div class="poster-title">INSIDE OUT 2</div></div>
+                    <div class="poster-item" style="background:#1a202c;"><div class="poster-title">THE BOYS</div></div>
+                    <div class="poster-item" style="background:#2d3748;"><div class="poster-title">BRIDGERTON</div></div>
+                    <div class="poster-item" style="background:#2c1b18;"><div class="poster-title">HOUSE OF THE DRAGON</div></div>
+                    <div class="poster-item" style="background:#3a0000;"><div class="poster-title">DEADPOOL & WOLVERINE</div></div>
+                    <div class="poster-item" style="background:#001f3f;"><div class="poster-title">INSIDE OUT 2</div></div>
+                </div>
+            </div>
+
+            <div class="posters-carousel-wrapper" style="margin-top: 5px;">
+                <div class="posters-track right">
+                    <div class="poster-item" style="background:#1a1a2e;"><div class="poster-title">JOVEM SHERLOCK</div></div>
+                    <div class="poster-item" style="background:#0f172a;"><div class="poster-title">THE GOOD DOCTOR</div></div>
+                    <div class="poster-item" style="background:#222831;"><div class="poster-title">PLANETA DOS MACACOS</div></div>
+                    <div class="poster-item" style="background:#2a2a2a;"><div class="poster-title">VENOM 3</div></div>
+                    <div class="poster-item" style="background:#4a3f35;"><div class="poster-title">GLADIADOR 2</div></div>
+                    <div class="poster-item" style="background:#1a1a2e;"><div class="poster-title">JOVEM SHERLOCK</div></div>
+                    <div class="poster-item" style="background:#0f172a;"><div class="poster-title">THE GOOD DOCTOR</div></div>
+                    <div class="poster-item" style="background:#222831;"><div class="poster-title">PLANETA DOS MACACOS</div></div>
+                    <div class="poster-item" style="background:#2a2a2a;"><div class="poster-title">VENOM 3</div></div>
+                    <div class="poster-item" style="background:#4a3f35;"><div class="poster-title">GLADIADOR 2</div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <div class="section-tag-muted">COMPATIBILIDADE</div>
+            <h2 class="h2-title">Funciona em qualquer <span class="text-orange">aparelho Android</span></h2>
+            <p class="p-subtitle">TV Box, Smart TV com Android, smartphones, tablets — qualquer tela com sistema Android roda a RKM PLAY.</p>
+
+            <div class="feature-card">
+                <div class="feature-icon">📺</div>
+                <div class="feature-title">TV Box Android</div>
+                <div class="feature-desc">Android 7.0+, 2GB RAM, 8GB storage</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🖥️</div>
+                <div class="feature-title">Smart TV Android</div>
+                <div class="feature-desc">Xiaomi, TCL, Philco, Multilaser e mais</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <div class="feature-title">Celular ou tablet</div>
+                <div class="feature-desc">Android 7.0 ou superior</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💻</div>
+                <div class="feature-title">Computador</div>
+                <div class="feature-desc">Windows com emulador Android</div>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <h2 class="h2-title">Baixe e <span class="text-orange">teste grátis</span></h2>
+            <p class="p-subtitle">Instale em menos de 2 minutos. Você ganha <strong style="color:var(--green);">24h de acesso liberado</strong> pra testar tudo — sem código, sem cadastro, sem cartão.</p>
+
+            <div class="feature-card" style="display:flex; align-items:center; text-align:left; gap:15px; padding:20px;">
+                <div class="feature-icon" style="margin:0;">📺</div>
+                <div>
+                    <div class="feature-title" style="margin:0;">Baixar App TV</div>
+                    <div class="feature-desc" style="font-size:12px;">Smart TV • TV Box • Fire TV</div>
+                </div>
+            </div>
+            
+            <div class="feature-card" style="display:flex; align-items:center; text-align:left; gap:15px; padding:20px;">
+                <div class="feature-icon" style="margin:0;">📱</div>
+                <div>
+                    <div class="feature-title" style="margin:0;">Baixar App Mobile</div>
+                    <div class="feature-desc" style="font-size:12px;">Smartphone • Tablet • Android 7.0+</div>
+                </div>
+            </div>
+
+            <div style="display:flex; align-items:center; justify-content:center; gap:10px; color:#555; font-size:12px; margin-top:20px;">
+                <span style="color:#a4c639;">👾</span> Exclusivo para dispositivos Android — baixe apenas pelos canais oficiais
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <div class="section-tag-muted">COMO FUNCIONA</div>
+            <h2 class="h2-title">Do Pix ao filme em <span class="text-orange">menos de 2 minutos</span></h2>
+            <p class="p-subtitle">Processo simples e direto — sem cadastro complicado, sem cartão de crédito.</p>
+
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <div class="feature-title">Escolha seu plano</div>
+                <div class="feature-desc">Mensal R$29,90 ou anual R$229,90 (mais econômico). Escolha o que cabe melhor.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <div class="feature-title">Pague no Pix</div>
+                <div class="feature-desc">Confirmação automática em segundos. Sem cartão, sem cadastro de dados sensíveis.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">3</div>
+                <div class="feature-title">Receba o código</div>
+                <div class="feature-desc">O código de ativação aparece direto na tela após o pagamento confirmar.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">4</div>
+                <div class="feature-title">Ative e assista</div>
+                <div class="feature-desc">Baixe o app, cole o código, comece a assistir. Funciona instantaneamente.</div>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <div class="section-tag-muted">DEPOIMENTOS REAIS</div>
+            <h2 class="h2-title">O que nossos clientes <span class="text-orange">dizem</span></h2>
+            <p class="p-subtitle">Pessoas que economizaram trocando os streamings tradicionais pela RKM PLAY.</p>
+
+            <div class="depoimento-card">
+                <div class="stars">★★★★★</div>
+                <div class="depoimento-text">"Já usei vários apps de streaming, mas a RKM PLAY tem de longe a melhor qualidade de sinal. Não trava, a imagem é nítida e a quantidade de canais é impressionante."</div>
+                <div class="depoimento-author">
+                    <div class="avatar">C</div>
+                    <div class="author-info">
+                        <div class="author-name">Carlos M.</div>
+                        <div class="author-meta">Cliente desde 2024 • Curitiba/PR</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="depoimento-card">
+                <div class="stars">★★★★★</div>
+                <div class="depoimento-text">"Comprei o anual e não me arrependo. Economizei bastante em comparação aos streamings separados e funciona perfeitamente no Fire TV Stick. Suporte excelente."</div>
+                <div class="depoimento-author">
+                    <div class="avatar">P</div>
+                    <div class="author-info">
+                        <div class="author-name">Patrícia S.</div>
+                        <div class="author-meta">Cliente desde 2023 • São Paulo/SP</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="depoimento-card">
+                <div class="stars">★★★★★</div>
+                <div class="depoimento-text">"Paguei via Pix, o código chegou na hora e em menos de 2 minutos já estava assistindo. Marido na TV, eu no celular, sem conflito. Recomendo demais."</div>
+                <div class="depoimento-author">
+                    <div class="avatar">F</div>
+                    <div class="author-info">
+                        <div class="author-name">Fernanda A.</div>
+                        <div class="author-meta">Cliente desde 2025 • Belo Horizonte/MG</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <div class="section-tag-muted">DÚVIDAS FREQUENTES</div>
+            <h2 class="h2-title">Antes de comprar, <span class="text-orange">responda isso</span></h2>
+            <p class="p-subtitle">As perguntas que todo mundo faz quando descobre a RKM PLAY.</p>
+
+            <div class="faq-container">
+                <details>
+                    <summary>Como funciona o teste grátis?</summary>
+                    <div class="faq-answer">Pode baixar a nossa aplicação e terá acesso durante 24 horas para experimentar todos os canais, filmes e séries sem compromisso.</div>
+                </details>
+                <details>
+                    <summary>Se eu assinar e não gostar, perco meu dinheiro?</summary>
+                    <div class="faq-answer">Temos uma política de satisfação. Pode testar primeiro e se após assinar tiver problemas técnicos comprovados, o suporte ajudará ou fará o reembolso conforme a política.</div>
+                </details>
+                <details>
+                    <summary>Funciona na minha TV?</summary>
+                    <div class="faq-answer">Funciona perfeitamente em Smart TVs com sistema Android, TV Boxes, Fire TV Stick e outros dispositivos compatíveis.</div>
+                </details>
+                <details>
+                    <summary>Em quanto tempo recebo o acesso depois do pagamento?</summary>
+                    <div class="faq-answer">O envio é imediato e automático na sua tela logo após a confirmação do pagamento via Pix.</div>
+                </details>
+                <details>
+                    <summary>Em quantos aparelhos posso usar ao mesmo tempo?</summary>
+                    <div class="faq-answer">O plano padrão permite o acesso em até 2 ecrãs em simultâneo (ex: TV na sala e celular no quarto).</div>
+                </details>
+                <details>
+                    <summary>Posso cancelar quando quiser?</summary>
+                    <div class="faq-answer">Sim, não temos qualquer fidelização. O serviço funciona de forma pré-paga.</div>
+                </details>
+                <details>
+                    <summary>Tem suporte caso eu tenha problema?</summary>
+                    <div class="faq-answer">Sim, temos uma equipa de suporte humano disponível através do WhatsApp.</div>
+                </details>
+                <details>
+                    <summary>A RKM PLAY é a mesma coisa que o app antigo?</summary>
+                    <div class="faq-answer">A RKM PLAY é a evolução da plataforma, com servidores atualizados e maior estabilidade de sinal.</div>
+                </details>
+                <details>
+                    <summary>Como me proteger de sites falsos vendendo a RKM PLAY?</summary>
+                    <div class="faq-answer">Efetue a compra apenas através dos nossos canais e contatos oficiais.</div>
+                </details>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <h2 class="h1-title">Pronto pra economizar <span class="text-orange">R$ 274 por mês</span>?</h2>
+            <p class="p-subtitle">Comece pelo plano mensal, sem fidelidade. Pix instantâneo, código na hora, suporte humano se precisar.</p>
+
+            <a href="https://wa.me/5511984334348" target="_blank" class="btn btn-orange">Começar agora por R$ 29,90 →</a>
+            <div style="color:#666; font-size:12px; margin: 15px 0;">OU</div>
+            <a href="https://wa.me/5511984334348" target="_blank" class="btn btn-green-outline">✔ Testar gratuitamente</a>
+
+            <div class="hero-checks" style="flex-direction: column; align-items: flex-start; text-align:left; margin-top:30px; gap:15px; border-top: 1px solid #1f1f1f; padding-top: 30px;">
+                <span><strong>Pix</strong> com confirmação em segundos</span>
+                <span><strong>Sem fidelidade</strong> — cancele quando quiser</span>
+                <span><strong>Suporte humano</strong> 7 dias por semana</span>
+            </div>
+        </section>
+
+        <div class="security-box">
+            <div class="shield-icon">🛡️</div>
+            <h3 style="font-size:16px; margin-bottom:10px;">Compre apenas pelo nosso <span class="text-orange">suporte oficial</span></h3>
+            <p class="security-text">Sites falsos copiam nossa identidade. O suporte é exclusivamente pelo WhatsApp (11) 98433-4348. Qualquer outro canal é golpe.</p>
+        </div>
+
+        <footer>
+            <img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" class="logo-img" style="margin-bottom: 15px; opacity: 0.8;">
+            <p style="margin-bottom:20px;">IPTV para Android • operado desde 2026</p>
+            
+            <div class="footer-status">
+                <span style="color:#ff3333; font-size:14px;">▶</span>
+                <span class="dot-red"></span> Voltamos amanhã às 08h
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; text-align:left; gap:20px;">
+                <div class="footer-nav">
+                    <h5>PRODUTO</h5>
+                    <ul>
+                        <li>Página inicial</li>
+                        <li>Lista de canais</li>
+                        <li>Esportes ao vivo</li>
+                        <li>Planos e preços</li>
+                    </ul>
+                </div>
+                <div class="footer-nav">
+                    <h5>RECURSOS</h5>
+                    <ul>
+                        <li>Central de ajuda</li>
+                        <li>Baixar App TV</li>
+                        <li>Baixar App Mobile</li>
+                    </ul>
+                </div>
+                <div class="footer-nav">
+                    <h5>SUPORTE</h5>
+                    <ul>
+                        <li>Falar com Atendente</li>
+                        <li>(11) 98433-4348</li>
+                    </ul>
+                </div>
+                <div class="footer-nav">
+                    <h5>HORÁRIOS</h5>
+                    <ul>
+                        <li>Seg–Sex <span style="float:right">08–20h</span></li>
+                        <li>Sábado <span style="float:right">09–19h</span></li>
+                        <li>Domingo <span style="float:right">13–17h</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; text-align: left;">
+                <div class="verified-badge">
+                    <span class="dot-green"></span> CANAL OFICIAL VERIFICADO
+                </div>
+                <p style="margin-bottom: 30px; line-height: 1.6;">A RKM PLAY é vendida exclusivamente através do nosso canal de suporte via WhatsApp com o número (11) 98433-4348. Qualquer outro site, domínio ou vendedor não autorizado é golpe — não baixe o aplicativo de fontes desconhecidas.</p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2016–2026 RKM PLAY • todos os direitos reservados</p>
+                <p style="margin: 10px 0;">Termos e privacidade</p>
+                <p style="color:#a4c639; font-weight:bold; display:flex; align-items:center; justify-content:center; gap:5px;"><span style="font-size:16px;">👾</span> Exclusivo para dispositivos Android</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <a href="https://wa.me/5511984334348" target="_blank" class="whatsapp-float">
+        <svg viewBox="0 0 24 24"><path d="M12.031 2C6.486 2 2 6.486 2 12.031a9.99 9.99 0 001.328 4.966L2 22l5.163-1.328A9.97 9.97 0 0012.031 22c5.544 0 10.03-4.486 10.03-10.03S17.575 2 12.031 2zm5.545 14.51c-.228.644-1.284 1.233-1.802 1.341-.473.1-.966.14-1.503-.028-.277-.087-.648-.198-1.077-.354-2.484-.903-4.103-3.46-4.228-3.627-.124-.167-1.008-1.341-1.008-2.557 0-1.216.634-1.815.86-2.062.227-.247.495-.308.66-.308.165 0 .33 0 .474.008.15.008.35-.057.545.29.198.354.67 1.637.732 1.763.061.125.103.272.02.438-.083.166-.124.269-.248.414-.124.144-.263.313-.377.42-.124.116-.254.24-.11.488.144.248.643 1.054 1.368 1.706.932.84 1.714 1.096 1.961 1.22.247.124.392.103.536-.062.144-.165.62-.723.785-.97.165-.248.33-.207.557-.124.227.083 1.444.682 1.692.806.248.124.412.186.474.29.062.103.062.6-.165 1.243z"/></svg>
+    </a>
+
+    <script>
+        const openMenuBtn = document.getElementById('open-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const sideMenu = document.getElementById('side-menu');
+
+        openMenuBtn.addEventListener('click', () => {
+            sideMenu.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Impede a rolagem da página quando o menu está aberto
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            sideMenu.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restaura a rolagem
+        });
+    </script>
+</body>
+</html>

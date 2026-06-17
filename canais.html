@@ -37,6 +37,7 @@
         .close-menu { font-size: 24px; color: var(--text-muted); cursor: pointer; font-weight: bold; }
         .menu-section-title { font-size: 11px; font-weight: bold; color: #666; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; margin-top: 30px; }
         
+        /* Efeito Hover/Active no Menu (Sem cor fixa) */
         .menu-nav-list li a { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #1a1a1a; font-size: 16px; font-weight: bold; color: #fff; transition: color 0.2s; }
         .menu-nav-list li a:hover, .menu-nav-list li a:active { color: var(--orange); }
         .menu-nav-list li a span { color: #555; font-weight: normal; font-size: 18px; }
@@ -74,8 +75,8 @@
         .channel-logo { flex-grow: 1; display: flex; align-items: center; justify-content: center; width: 100%; }
         .channel-name { font-size: 11px; color: var(--text-muted); margin-top: 5px; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: bold; }
 
-        /* === ESTILOS SIMPLIFICADOS DE LOGOS === */
-        .l-txt { font-weight: 900; font-size: 16px; color: #fff; text-align: center; }
+        /* Estilos de Logos Minimalistas */
+        .l-txt { font-weight: 900; font-size: 16px; color: #fff; text-align: center; line-height:1.2; }
         .l-espn { color: #ff0000; font-style: italic; font-weight: 900; letter-spacing: -1px; font-size: 20px; }
         .l-prem { color: #32CD32; font-weight: 900; border: 1px solid #32CD32; padding: 2px 5px; font-size: 10px; border-radius: 2px; }
         .l-hbo { font-weight: 900; letter-spacing: -1px; font-size: 22px; color: #fff; }
@@ -85,7 +86,7 @@
         .l-adult { border: 2px solid #ff3333; color: #ff3333; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; margin: 0 auto; }
         .l-ama { background:#fff; color:#00aaff; font-weight:bold; font-style:italic; padding:2px 8px; border-radius:4px; font-size:14px; }
         .l-para { color:#0088ff; font-family:serif; font-style:italic; font-weight:bold; font-size:16px; }
-        .l-nosso { background:#fff; color:#006600; padding:2px 5px; font-weight:bold; font-size:10px; line-height:1.2; text-align:center; }
+        .l-nosso { background:#fff; color:#006600; padding:2px 5px; font-weight:bold; font-size:10px; text-align:center; }
         .l-sky { color:#ff0044; font-weight:900; font-size:16px; }
         .l-disney { font-family:serif; font-size:20px; font-style:italic; color:#fff; }
         .l-cnn { background:#cc0000; color:#fff; padding:2px 5px; font-weight:bold; border-radius:4px; font-size:14px; }
@@ -132,7 +133,7 @@
             <div class="menu-section-title">NAVEGAÇÃO</div>
             <ul class="menu-nav-list">
                 <li><a href="index.html">Início <span>›</span></a></li>
-                <li><a href="canais.html" style="color:var(--orange);">Canais <span>›</span></a></li>
+                <li><a href="canais.html">Canais <span>›</span></a></li>
                 <li><a href="#">Esportes <span>›</span></a></li>
                 <li><a href="#">Planos <span>›</span></a></li>
                 <li><a href="#">Ajuda <span>›</span></a></li>
@@ -184,7 +185,7 @@
                 <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN 4</div></div><div class="channel-name">ESPN 4</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN 5</div></div><div class="channel-name">ESPN 5</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN 6</div></div><div class="channel-name">ESPN 6</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="l-sportv">spor<span style="color:#ff3333;">tv</span></div></div><div class="channel-name">SporTV</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sportv">spor<span style="color:#ff3333;">tv</span></div></div><div class="channel-name">SporTV 1</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-sportv">spor<span style="color:#ff3333;">tv</span>2</div></div><div class="channel-name">SporTV 2</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-sportv">spor<span style="color:#ff3333;">tv</span>3</div></div><div class="channel-name">SporTV 3</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-prem">PREMIERE</div></div><div class="channel-name">Premiere 2</div></div>
@@ -194,8 +195,8 @@
                 <div class="channel-card"><div class="channel-logo"><div class="l-prem">PREMIERE</div></div><div class="channel-name">Premiere 6</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-prem">PREMIERE</div></div><div class="channel-name">Premiere 7</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-prem">PREMIERE</div></div><div class="channel-name">Premiere Clubes</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 5px;">DAZN 1</div></div><div class="channel-name">DAZN 1</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 5px;">DAZN 2</div></div><div class="channel-name">DAZN 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 5px; border-radius:4px;">DAZN 1</div></div><div class="channel-name">DAZN 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 5px; border-radius:4px;">DAZN 2</div></div><div class="channel-name">DAZN 2</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3333; font-style:italic;">COMBATE</div></div><div class="channel-name">Combate</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt">BAND<span style="color:#ff3333;">SPORTS</span></div></div><div class="channel-name">Band Sports</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ccff00; font-size:24px;">ge<span style="font-size:12px;color:#fff;">tv</span></div></div><div class="channel-name">GE TV</div></div>
@@ -214,10 +215,10 @@
                 <div class="channel-card"><div class="channel-logo"><div class="l-para">Paramount+</div></div><div class="channel-name">Paramount+ 3</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-para">Paramount+</div></div><div class="channel-name">Paramount+ 4</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-para">Paramount+</div></div><div class="channel-name">Paramount+ 5</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#0088ff;">⚽ CONMEBOL</div></div><div class="channel-name">CONMEBOL 1</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#0088ff;">⚽ CONMEBOL</div></div><div class="channel-name">CONMEBOL 2</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#0088ff;">⚽ CONMEBOL</div></div><div class="channel-name">CONMEBOL 3</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#0088ff;">⚽ CONMEBOL</div></div><div class="channel-name">CONMEBOL 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">⚽ CONMEBOL</div></div><div class="channel-name">CONMEBOL 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">⚽ CONMEBOL</div></div><div class="channel-name">CONMEBOL 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">⚽ CONMEBOL</div></div><div class="channel-name">CONMEBOL 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">⚽ CONMEBOL</div></div><div class="channel-name">CONMEBOL 4</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 1</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 2</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 3</div></div>
@@ -231,9 +232,9 @@
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt">★EUROSPORT</div></div><div class="channel-name">Eurosport 1</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt">★EUROSPORT 2</div></div><div class="channel-name">Eurosport 2</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">FISHTV</div></div><div class="channel-name">FishTV</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="font-family:serif;">OFF</div></div><div class="channel-name">OFF</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="font-family:serif; font-size:24px;">OFF</div></div><div class="channel-name">OFF</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt">X SPORTS</div></div><div class="channel-name">X Sports</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px;">R. Madrid</div></div><div class="channel-name">Real Madrid TV</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 5px; border-radius:4px;">R. Madrid</div></div><div class="channel-name">Real Madrid TV</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00ff00;">SPORTING</div></div><div class="channel-name">Sporting TV</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3366;">SportyNet</div></div><div class="channel-name">Sporty Net 1</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3366;">SportyNet</div></div><div class="channel-name">Sporty Net 2</div></div>
@@ -272,7 +273,7 @@
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt">FOX SPORTS</div></div><div class="channel-name">ARG: Fox Sport 1</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt">FOX 2</div></div><div class="channel-name">ARG: Fox Sport 2</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt">FOX 3</div></div><div class="channel-name">ARG: Fox Sport 3</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0000;">FOX PREM</div></div><div class="channel-name">ARG: Fox Sport Premium</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0000; border:1px solid #ff0000; border-radius:20px; padding:2px 5px;">FOX PREM</div></div><div class="channel-name">ARG: Fox Sport Premium</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:50%; width:30px; height:30px; line-height:28px;">C</div></div><div class="channel-name">Canal Futebol OnDemand 1</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:50%; width:30px; height:30px; line-height:28px;">C</div></div><div class="channel-name">Canal Futebol OnDemand 2</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:50%; width:30px; height:30px; line-height:28px;">C</div></div><div class="channel-name">Canal Futebol OnDemand 3</div></div>
@@ -384,7 +385,7 @@
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt">RECORD</div></div><div class="channel-name">Record Bahia</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt">RECORD</div></div><div class="channel-name">Record RJ</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt">RECORD</div></div><div class="channel-name">Record Nacional</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">sbt</div></div><div class="channel-name">SBT</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff; background:#fff; border-radius:50%; width:35px; height:35px; line-height:35px;">sbt</div></div><div class="channel-name">SBT</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aa00;">Band</div></div><div class="channel-name">Band</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00ccff;">REDE<span style="color:#fff;">TV</span></div></div><div class="channel-name">Rede TV</div></div>
                 <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">RBI</div></div><div class="channel-name">Rede Brasil</div></div>
@@ -655,7 +656,7 @@
                     if (filterValue === 'all') {
                         section.style.display = 'block';
                     } else {
-                        // Verifica se o ID da secção corresponde ao filtro
+                        // Verifica se o ID da secção corresponde ao filtro (ex: cat-esportes)
                         if (section.id === 'cat-' + filterValue) {
                             section.style.display = 'block';
                         } else {

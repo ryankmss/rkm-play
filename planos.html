@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZTV Family - Planos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-pure: #000000;
+            --bg-card: #0d0d0d;
+            --border-color: #1a1a1a;
+            --primary-orange: #ff7900;
+            --primary-hover: #e06a00;
+            --text-white: #ffffff;
+            --text-gray: #999999;
+            --success-green: #00e676;
+            --btn-dark: #161616;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: #111111;
+            color: var(--text-white);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* Container simulando exatamente a visualização mobile das imagens */
+        .mobile-viewport {
+            width: 100%;
+            max-width: 430px; /* Largura padrão de smartphone moderno */
+            background-color: var(--bg-pure);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            padding-bottom: 60px;
+        }
+
+        /* Barra de Aviso Superior Corrida (Marquee) */
+        .marquee-container {
+            background-color: var(--primary-orange);
+            color: #000000;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 8px 0;
+            overflow: hidden;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* Header / Navbar */
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 16px;
+            background-color: var(--bg-pure);
+        }
+
+        .brand-logo {
+            font-size: 22px;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--primary-orange);
+        }
+
+        .brand-logo span {
+            color: var(--text-white);
+            font-weight: 400;
+            font-style: normal;
+            font-size: 18px;
+            margin-left: 4px;
+        }
+
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 22px;
+            height: 2px;
+            background-color: var(--text-white);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 30px 20px 20px;
+        }
+
+        .hero-section h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-white);
+        }
+
+        .hero-section h1 span {
+            color: var(--primary-orange);
+        }
+
+        .hero-section p {
+            color: var(--text-gray);
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        /* Listagem de Planos Vertical */
+        .plans-list {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px; /* Espaçamento para acomodar a badge externa do trimestral */
+        }
+
+        /* Card de Plano Padrão */
+        .plan-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px 20px;
+            position: relative;
+        }
+
+        /* Card de Plano Destacado (Trimestral) */
+        .plan-card.featured {
+            border: 1px solid var(--primary-orange);
+        }
+
+        /* Badge Superior Externa */
+        .badge-top {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-orange);
+            color: #000000;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Badge de Economia Interna */
+        .badge-economy {
+            display: inline-block;
+            color: var(--success-green);
+            border: 1px solid rgba(0, 230, 118, 0.3);
+            background-color: rgba(0, 230, 118, 0.05);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .plan-type {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
+        }
+
+        .plan-card.featured .plan-type {
+            color: var(--primary-orange);
+        }
+
+        /* Bloco de Preço */
+        .price-block {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+
+        .price-symbol {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-white);
+            margin-right: 4px;
+        }
+
+        .plan-card.featured .price-symbol {
+            color: var(--primary-orange);
+        }
+
+        .price-integer {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--text-white);
+            line-height: 1;
+        }
+
+        .plan-card.featured .price-integer {
+            color: var(--primary-orange);
+        }
+
+        .price-fraction {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-white);
+            align-self: flex-start;
+            margin-top: 4px;
+        }
+
+        .plan-card.featured .price-fraction {
+            color: var(--primary-orange);
+        }
+
+        .price-billing-text {
+            font-size: 13px;
+            color: var(--text-gray);
+            margin-bottom: 4px;
+        }
+
+        .price-calculated-monthly {
+            font-size: 13px;
+            color: var(--text-white);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        /* Lista de Vantagens */
+        .features-list {
+            list-style: none;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 20px;
+            margin-bottom: 24px;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-white);
+            margin-bottom: 12px;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            color: var(--success-green);
+            font-weight: 700;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        /* Botões de Ação */
+        .btn-action {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: background 0.2s;
+        }
+
+        .btn-dark-style {
+            background-color: var(--btn-dark);
+            color: var(--text-white);
+        }
+
+        .btn-dark-style:hover {
+            background-color: #222222;
+        }
+
+        .btn-orange-style {
+            background-color: var(--primary-orange);
+            color: #000000;
+        }
+
+        .btn-orange-style:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Secção de Benefícios Rápidos */
+        .benefits-section {
+            padding: 40px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .benefit-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .benefit-icon-wrapper {
+            width: 44px;
+            height: 44px;
+            border: 1px solid #222222;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-orange);
+            font-size: 18px;
+            background-color: #0a0a0a;
+            flex-shrink: 0;
+        }
+
+        .benefit-info h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-white);
+            margin-bottom: 2px;
+        }
+
+        .benefit-info p {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        /* Secção de FAQ / Perguntas Frequentes */
+        .faq-container {
+            padding: 20px 16px 40px;
+        }
+
+        .faq-container h2 {
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .faq-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .faq-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-item details {
+            width: 100%;
+        }
+
+        .faq-item summary {
+            padding: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: "∨";
+            font-size: 12px;
+            color: var(--primary-orange);
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .faq-item details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 16px 16px;
+            font-size: 13px;
+            color: var(--text-gray);
+            line-height: 1.5;
+            border-top: 1px solid #141414;
+            padding-top: 12px;
+        }
+
+        .faq-answer a {
+            color: var(--primary-orange);
+            text-decoration: none;
+        }
+
+        /* Chamada para Ação Final */
+        .ready-to-start {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .ready-to-start h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .ready-to-start h2 span {
+            color: var(--primary-orange);
+        }
+
+        .ready-to-start p {
+            font-size: 13px;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .btn-scroll-up {
+            display: inline-block;
+            background-color: var(--primary-orange);
+            color: #000000;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        /* Rodapé Real */
+        .app-footer {
+            text-align: center;
+            padding: 24px 16px;
+            font-size: 11px;
+            color: var(--text-gray);
+            border-top: 1px solid #141414;
+        }
+
+        /* Botão WhatsApp Flutuante com Anel Duplo */
+        .whatsapp-floating {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+            z-index: 999;
+            cursor: pointer;
+        }
+
+        .whatsapp-floating::before {
+            content: '';
+            position: absolute;
+            width: 66px;
+            height: 66px;
+            border: 1px solid rgba(37, 213, 102, 0.3);
+            border-radius: 50%;
+        }
+
+        .whatsapp-floating svg {
+            width: 28px;
+            height: 28px;
+            fill: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-viewport">
+
+        <div class="marquee-container">
+            <div class="marquee-text">
+                Sites oficiais: aztv.video • aztv.es • aztv.us — únicos autorizados a vender AZTV Family &nbsp;&nbsp;•&nbsp;&nbsp; Não compre AZTV em sites desconhecidos — você pode estar sendo enganado &nbsp;&nbsp;•&nbsp;&nbsp; Suporte oficial apenas por números do Paraguai (+595) — desconfie de outros &nbsp;&nbsp;•&nbsp;&nbsp; Sites oficiais: aztv.video • aztv.es • aztv.us — únicos autorizados a vender AZTV Family &nbsp;&nbsp;•&nbsp;&nbsp; Não compre AZTV em sites desconhecidos — você pode estar sendo enganado &nbsp;&nbsp;•&nbsp;&nbsp; Suporte oficial apenas por números do Paraguai (+595) — desconfie de outros &nbsp;&nbsp;•&nbsp;&nbsp;
+            </div>
+        </div>
+
+        <header class="header-nav">
+            <div class="brand-logo">AZTV<span>Family</span></div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </header>
+
+        <section class="hero-section">
+            <h1>Escolha seu <span>plano</span></h1>
+            <p>Acesso completo: +360 canais ao vivo, +8.000 filmes e +2.000 séries num único app. Sem fidelidade, sem renovação automática.</p>
+        </section>
+
+        <section class="plans-list" id="planos-target">
+
+            <div class="plan-card">
+                <div class="plan-type">Mensal</div>
+                <div class="price-block">
+                    <span class="price-symbol">R$</span>
+                    <span class="price-integer">29</span>
+                    <span class="price-fraction">,90</span>
+                </div>
+                <div class="price-billing-text">cobrado mensalmente</div>
+                <div class="price-calculated-monthly" style="visibility: hidden;">&nbsp;</div>
+                
+                <ul class="features-list">
+                    <li>+360 canais ao vivo 24h</li>
+                    <li>+8.000 filmes em Full HD</li>
+                    <li>+2.000 séries completas</li>
+                    <li>2 telas (TV + celular)</li>
+                    <li>Premiere + SporTV</li>
+                    <li>Suporte humano por WhatsApp</li>
+                </ul>
+                <a href="#" class="btn-action btn-dark-style">Assinar mensal ➔</a>
+            </div>
+
+            <div class="plan-card featured">
+                <span class="badge-top">Mais Escolhido</span>
+                <span class="badge-economy">Economize 11%</span>
+                <div class="plan-type">Trimestral</div>
+                <div class="price-block">
+                    <span class="price-symbol">R$</span>
+                    <span class="price-integer">79</span>
+                    <span class="price-fraction">,90</span>
+                </div>
+                <div class="price-billing-text">cobrado a cada 3 meses</div>
+                <div class="price-calculated-monthly">≈ R$ 26,63/mês</div>
+                
+                <ul class="features-list">
+                    <li>+360 canais ao vivo 24h</li>
+                    <li>+8.000 filmes em Full HD</li>
+                    <li>+2.000 séries completas</li>
+                    <li>2 telas (TV + celular)</li>
+                    <li>Premiere + SporTV</li>
+                    <li>Suporte humano por WhatsApp</li>
+                </ul>
+                <a href="#" class="btn-action btn-orange-style">Assinar trimestral ➔</a>
+            </div>
+
+            <div class="plan-card">
+                <span class="badge-economy">Economize 22%</span>
+                <div class="plan-type">Semestral</div>
+                <div class="price-block">
+                    <span class="price-symbol">R$</span>
+                    <span class="price-integer">139</span>
+                    <span class="price-fraction">,90</span>
+                </div>
+                <div class="price-billing-text">cobrado a cada 6 meses</div>
+                <div class="price-calculated-monthly">≈ R$ 23,32/mês</div>
+                
+                <ul class="features-list">
+                    <li>+360 canais ao vivo 24h</li>
+                    <li>+8.000 filmes em Full HD</li>
+                    <li>+2.000 séries completas</li>
+                    <li>2 telas (TV + celular)</li>
+                    <li>Premiere + SporTV</li>
+                    <li>Suporte humano por WhatsApp</li>
+                </ul>
+                <a href="#" class="btn-action btn-dark-style">Assinar semestral ➔</a>
+            </div>
+
+            <div class="plan-card">
+                <span class="badge-economy">Economize 36%</span>
+                <div class="plan-type">Anual</div>
+                <div class="price-block">
+                    <span class="price-symbol">R$</span>
+                    <span class="price-integer">229</span>
+                    <span class="price-fraction">,90</span>
+                </div>
+                <div class="price-billing-text">cobrado anualmente</div>
+                <div class="price-calculated-monthly">≈ R$ 19,16/mês</div>
+                
+                <ul class="features-list">
+                    <li>+360 canais ao vivo 24h</li>
+                    <li>+8.000 filmes em Full HD</li>
+                    <li>+2.000 séries completas</li>
+                    <li>2 telas (TV + celular)</li>
+                    <li>Premiere + SporTV</li>
+                    <li>Suporte humano por WhatsApp</li>
+                </ul>
+                <a href="#" class="btn-action btn-dark-style">Assinar anual ➔</a>
+            </div>
+
+        </section>
+
+        <section class="benefits-section">
+            <div class="benefit-row">
+                <div class="benefit-icon-wrapper">⚡</div>
+                <div class="benefit-info">
+                    <h3>Pix instantâneo</h3>
+                    <p>Confirmação em segundos</p>
+                </div>
+            </div>
+            <div class="benefit-row">
+                <div class="benefit-icon-wrapper">⏱</div>
+                <div class="benefit-info">
+                    <h3>Código em 2 minutos</h3>
+                    <p>Após a confirmação</p>
+                </div>
+            </div>
+            <div class="benefit-row">
+                <div class="benefit-icon-wrapper">🔄</div>
+                <div class="benefit-info">
+                    <h3>Sem fidelidade</h3>
+                    <p>Renovação manual sempre</p>
+                </div>
+            </div>
+            <div class="benefit-row">
+                <div class="benefit-icon-wrapper">💬</div>
+                <div class="benefit-info">
+                    <h3>Suporte humano</h3>
+                    <p>WhatsApp seg–dom</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-container">
+            <h2>Perguntas frequentes</h2>
+            <div class="faq-wrapper">
+                
+                <div class="faq-item">
+                    <details>
+                        <summary>Como pago?</summary>
+                        <div class="faq-answer">
+                            Pix com confirmação instantânea. Após o pagamento, o código de ativação é gerado automaticamente no checkout e também enviado para o e-mail usado na compra, por segurança. Sem cartão, sem boleto, sem espera.
+                        </div>
+                    </details>
+                </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>Tem fidelidade ou renovação automática?</summary>
+                        <div class="faq-answer">
+                            Não. Você assina pelo período escolhido (1, 3, 6 ou 12 meses) e renova manualmente quando quiser. Sem cobrança recorrente, sem multa, sem surpresa.
+                        </div>
+                    </details>
+                </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>Funciona em quais dispositivos?</summary>
+                        <div class="faq-answer">
+                            Exclusivo para Android 7.0 ou superior: Smart TVs Android, TV Boxes, Fire TV, celulares e tablets Android. Em PCs Windows, com emulador Android.
+                        </div>
+                    </details>
+                </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>Preciso de internet rápida?</summary>
+                        <div class="faq-answer">
+                            Recomendamos uma conexão estável a partir de 15 Mbps para conteúdos em HD e 30 Mbps ou mais para uma experiência fluida em Full HD e transmissões ao vivo de esportes.
+                        </div>
+                    </details>
+                </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>Como faço pra baixar o aplicativo?</summary>
+                        <div class="faq-answer">
+                            Acesse a nossa <a href="#">página de ajuda</a> e siga o tutorial de instalação correspondente ao seu dispositivo (Smart TV Android, TV Box, Fire TV, celular ou tablet). O app é exclusivo do site oficial — desconfie de outros sites ou vendedores.
+                        </div>
+                    </details>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="ready-to-start">
+            <h2>Pronto pra <span>começar</span>?</h2>
+            <p>Escolha seu plano e comece a assistir em menos de 2 minutos.</p>
+            <a href="#planos-target" class="btn-scroll-up">Ver planos ↓</a>
+        </section>
+
+        <footer class="app-footer">
+            <p>AZTV Family — IPTV para Android • operado de Paraguai • desde 2016</p>
+        </footer>
+
+        <div class="whatsapp-floating">
+            <svg viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.516 2.266 2.27 3.51 5.284 3.51 8.495 0 6.66-5.338 11.999-11.95 11.999-2.005-.001-3.973-.5-5.713-1.448L0 24zm6.59-3.835c1.652.982 3.23 1.488 4.838 1.49 5.429 0 9.847-4.387 9.849-9.778.001-2.612-1.013-5.067-2.859-6.918-1.847-1.851-4.305-2.869-6.92-2.87-5.433 0-9.851 4.39-9.854 9.78-.001 1.956.514 3.864 1.49 5.535l-.991 3.616 3.748-.975zm11.167-7.259c-.3-.15-1.777-.875-2.031-.967-.255-.093-.44-.139-.626.14-.185.279-.717.896-.879 1.082-.162.186-.324.209-.624.059-.3-.15-1.267-.467-2.414-1.485-.892-.792-1.493-1.77-1.668-2.07-.175-.3-.019-.461.13-.61.135-.133.3-.349.45-.523.15-.174.2-.299.3-.498.1-.2.05-.374-.025-.524-.075-.15-.625-1.503-.856-2.057-.225-.542-.454-.47-.626-.478-.162-.007-.349-.009-.536-.009-.187 0-.491.07-.749.349-.258.279-.985.961-.985 2.343 0 1.383 1.007 2.719 1.147 2.906.14.186 1.982 3.026 4.802 4.237.671.288 1.195.46 1.603.589.674.214 1.287.184 1.771.112.54-.08 1.777-.726 2.027-1.43.25-.704.25-1.307.175-1.43-.075-.124-.275-.197-.575-.347z"/>
+            </svg>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -6,67 +6,75 @@
     <title>Grade de Canais | RKM PLAY</title>
     <style>
         :root { --bg-color: #060606; --card-bg: #111111; --border-color: #222222; --orange: #FF6600; --green: #25D366; --text-main: #FFFFFF; --text-muted: #999999; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.5; padding-bottom: 80px; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.5; padding-bottom: 80px; }
         a { text-decoration: none; color: inherit; }
-        .container { max-width: 500px; margin: 0 auto; padding: 0 20px; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--border-color); }
+        
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid var(--border-color); }
         .logo-img { height: 40px; }
-        .menu-icon { font-size: 24px; cursor: pointer; }
         
-        /* Menu lateral */
-        .side-menu { position: fixed; top: 0; right: 0; width: 100%; height: 100vh; background-color: var(--bg-color); z-index: 9999; transform: translateX(100%); transition: transform 0.3s ease-in-out; padding: 20px; overflow-y: auto; }
+        /* Menu Lateral */
+        .side-menu { position: fixed; top: 0; right: 0; width: 100%; height: 100vh; background-color: var(--bg-color); z-index: 9999; transform: translateX(100%); transition: transform 0.3s; padding: 20px; overflow-y: auto; }
         .side-menu.active { transform: translateX(0); }
-        .close-menu { font-size: 24px; color: var(--text-muted); cursor: pointer; }
         
-        /* Filtros e Canais */
-        .filters-wrapper { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 40px; }
-        .filter-btn { background-color: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; }
-        .filter-btn.active { border-color: var(--orange); color: var(--orange); background-color: rgba(255, 102, 0, 0.05); }
-        .channels-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .channel-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; height: 95px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; }
+        /* Filtros Originais */
+        .filters-wrapper { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 20px; }
+        .filter-btn { background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 10px 15px; border-radius: 20px; font-size: 13px; cursor: pointer; }
+        .filter-btn.active { background: var(--orange); border-color: var(--orange); }
+
+        /* Canais */
+        .channels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 10px; }
+        .channel-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; text-align: center; }
+        .channel-name { font-size: 12px; color: #fff; margin-top: 10px; font-weight: bold; }
         
-        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: var(--green); color: #fff; padding: 15px; border-radius: 50%; z-index: 1000; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <a href="index.html"><img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" class="logo-img"></a>
-            <div class="menu-icon" id="open-menu">☰</div>
-        </header>
+    <header>
+        <a href="index.html"><img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" class="logo-img"></a>
+        <div class="menu-icon" id="open-menu" style="font-size:24px;">☰</div>
+    </header>
 
-        <div class="side-menu" id="side-menu">
-            <div class="side-menu-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                <img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" style="height: 30px;"> 
-                <div class="close-menu" id="close-menu">✕</div>
-            </div>
-            <ul>
-                <li><a href="index.html" style="display:block; padding:15px; font-weight:bold;">Início <span>›</span></a></li>
-                <li><a href="canais.html" style="display:block; padding:15px; font-weight:bold; color:var(--orange);">Canais <span>›</span></a></li>
-            </ul>
+    <div class="side-menu" id="side-menu">
+        <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+            <img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" style="height: 30px;">
+            <div class="close-menu" id="close-menu" style="font-size:24px;">✕</div>
         </div>
-
-        <h1 class="h1-title" style="text-align:center; padding: 30px 0;">Grade de Canais</h1>
-
-        <div class="filters-wrapper" id="filters">
-            <button class="filter-btn active" data-filter="all">Todos</button>
-            <button class="filter-btn" data-filter="esportes">Esportes</button>
-            <button class="filter-btn" data-filter="filmes">Filmes e Séries</button>
-            <button class="filter-btn" data-filter="abertos">Abertos</button>
-        </div>
-
-        <div class="channels-grid" id="channels-list">
-            <div class="channel-card"><div class="channel-logo">ESPN</div><div class="channel-name">ESPN 1</div></div>
-            <div class="channel-card"><div class="channel-logo">HBO</div><div class="channel-name">HBO</div></div>
-            <div class="channel-card"><div class="channel-logo">GLOBO</div><div class="channel-name">Globo</div></div>
-        </div>
+        <ul>
+            <li><a href="index.html" style="display:block; padding:15px; font-weight:bold;">Início</a></li>
+            <li><a href="canais.html" style="display:block; padding:15px; font-weight:bold; color:var(--orange);">Canais</a></li>
+            <li><a href="#" style="display:block; padding:15px; font-weight:bold;">Esportes</a></li>
+            <li><a href="#" style="display:block; padding:15px; font-weight:bold;">Planos</a></li>
+            <li><a href="#" style="display:block; padding:15px; font-weight:bold;">Ajuda</a></li>
+        </ul>
     </div>
 
-    <a href="https://wa.me/5511984334348" target="_blank" class="whatsapp-float">
-        <svg viewBox="0 0 24 24" width="32" fill="#fff"><path d="M12.031 2C6.486 2 2 6.486 2 12.031a9.99 9.99 0 001.328 4.966L2 22l5.163-1.328A9.97 9.97 0 0012.031 22c5.544 0 10.03-4.486 10.03-10.03S17.575 2 12.031 2z"/></svg>
-    </a>
+    <div class="filters-wrapper">
+        <button class="filter-btn active">Todos</button>
+        <button class="filter-btn">Esportes</button>
+        <button class="filter-btn">Filmes e Séries</button>
+        <button class="filter-btn">Abertos</button>
+        <button class="filter-btn">On Demand</button>
+        <button class="filter-btn">Notícias</button>
+        <button class="filter-btn">Infantil</button>
+        <button class="filter-btn">Documentários</button>
+        <button class="filter-btn">Variedades</button>
+        <button class="filter-btn">Música</button>
+        <button class="filter-btn">Cultura</button>
+        <button class="filter-btn">Agro</button>
+        <button class="filter-btn">Internacionais</button>
+        <button class="filter-btn">Religioso</button>
+        <button class="filter-btn">Adulto (+18)</button>
+    </div>
+
+    <div class="channels-grid">
+        <div class="channel-card"><div style="font-weight:900;">sportv3</div><div class="channel-name">SportV 3</div></div>
+        <div class="channel-card"><div style="color:var(--green); font-weight:900;">PREMIERE</div><div class="channel-name">Premiere 2</div></div>
+    </div>
+
+    <a href="https://wa.me/5511984334348" class="whatsapp-float">💬</a>
 
     <script>
         document.getElementById('open-menu').onclick = () => document.getElementById('side-menu').classList.add('active');

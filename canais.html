@@ -5,80 +5,417 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grade de Canais | RKM PLAY</title>
     <style>
-        :root { --bg-color: #060606; --card-bg: #111111; --border-color: #222222; --orange: #FF6600; --green: #25D366; --text-main: #FFFFFF; --text-muted: #999999; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.5; padding-bottom: 80px; }
-        a { text-decoration: none; color: inherit; }
-        
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid var(--border-color); }
-        .logo-img { height: 40px; }
-        
-        /* Menu Lateral */
-        .side-menu { position: fixed; top: 0; right: 0; width: 100%; height: 100vh; background-color: var(--bg-color); z-index: 9999; transform: translateX(100%); transition: transform 0.3s; padding: 20px; overflow-y: auto; }
-        .side-menu.active { transform: translateX(0); }
-        
-        /* Filtros Originais */
-        .filters-wrapper { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 20px; }
-        .filter-btn { background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 10px 15px; border-radius: 20px; font-size: 13px; cursor: pointer; }
-        .filter-btn.active { background: var(--orange); border-color: var(--orange); }
+        /* === VARIÁVEIS E GLOBAIS === */
+        :root {
+            --bg-color: #060606;
+            --card-bg: #111111;
+            --border-color: #222222;
+            --orange: #FF6600;
+            --green: #25D366;
+            --text-main: #FFFFFF;
+            --text-muted: #999999;
+        }
 
-        /* Canais */
-        .channels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 10px; }
-        .channel-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; text-align: center; }
-        .channel-name { font-size: 12px; color: #fff; margin-top: 10px; font-weight: bold; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.5; padding-bottom: 80px; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        .container { max-width: 500px; margin: 0 auto; padding: 0 20px; overflow: hidden; }
+        .text-orange { color: var(--orange); }
+        .text-center { text-align: center; }
+
+        /* === TOP BAR & HEADER === */
+        .top-bar { background-color: var(--orange); color: #000; font-weight: bold; font-size: 12px; padding: 8px; text-align: center; white-space: nowrap; overflow: hidden; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--border-color); }
+        .logo-img { height: 40px; }
+        .menu-icon { font-size: 24px; cursor: pointer; }
+
+        /* === MENU LATERAL (MOBILE MENU) === */
+        .side-menu { position: fixed; top: 0; right: 0; width: 100%; height: 100vh; background-color: var(--bg-color); z-index: 9999; transform: translateX(100%); transition: transform 0.3s ease-in-out; overflow-y: auto; padding: 20px; }
+        .side-menu.active { transform: translateX(0); }
+        .side-menu-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 1px solid #1f1f1f; margin-bottom: 20px; }
+        .close-menu { font-size: 24px; color: var(--text-muted); cursor: pointer; font-weight: bold; }
+        .menu-section-title { font-size: 11px; font-weight: bold; color: #666; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; margin-top: 30px; }
         
-        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: var(--green); color: #fff; padding: 15px; border-radius: 50%; z-index: 1000; }
+        .menu-nav-list li a { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #1a1a1a; font-size: 16px; font-weight: bold; color: #fff; transition: color 0.2s; }
+        .menu-nav-list li a.active { color: var(--orange); }
+        .menu-nav-list li a span { color: #555; font-weight: normal; font-size: 18px; }
+
+        .menu-card { display: flex; align-items: center; gap: 15px; background: #0f0f0f; border: 1px solid #1a1a1a; border-radius: 10px; padding: 15px; margin-bottom: 10px; text-align: left; }
+        .menu-card .feature-icon { width: 35px; height: 35px; font-size: 18px; margin: 0; flex-shrink: 0; display:flex; align-items:center; justify-content:center; }
+        .menu-card-title { font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 2px; }
+        .menu-card-desc { font-size: 11px; color: var(--text-muted); }
+
+        .menu-support-card { display: flex; justify-content: space-between; align-items: center; background: #071a0d; border: 1px solid #10331a; border-radius: 10px; padding: 15px; margin-bottom: 30px; text-decoration: none; }
+        .menu-support-left { display: flex; align-items: center; gap: 12px; }
+        .menu-support-icon { color: var(--green); }
+        .menu-support-title { font-size: 14px; font-weight: bold; color: var(--green); margin-bottom: 2px; }
+        .menu-support-desc { font-size: 12px; color: #888; }
+        .menu-support-action { background: var(--green); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+        /* === TYPOGRAPHY & BUTTONS === */
+        .section-tag { display: inline-block; border: 1px solid var(--orange); color: var(--orange); padding: 5px 15px; border-radius: 20px; font-size: 10px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+        .h1-title { font-size: 32px; font-weight: 800; line-height: 1.1; margin-bottom: 15px; }
+        .p-subtitle { color: var(--text-muted); font-size: 15px; margin-bottom: 30px; }
+        .btn { display: block; width: 100%; padding: 18px; border-radius: 8px; font-size: 16px; font-weight: bold; text-align: center; cursor: pointer; border: none; margin-bottom: 15px; }
+        .btn-orange { background-color: var(--orange); color: #000; }
+
+        /* === HEADER DA PÁGINA (HERO CANAIS) === */
+        .page-header { text-align: center; padding: 40px 0 20px 0; }
+        
+        /* === FILTROS DE CANAIS === */
+        .filters-wrapper { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 40px; }
+        .filter-btn { background-color: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+        .filter-btn.active { border-color: var(--orange); color: var(--orange); background-color: rgba(255, 102, 0, 0.05); }
+
+        /* === LISTA DE CANAIS (GRID) === */
+        .category-section { margin-bottom: 40px; animation: fadeIn 0.4s ease; }
+        .category-header { display: flex; justify-content: space-between; align-items: center; color: var(--orange); font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid #1a1a1a; padding-bottom: 10px; }
+        .category-header span:last-child { color: var(--text-muted); font-weight: normal; }
+        
+        .channels-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .channel-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 95px; padding: 10px; }
+        .channel-logo { flex-grow: 1; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; text-align: center; }
+        .channel-name { font-size: 11px; color: var(--text-muted); margin-top: 5px; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* Estilos específicos para algumas logos de texto */
+        .logo-espn { color: #ff0000; font-style: italic; font-weight: 900; letter-spacing: -1px; }
+        .logo-premiere { color: #32CD32; font-weight: 900; border: 1px solid #32CD32; padding: 2px 5px; font-size: 10px; border-radius: 2px; }
+        .logo-hbo { font-weight: 900; letter-spacing: -1px; font-size: 22px; }
+        .logo-telecine { color: #ff3333; font-weight: 900; text-transform: uppercase; font-size: 12px; text-align: center; line-height: 1; }
+        .logo-globo { background: radial-gradient(circle at 30% 30%, #fff, #55ccff, #0055ff); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .logo-globo::after { content: ''; width: 14px; height: 10px; background: #fff; border-radius: 50%; }
+        .logo-adult { border: 2px solid #ff3333; color: #ff3333; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* === FINAL CTA === */
+        .final-cta { text-align: center; padding: 40px 0; border-top: 1px solid #1a1a1a; margin-top: 20px; }
+
+        /* === FOOTER === */
+        footer { padding: 40px 0; font-size: 13px; color: var(--text-muted); border-top: 1px solid #1f1f1f; }
+        .footer-status { display: inline-flex; align-items: center; gap: 10px; background: #111; padding: 8px 16px; border-radius: 20px; margin: 20px 0 30px 0; font-size: 12px; }
+        .dot-red { width: 8px; height: 8px; background: #ff3b30; border-radius: 50%; }
+
+        /* === WHATSAPP FLOATING === */
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 1000; cursor: pointer; }
+        .whatsapp-float svg { width: 32px; height: 32px; fill: #fff; }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html"><img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" class="logo-img"></a>
-        <div class="menu-icon" id="open-menu" style="font-size:24px;">☰</div>
-    </header>
-
     <div class="side-menu" id="side-menu">
-        <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
-            <img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" style="height: 30px;">
-            <div class="close-menu" id="close-menu" style="font-size:24px;">✕</div>
+        <div class="side-menu-header">
+            <img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" class="logo-img" style="height: 30px;">
+            <div class="close-menu" id="close-menu">✕</div>
         </div>
-        <ul>
-            <li><a href="index.html" style="display:block; padding:15px; font-weight:bold;">Início</a></li>
-            <li><a href="canais.html" style="display:block; padding:15px; font-weight:bold; color:var(--orange);">Canais</a></li>
-            <li><a href="#" style="display:block; padding:15px; font-weight:bold;">Esportes</a></li>
-            <li><a href="#" style="display:block; padding:15px; font-weight:bold;">Planos</a></li>
-            <li><a href="#" style="display:block; padding:15px; font-weight:bold;">Ajuda</a></li>
+
+        <div class="menu-section-title">NAVEGAÇÃO</div>
+        <ul class="menu-nav-list">
+            <li><a href="#">Início <span>›</span></a></li>
+            <li><a href="#" class="active">Canais <span>›</span></a></li>
+            <li><a href="#">Esportes <span>›</span></a></li>
+            <li><a href="#">Planos <span>›</span></a></li>
+            <li><a href="#">Ajuda <span>›</span></a></li>
         </ul>
+
+        <div class="menu-section-title">BAIXAR O APP</div>
+        
+        <div class="menu-card">
+            <div class="feature-icon">📺</div>
+            <div>
+                <div class="menu-card-title">Baixar App TV</div>
+                <div class="menu-card-desc">Smart TV • TV Box • Android 7.0+</div>
+            </div>
+        </div>
+        
+        <div class="menu-card">
+            <div class="feature-icon">📱</div>
+            <div>
+                <div class="menu-card-title">Baixar App Mobile</div>
+                <div class="menu-card-desc">Smartphone • Tablet • Android 7.0+</div>
+            </div>
+        </div>
+
+        <div class="menu-section-title">SUPORTE</div>
+        <a href="https://wa.me/5511984334348" target="_blank" class="menu-support-card">
+            <div class="menu-support-left">
+                <svg viewBox="0 0 24 24" width="24" height="24" class="menu-support-icon" fill="currentColor"><path d="M12.031 2C6.486 2 2 6.486 2 12.031a9.99 9.99 0 001.328 4.966L2 22l5.163-1.328A9.97 9.97 0 0012.031 22c5.544 0 10.03-4.486 10.03-10.03S17.575 2 12.031 2zm5.545 14.51c-.228.644-1.284 1.233-1.802 1.341-.473.1-.966.14-1.503-.028-.277-.087-.648-.198-1.077-.354-2.484-.903-4.103-3.46-4.228-3.627-.124-.167-1.008-1.341-1.008-2.557 0-1.216.634-1.815.86-2.062.227-.247.495-.308.66-.308.165 0 .33 0 .474.008.15.008.35-.057.545.29.198.354.67 1.637.732 1.763.061.125.103.272.02.438-.083.166-.124.269-.248.414-.124.144-.263.313-.377.42-.124.116-.254.24-.11.488.144.248.643 1.054 1.368 1.706.932.84 1.714 1.096 1.961 1.22.247.124.392.103.536-.062.144-.165.62-.723.785-.97.165-.248.33-.207.557-.124.227.083 1.444.682 1.692.806.248.124.412.186.474.29.062.103.062.6-.165 1.243z"/></svg>
+                <div>
+                    <div class="menu-support-title">Falar com Atendente</div>
+                    <div class="menu-support-desc">+55 11 98433-4348</div>
+                </div>
+            </div>
+            <div class="menu-support-action">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12.031 2C6.486 2 2 6.486 2 12.031a9.99 9.99 0 001.328 4.966L2 22l5.163-1.328A9.97 9.97 0 0012.031 22c5.544 0 10.03-4.486 10.03-10.03S17.575 2 12.031 2zm5.545 14.51c-.228.644-1.284 1.233-1.802 1.341-.473.1-.966.14-1.503-.028-.277-.087-.648-.198-1.077-.354-2.484-.903-4.103-3.46-4.228-3.627-.124-.167-1.008-1.341-1.008-2.557 0-1.216.634-1.815.86-2.062.227-.247.495-.308.66-.308.165 0 .33 0 .474.008.15.008.35-.057.545.29.198.354.67 1.637.732 1.763.061.125.103.272.02.438-.083.166-.124.269-.248.414-.124.144-.263.313-.377.42-.124.116-.254.24-.11.488.144.248.643 1.054 1.368 1.706.932.84 1.714 1.096 1.961 1.22.247.124.392.103.536-.062.144-.165.62-.723.785-.97.165-.248.33-.207.557-.124.227.083 1.444.682 1.692.806.248.124.412.186.474.29.062.103.062.6-.165 1.243z"/></svg>
+            </div>
+        </a>
     </div>
 
-    <div class="filters-wrapper">
-        <button class="filter-btn active">Todos</button>
-        <button class="filter-btn">Esportes</button>
-        <button class="filter-btn">Filmes e Séries</button>
-        <button class="filter-btn">Abertos</button>
-        <button class="filter-btn">On Demand</button>
-        <button class="filter-btn">Notícias</button>
-        <button class="filter-btn">Infantil</button>
-        <button class="filter-btn">Documentários</button>
-        <button class="filter-btn">Variedades</button>
-        <button class="filter-btn">Música</button>
-        <button class="filter-btn">Cultura</button>
-        <button class="filter-btn">Agro</button>
-        <button class="filter-btn">Internacionais</button>
-        <button class="filter-btn">Religioso</button>
-        <button class="filter-btn">Adulto (+18)</button>
+    <div class="top-bar">
+        <marquee behavior="scroll" direction="left" scrollamount="4">
+            Não compre RKM PLAY em sites desconhecidos — você pode estar sendo enganado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Baixe o app apenas pelos nossos canais oficiais
+        </marquee>
     </div>
 
-    <div class="channels-grid">
-        <div class="channel-card"><div style="font-weight:900;">sportv3</div><div class="channel-name">SportV 3</div></div>
-        <div class="channel-card"><div style="color:var(--green); font-weight:900;">PREMIERE</div><div class="channel-name">Premiere 2</div></div>
+    <div class="container">
+        <header>
+            <img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" class="logo-img">
+            <div class="menu-icon" id="open-menu">☰</div>
+        </header>
+
+        <div class="page-header">
+            <div class="section-tag">● +360 CANAIS AO VIVO</div>
+            <h1 class="h1-title">Grade completa de <span class="text-orange">canais</span></h1>
+            <p class="p-subtitle">Todos os canais disponíveis na RKM PLAY. Esportes, filmes, séries, notícias, infantil e muito mais.</p>
+        </div>
+
+        <div class="filters-wrapper" id="filters">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="esportes">Esportes</button>
+            <button class="filter-btn" data-filter="filmes">Filmes e Séries</button>
+            <button class="filter-btn" data-filter="abertos">Abertos</button>
+            <button class="filter-btn" data-filter="ondemand">On Demand</button>
+            <button class="filter-btn" data-filter="noticias">Notícias</button>
+            <button class="filter-btn" data-filter="infantil">Infantil</button>
+            <button class="filter-btn" data-filter="docs">Documentários</button>
+            <button class="filter-btn" data-filter="variedades">Variedades</button>
+            <button class="filter-btn" data-filter="musica">Música</button>
+            <button class="filter-btn" data-filter="cultura">Cultura</button>
+            <button class="filter-btn" data-filter="agro">Agro</button>
+            <button class="filter-btn" data-filter="inter">Internacionais</button>
+            <button class="filter-btn" data-filter="religioso">Religioso</button>
+            <button class="filter-btn" data-filter="adulto">Adulto (+18)</button>
+        </div>
+
+        <div class="category-section" id="cat-esportes">
+            <div class="category-header"><span>ESPORTES</span> <span>105 canais</span></div>
+            <div class="channels-grid">
+                <div class="channel-card"><div class="channel-logo logo-espn">ESPN</div><div class="channel-name">ESPN 1</div></div>
+                <div class="channel-card"><div class="channel-logo logo-espn">ESPN 2</div><div class="channel-name">ESPN 2</div></div>
+                <div class="channel-card"><div class="channel-logo logo-espn">ESPN 3</div><div class="channel-name">ESPN 3</div></div>
+                <div class="channel-card"><div class="channel-logo logo-espn">ESPN 4</div><div class="channel-name">ESPN 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><span style="color:#fff;">spor</span><span style="color:#ff3333;">tv</span></div><div class="channel-name">SporTV 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><span style="color:#fff;">spor</span><span style="color:#ff3333;">tv</span><span style="color:#fff;">2</span></div><div class="channel-name">SporTV 2</div></div>
+                <div class="channel-card"><div class="channel-logo logo-premiere">PREMIERE</div><div class="channel-name">Premiere 1</div></div>
+                <div class="channel-card"><div class="channel-logo logo-premiere">PREMIERE</div><div class="channel-name">Premiere 2</div></div>
+                <div class="channel-card"><div class="channel-logo" style="font-weight:900; font-size:24px;">DAZN</div><div class="channel-name">DAZN 1</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ff3333; font-style:italic;">COMBATE</div><div class="channel-name">Combate</div></div>
+                <div class="channel-card"><div class="channel-logo" style="font-weight:900;">BAND<span style="color:#ff3333;">SPORTS</span></div><div class="channel-name">Band Sports</div></div>
+                <div class="channel-card"><div class="channel-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Real_Madrid_CF.svg/30px-Real_Madrid_CF.svg.png" alt=""></div><div class="channel-name">Real Madrid TV</div></div>
+            </div>
+        </div>
+
+        <div class="category-section" id="cat-filmes">
+            <div class="category-header"><span>FILMES E SÉRIES</span> <span>49 canais</span></div>
+            <div class="channels-grid">
+                <div class="channel-card"><div class="channel-logo logo-hbo">HBO</div><div class="channel-name">HBO</div></div>
+                <div class="channel-card"><div class="channel-logo logo-hbo">HBO<span style="color:#0088ff;">2</span></div><div class="channel-name">HBO 2</div></div>
+                <div class="channel-card"><div class="channel-logo logo-hbo">HBO<br><span style="font-size:10px; font-weight:normal;">family</span></div><div class="channel-name">HBO Family</div></div>
+                <div class="channel-card"><div class="channel-logo logo-telecine">TELE<br>CINE<br><span style="font-size:8px; color:#fff;">ACTION</span></div><div class="channel-name">Telecine Action</div></div>
+                <div class="channel-card"><div class="channel-logo logo-telecine">TELE<br>CINE<br><span style="font-size:8px; color:#fff;">PREMIUM</span></div><div class="channel-name">Telecine Premium</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ff3333; background:#fff; border-radius:50%; width:35px; height:35px; display:flex; align-items:center; justify-content:center; font-weight:900;">TNT</div><div class="channel-name">TNT</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#99ff33; font-weight:900;">◆ MEGAPIX</div><div class="channel-name">Megapix</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ffcc00; font-weight:900;">SPACE</div><div class="channel-name">Space</div></div>
+                <div class="channel-card"><div class="channel-logo" style="font-weight:900; font-size:24px;">AXN</div><div class="channel-name">AXN</div></div>
+                <div class="channel-card"><div class="channel-logo" style="border:2px solid #fff; padding:2px 5px; font-weight:bold;">A&E</div><div class="channel-name">A&E</div></div>
+            </div>
+        </div>
+
+        <div class="category-section" id="cat-abertos">
+            <div class="category-header"><span>ABERTOS</span> <span>49 canais</span></div>
+            <div class="channels-grid">
+                <div class="channel-card"><div class="channel-logo"><div class="logo-globo"></div></div><div class="channel-name">Globo SP</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="logo-globo"></div></div><div class="channel-name">Globo RJ</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="logo-globo"></div></div><div class="channel-name">Globo Minas</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="logo-globo"></div></div><div class="channel-name">Globo Nordeste</div></div>
+                <div class="channel-card"><div class="channel-logo" style="border-radius:50%; background:#fff; width:30px; height:30px; display:flex; align-items:center; justify-content:center;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Logo_SBT.svg/20px-Logo_SBT.svg.png" alt=""></div><div class="channel-name">SBT</div></div>
+                <div class="channel-card"><div class="channel-logo" style="border-radius:50%; background:#fff; width:30px; height:30px; display:flex; align-items:center; justify-content:center;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Rede_Record_logo.svg/20px-Rede_Record_logo.svg.png" alt=""></div><div class="channel-name">Record RJ</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#00aa00; font-weight:900; font-size:24px; display:flex; align-items:center;"><div style="width:20px;height:20px; border-radius:50%; border:3px solid #00aa00; margin-right:5px;"></div>Band</div><div class="channel-name">Band</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#00ccff; font-weight:bold;">REDE<span style="color:#fff;">TV</span></div><div class="channel-name">Rede TV</div></div>
+            </div>
+        </div>
+
+        <div class="category-section" id="cat-ondemand">
+            <div class="category-header"><span>ON DEMAND</span> <span>30 canais</span></div>
+            <div class="channels-grid">
+                <div class="channel-card"><div class="channel-logo" style="font-family:serif; font-size:24px; font-style:italic;">Disney+</div><div class="channel-name">Disney+ 1</div></div>
+                <div class="channel-card"><div class="channel-logo" style="font-family:serif; font-size:24px; font-style:italic;">Disney+</div><div class="channel-name">Disney+ 2</div></div>
+                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#5500aa; padding:2px 10px; border-radius:4px; font-weight:900;">HBO<span style="color:#000;">max</span></div><div class="channel-name">HBO Max 1</div></div>
+                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#5500aa; padding:2px 10px; border-radius:4px; font-weight:900;">HBO<span style="color:#000;">max</span></div><div class="channel-name">HBO Max 2</div></div>
+                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#000; padding:2px 10px; border-radius:4px; font-weight:bold;"> tv</div><div class="channel-name">Apple TV 1</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:bold; font-style:italic;">prime video</div><div class="channel-name">Amazon 1</div></div>
+            </div>
+        </div>
+
+        <div class="category-section" id="cat-noticias">
+            <div class="category-header"><span>NOTÍCIAS</span> <span>9 canais</span></div>
+            <div class="channels-grid">
+                <div class="channel-card"><div class="channel-logo" style="font-weight:900; font-size:20px;">G<span style="font-weight:normal;">NEWS</span></div><div class="channel-name">Globo News</div></div>
+                <div class="channel-card"><div class="channel-logo" style="background:#cc0000; padding:2px 5px; font-weight:bold; border-radius:4px;">CNN</div><div class="channel-name">CNN Brasil</div></div>
+                <div class="channel-card"><div class="channel-logo" style="background:#cc0000; padding:2px 5px; font-weight:bold; border-radius:4px;">CNN</div><div class="channel-name">CNN Internacional</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#0044cc; font-weight:900;">BAND<span style="color:#fff;">NEWS</span></div><div class="channel-name">Band News</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#0066cc; font-weight:bold;">Record News</div><div class="channel-name">Record News</div></div>
+                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#000; padding:2px 5px; font-weight:bold; border-radius:4px;">sbt news</div><div class="channel-name">SBT News</div></div>
+            </div>
+        </div>
+
+        <div class="category-section" id="cat-infantil">
+            <div class="category-header"><span>INFANTIL</span> <span>10 canais</span></div>
+            <div class="channels-grid">
+                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#000; font-weight:900; padding:5px; font-size:20px; line-height:1;">CN</div><div class="channel-name">Cartoon Network</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:900;">Discovery <span style="color:#ffcc00;">kids</span></div><div class="channel-name">Discovery Kids</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#cc00ff; font-weight:900; font-size:24px;">Gloob</div><div class="channel-name">Gloob</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ff0066; font-weight:bold;">ZooMoo</div><div class="channel-name">ZooMoo</div></div>
+            </div>
+        </div>
+
+        <div class="category-section" id="cat-docs">
+            <div class="category-header"><span>DOCUMENTÁRIOS</span> <span>13 canais</span></div>
+            <div class="channels-grid">
+                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:bold;">Discovery</div><div class="channel-name">Discovery Channel</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ff6600; font-weight:bold;">h&h</div><div class="channel-name">Discovery H&H</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ff3333; font-weight:900;">turbo</div><div class="channel-name">Discovery Turbo</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ffcc00; font-weight:bold; font-size:24px;">H</div><div class="channel-name">History</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ff0000; font-weight:bold; background:#fff; padding:2px 5px;">TLC</div><div class="channel-name">TLC</div></div>
+            </div>
+        </div>
+
+        <div class="category-section" id="cat-variedades">
+            <div class="category-header"><span>VARIEDADES</span> <span>10 canais</span></div>
+            <div class="channels-grid">
+                <div class="channel-card"><div class="channel-logo" style="color:#aa00ff; font-weight:bold;">gnt</div><div class="channel-name">GNT</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ff6699; font-weight:900;">MULTISHOW</div><div class="channel-name">Multishow</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ff3333; font-weight:bold;">food</div><div class="channel-name">Food Network</div></div>
+                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#000; font-weight:900; padding:2px 8px;">E!</div><div class="channel-name">E!</div></div>
+            </div>
+        </div>
+
+        <div class="category-section" id="cat-musica">
+            <div class="category-header"><span>MÚSICA</span> <span>5 canais</span></div>
+            <div class="channels-grid">
+                <div class="channel-card"><div class="channel-logo" style="color:#00ccff; font-weight:900; font-size:26px;">BIS</div><div class="channel-name">BIS</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ff6699; font-weight:900;">MULTISHOW</div><div class="channel-name">Multishow</div></div>
+                <div class="channel-card"><div class="channel-logo" style="border:1px solid #fff; padding:2px;">WOOHOO</div><div class="channel-name">Woohoo</div></div>
+            </div>
+        </div>
+
+        <div class="category-section" id="cat-cultura">
+            <div class="category-header"><span>CULTURA</span> <span>5 canais</span></div>
+            <div class="channels-grid">
+                <div class="channel-card"><div class="channel-logo" style="background:#cc0000; color:#fff; font-weight:bold; padding:2px 5px;">arte1</div><div class="channel-name">Arte 1</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:bold;">tvBrasil</div><div class="channel-name">TV Brasil</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#32CD32; font-weight:900;">+ CULTURA</div><div class="channel-name">TV Cultura</div></div>
+            </div>
+        </div>
+
+        <div class="category-section" id="cat-agro">
+            <div class="category-header"><span>AGRO</span> <span>3 canais</span></div>
+            <div class="channels-grid">
+                <div class="channel-card"><div class="channel-logo" style="background:#fff; padding:2px; display:inline-block;"><span style="color:#ff6600;font-weight:900;">AGRO</span><span style="color:#00aa00;font-weight:900;">BRASIL</span></div><div class="channel-name">Agro Brasil</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#00ccff; font-weight:bold;">CANAL RURAL</div><div class="channel-name">Canal Rural</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:bold;">terraviva</div><div class="channel-name">Terra Viva</div></div>
+            </div>
+        </div>
+
+        <div class="category-section" id="cat-inter">
+            <div class="category-header"><span>INTERNACIONAIS</span> <span>4 canais</span></div>
+            <div class="channels-grid">
+                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#000; font-weight:bold; padding:2px 8px; border-radius:4px;">Bloomberg</div><div class="channel-name">Bloomberg</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:900; font-size:24px;">DW</div><div class="channel-name">DW</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#fff; font-weight:bold; letter-spacing:2px;">RAI</div><div class="channel-name">RAI</div></div>
+            </div>
+        </div>
+
+        <div class="category-section" id="cat-religioso">
+            <div class="category-header"><span>RELIGIOSO</span> <span>7 canais</span></div>
+            <div class="channels-grid">
+                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:bold;">Canção Nova</div><div class="channel-name">Canção Nova</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ffcc00; font-weight:bold;">Novo Tempo</div><div class="channel-name">Novo Tempo</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ffcc00; font-weight:bold;">APARECIDA</div><div class="channel-name">TV Aparecida</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:bold;">REDEVIDA</div><div class="channel-name">Rede Vida</div></div>
+            </div>
+        </div>
+
+        <div class="category-section" id="cat-adulto">
+            <div class="category-header"><span>ADULTO (+18)</span> <span>32 canais</span></div>
+            <div class="channels-grid">
+                <div class="channel-card"><div class="channel-logo"><div class="logo-adult">18+</div></div><div class="channel-name">XXX Playboy</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="logo-adult">18+</div></div><div class="channel-name">XXX Porn Star</div></div>
+                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#000; font-weight:900; padding:2px 5px;">PRIVATE</div><div class="channel-name">XXX Private</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ff3333; font-weight:900;">SEXY HOT</div><div class="channel-name">XXX Sex Hot</div></div>
+                <div class="channel-card"><div class="channel-logo" style="color:#ffcc00; font-weight:bold;">BRAZZERS</div><div class="channel-name">XXX Brazzers</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="logo-adult">18+</div></div><div class="channel-name">XXX Anal</div></div>
+                <div class="channel-card"><div class="channel-logo" style="background:#ff3333; color:#fff; font-weight:bold; padding:2px 5px; transform:rotate(-10deg);">BANG</div><div class="channel-name">XXX Bang</div></div>
+                <div class="channel-card"><div class="channel-logo" style="background:#000; border-radius:50%; width:35px;height:35px; border:1px solid #333; display:flex; align-items:center; justify-content:center; font-size:8px;">BLACKED</div><div class="channel-name">XXX Blacked</div></div>
+            </div>
+        </div>
+
+        <section class="final-cta">
+            <h2 class="h1-title">Pronto pra ter <span class="text-orange">tudo isso</span>?</h2>
+            <p class="p-subtitle">Acesso completo aos +360 canais por R$ 29,90/mês — ou menos com plano trimestral, semestral ou anual.</p>
+            <a href="https://wa.me/5511984334348" target="_blank" class="btn btn-orange" style="max-width: 250px; margin: 0 auto;">Ver planos →</a>
+        </section>
+
+        <footer>
+            <img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" class="logo-img" style="margin-bottom: 15px; opacity: 0.8;">
+            <p style="margin-bottom:20px;">IPTV para Android • operado desde 2026</p>
+            
+            <div class="footer-status">
+                <span class="dot-red"></span> Voltamos amanhã às 08h
+            </div>
+        </footer>
+
     </div>
 
-    <a href="https://wa.me/5511984334348" class="whatsapp-float">💬</a>
+    <a href="https://wa.me/5511984334348" target="_blank" class="whatsapp-float">
+        <svg viewBox="0 0 24 24"><path d="M12.031 2C6.486 2 2 6.486 2 12.031a9.99 9.99 0 001.328 4.966L2 22l5.163-1.328A9.97 9.97 0 0012.031 22c5.544 0 10.03-4.486 10.03-10.03S17.575 2 12.031 2zm5.545 14.51c-.228.644-1.284 1.233-1.802 1.341-.473.1-.966.14-1.503-.028-.277-.087-.648-.198-1.077-.354-2.484-.903-4.103-3.46-4.228-3.627-.124-.167-1.008-1.341-1.008-2.557 0-1.216.634-1.815.86-2.062.227-.247.495-.308.66-.308.165 0 .33 0 .474.008.15.008.35-.057.545.29.198.354.67 1.637.732 1.763.061.125.103.272.02.438-.083.166-.124.269-.248.414-.124.144-.263.313-.377.42-.124.116-.254.24-.11.488.144.248.643 1.054 1.368 1.706.932.84 1.714 1.096 1.961 1.22.247.124.392.103.536-.062.144-.165.62-.723.785-.97.165-.248.33-.207.557-.124.227.083 1.444.682 1.692.806.248.124.412.186.474.29.062.103.062.6-.165 1.243z"/></svg>
+    </a>
 
     <script>
-        document.getElementById('open-menu').onclick = () => document.getElementById('side-menu').classList.add('active');
-        document.getElementById('close-menu').onclick = () => document.getElementById('side-menu').classList.remove('active');
+        // Lógica do Menu Lateral
+        const openMenuBtn = document.getElementById('open-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const sideMenu = document.getElementById('side-menu');
+
+        openMenuBtn.addEventListener('click', () => {
+            sideMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            sideMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Lógica dos Filtros de Canais
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const sections = document.querySelectorAll('.category-section');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // 1. Remove classe ativa de todos os botões e coloca apenas no clicado
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                // 2. Mostra/Esconde as secções conforme o filtro
+                sections.forEach(section => {
+                    if (filterValue === 'all') {
+                        section.style.display = 'block';
+                    } else {
+                        // Verifica se o ID da secção corresponde ao filtro (ex: cat-esportes)
+                        if (section.id === 'cat-' + filterValue) {
+                            section.style.display = 'block';
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>

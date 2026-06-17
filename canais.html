@@ -67,21 +67,29 @@
         /* === LISTA DE CANAIS (GRID) === */
         .category-section { margin-bottom: 40px; animation: fadeIn 0.4s ease; }
         .category-header { display: flex; justify-content: space-between; align-items: center; color: var(--orange); font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid #1a1a1a; padding-bottom: 10px; }
-        .category-header span:last-child { color: var(--text-muted); font-weight: normal; }
+        .category-header span:last-child { color: var(--text-muted); font-weight: normal; text-transform: none; }
         
         .channels-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .channel-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 95px; padding: 10px; }
-        .channel-logo { flex-grow: 1; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; text-align: center; }
+        .channel-logo { flex-grow: 1; display: flex; align-items: center; justify-content: center; width: 100%; }
         .channel-name { font-size: 11px; color: var(--text-muted); margin-top: 5px; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: bold; }
 
-        /* Estilos de Logos */
-        .logo-espn { color: #ff0000; font-style: italic; font-weight: 900; letter-spacing: -1px; }
-        .logo-premiere { color: #32CD32; font-weight: 900; border: 1px solid #32CD32; padding: 2px 5px; font-size: 10px; border-radius: 2px; }
-        .logo-hbo { font-weight: 900; letter-spacing: -1px; font-size: 22px; }
-        .logo-telecine { color: #ff3333; font-weight: 900; text-transform: uppercase; font-size: 12px; text-align: center; line-height: 1; }
-        .logo-globo { background: radial-gradient(circle at 30% 30%, #fff, #55ccff, #0055ff); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .logo-globo::after { content: ''; width: 14px; height: 10px; background: #fff; border-radius: 50%; }
-        .logo-adult { border: 2px solid #ff3333; color: #ff3333; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
+        /* === ESTILOS SIMPLIFICADOS DE LOGOS === */
+        .l-txt { font-weight: 900; font-size: 16px; color: #fff; text-align: center; }
+        .l-espn { color: #ff0000; font-style: italic; font-weight: 900; letter-spacing: -1px; font-size: 20px; }
+        .l-prem { color: #32CD32; font-weight: 900; border: 1px solid #32CD32; padding: 2px 5px; font-size: 10px; border-radius: 2px; }
+        .l-hbo { font-weight: 900; letter-spacing: -1px; font-size: 22px; color: #fff; }
+        .l-tele { color: #ff3333; font-weight: 900; text-transform: uppercase; font-size: 12px; text-align: center; line-height: 1.1; }
+        .l-globo { background: radial-gradient(circle at 30% 30%, #fff, #55ccff, #0055ff); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
+        .l-globo::after { content: ''; width: 14px; height: 10px; background: #fff; border-radius: 50%; }
+        .l-adult { border: 2px solid #ff3333; color: #ff3333; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; margin: 0 auto; }
+        .l-ama { background:#fff; color:#00aaff; font-weight:bold; font-style:italic; padding:2px 8px; border-radius:4px; font-size:14px; }
+        .l-para { color:#0088ff; font-family:serif; font-style:italic; font-weight:bold; font-size:16px; }
+        .l-nosso { background:#fff; color:#006600; padding:2px 5px; font-weight:bold; font-size:10px; line-height:1.2; text-align:center; }
+        .l-sky { color:#ff0044; font-weight:900; font-size:16px; }
+        .l-disney { font-family:serif; font-size:20px; font-style:italic; color:#fff; }
+        .l-cnn { background:#cc0000; color:#fff; padding:2px 5px; font-weight:bold; border-radius:4px; font-size:14px; }
+        .l-sportv { font-weight:900; font-size:18px; color:#fff; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -124,41 +132,21 @@
             <div class="menu-section-title">NAVEGAÇÃO</div>
             <ul class="menu-nav-list">
                 <li><a href="index.html">Início <span>›</span></a></li>
-                <li><a href="canais.html">Canais <span>›</span></a></li>
+                <li><a href="canais.html" style="color:var(--orange);">Canais <span>›</span></a></li>
                 <li><a href="#">Esportes <span>›</span></a></li>
                 <li><a href="#">Planos <span>›</span></a></li>
                 <li><a href="#">Ajuda <span>›</span></a></li>
             </ul>
 
             <div class="menu-section-title">BAIXAR O APP</div>
-            
-            <div class="menu-card">
-                <div class="feature-icon">📺</div>
-                <div>
-                    <div class="menu-card-title">Baixar App TV</div>
-                    <div class="menu-card-desc">Smart TV • TV Box • Android 7.0+</div>
-                </div>
-            </div>
-            
-            <div class="menu-card">
-                <div class="feature-icon">📱</div>
-                <div>
-                    <div class="menu-card-title">Baixar App Mobile</div>
-                    <div class="menu-card-desc">Smartphone • Tablet • Android 7.0+</div>
-                </div>
-            </div>
+            <div class="menu-card"><div class="feature-icon">📺</div><div><div class="menu-card-title">Baixar App TV</div><div class="menu-card-desc">Smart TV • TV Box • Android 7.0+</div></div></div>
+            <div class="menu-card"><div class="feature-icon">📱</div><div><div class="menu-card-title">Baixar App Mobile</div><div class="menu-card-desc">Smartphone • Tablet • Android 7.0+</div></div></div>
 
             <div class="menu-section-title">SUPORTE</div>
             <a href="https://wa.me/5511984334348" target="_blank" class="menu-support-card">
                 <div class="menu-support-left">
                     <svg viewBox="0 0 24 24" width="24" height="24" class="menu-support-icon" fill="currentColor"><path d="M12.031 2C6.486 2 2 6.486 2 12.031a9.99 9.99 0 001.328 4.966L2 22l5.163-1.328A9.97 9.97 0 0012.031 22c5.544 0 10.03-4.486 10.03-10.03S17.575 2 12.031 2zm5.545 14.51c-.228.644-1.284 1.233-1.802 1.341-.473.1-.966.14-1.503-.028-.277-.087-.648-.198-1.077-.354-2.484-.903-4.103-3.46-4.228-3.627-.124-.167-1.008-1.341-1.008-2.557 0-1.216.634-1.815.86-2.062.227-.247.495-.308.66-.308.165 0 .33 0 .474.008.15.008.35-.057.545.29.198.354.67 1.637.732 1.763.061.125.103.272.02.438-.083.166-.124.269-.248.414-.124.144-.263.313-.377.42-.124.116-.254.24-.11.488.144.248.643 1.054 1.368 1.706.932.84 1.714 1.096 1.961 1.22.247.124.392.103.536-.062.144-.165.62-.723.785-.97.165-.248.33-.207.557-.124.227.083 1.444.682 1.692.806.248.124.412.186.474.29.062.103.062.6-.165 1.243z"/></svg>
-                    <div>
-                        <div class="menu-support-title">Falar com Atendente</div>
-                        <div class="menu-support-desc">+55 11 98433-4348</div>
-                    </div>
-                </div>
-                <div class="menu-support-action">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12.031 2C6.486 2 2 6.486 2 12.031a9.99 9.99 0 001.328 4.966L2 22l5.163-1.328A9.97 9.97 0 0012.031 22c5.544 0 10.03-4.486 10.03-10.03S17.575 2 12.031 2zm5.545 14.51c-.228.644-1.284 1.233-1.802 1.341-.473.1-.966.14-1.503-.028-.277-.087-.648-.198-1.077-.354-2.484-.903-4.103-3.46-4.228-3.627-.124-.167-1.008-1.341-1.008-2.557 0-1.216.634-1.815.86-2.062.227-.247.495-.308.66-.308.165 0 .33 0 .474.008.15.008.35-.057.545.29.198.354.67 1.637.732 1.763.061.125.103.272.02.438-.083.166-.124.269-.248.414-.124.144-.263.313-.377.42-.124.116-.254.24-.11.488.144.248.643 1.054 1.368 1.706.932.84 1.714 1.096 1.961 1.22.247.124.392.103.536-.062.144-.165.62-.723.785-.97.165-.248.33-.207.557-.124.227.083 1.444.682 1.692.806.248.124.412.186.474.29.062.103.062.6-.165 1.243z"/></svg>
+                    <div><div class="menu-support-title">Falar com Atendente</div><div class="menu-support-desc">+55 11 98433-4348</div></div>
                 </div>
             </a>
         </div>
@@ -190,191 +178,414 @@
         <div class="category-section" id="cat-esportes">
             <div class="category-header"><span>ESPORTES</span> <span>105 canais</span></div>
             <div class="channels-grid">
-                <div class="channel-card"><div class="channel-logo logo-espn">ESPN</div><div class="channel-name">ESPN 1</div></div>
-                <div class="channel-card"><div class="channel-logo logo-espn">ESPN 2</div><div class="channel-name">ESPN 2</div></div>
-                <div class="channel-card"><div class="channel-logo logo-espn">ESPN 3</div><div class="channel-name">ESPN 3</div></div>
-                <div class="channel-card"><div class="channel-logo logo-espn">ESPN 4</div><div class="channel-name">ESPN 4</div></div>
-                <div class="channel-card"><div class="channel-logo"><span style="color:#fff;">spor</span><span style="color:#ff3333;">tv</span></div><div class="channel-name">SporTV 1</div></div>
-                <div class="channel-card"><div class="channel-logo"><span style="color:#fff;">spor</span><span style="color:#ff3333;">tv</span><span style="color:#fff;">2</span></div><div class="channel-name">SporTV 2</div></div>
-                <div class="channel-card"><div class="channel-logo"><span style="color:#fff;">spor</span><span style="color:#ff3333;">tv</span><span style="color:#fff;">3</span></div><div class="channel-name">SporTV 3</div></div>
-                <div class="channel-card"><div class="channel-logo logo-premiere">PREMIERE</div><div class="channel-name">Premiere 1</div></div>
-                <div class="channel-card"><div class="channel-logo logo-premiere">PREMIERE</div><div class="channel-name">Premiere 2</div></div>
-                <div class="channel-card"><div class="channel-logo logo-premiere">PREMIERE</div><div class="channel-name">Premiere 3</div></div>
-                <div class="channel-card"><div class="channel-logo logo-premiere">PREMIERE</div><div class="channel-name">Premiere 4</div></div>
-                <div class="channel-card"><div class="channel-logo" style="font-weight:900; font-size:24px;">DAZN</div><div class="channel-name">DAZN 1</div></div>
-                <div class="channel-card"><div class="channel-logo" style="font-weight:900; font-size:24px;">DAZN</div><div class="channel-name">DAZN 2</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff3333; font-style:italic;">COMBATE</div><div class="channel-name">Combate</div></div>
-                <div class="channel-card"><div class="channel-logo" style="font-weight:900;">BAND<span style="color:#ff3333;">SPORTS</span></div><div class="channel-name">Band Sports</div></div>
-                <div class="channel-card"><div class="channel-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Real_Madrid_CF.svg/30px-Real_Madrid_CF.svg.png" alt=""></div><div class="channel-name">Real Madrid TV</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN</div></div><div class="channel-name">ESPN 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN 2</div></div><div class="channel-name">ESPN 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN 3</div></div><div class="channel-name">ESPN 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN 4</div></div><div class="channel-name">ESPN 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN 5</div></div><div class="channel-name">ESPN 5</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN 6</div></div><div class="channel-name">ESPN 6</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sportv">spor<span style="color:#ff3333;">tv</span></div></div><div class="channel-name">SporTV</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sportv">spor<span style="color:#ff3333;">tv</span>2</div></div><div class="channel-name">SporTV 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sportv">spor<span style="color:#ff3333;">tv</span>3</div></div><div class="channel-name">SporTV 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-prem">PREMIERE</div></div><div class="channel-name">Premiere 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-prem">PREMIERE</div></div><div class="channel-name">Premiere 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-prem">PREMIERE</div></div><div class="channel-name">Premiere 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-prem">PREMIERE</div></div><div class="channel-name">Premiere 5</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-prem">PREMIERE</div></div><div class="channel-name">Premiere 6</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-prem">PREMIERE</div></div><div class="channel-name">Premiere 7</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-prem">PREMIERE</div></div><div class="channel-name">Premiere Clubes</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 5px;">DAZN 1</div></div><div class="channel-name">DAZN 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 5px;">DAZN 2</div></div><div class="channel-name">DAZN 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3333; font-style:italic;">COMBATE</div></div><div class="channel-name">Combate</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">BAND<span style="color:#ff3333;">SPORTS</span></div></div><div class="channel-name">Band Sports</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ccff00; font-size:24px;">ge<span style="font-size:12px;color:#fff;">tv</span></div></div><div class="channel-name">GE TV</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-ama">prime video</div></div><div class="channel-name">Amazon 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-ama">prime video</div></div><div class="channel-name">Amazon 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-ama">prime video</div></div><div class="channel-name">Amazon 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-ama">prime video</div></div><div class="channel-name">Amazon 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-ama">prime video</div></div><div class="channel-name">Amazon 5</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-ama">prime video</div></div><div class="channel-name">Amazon 6</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-ama">prime video</div></div><div class="channel-name">Amazon 7</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-ama">prime video</div></div><div class="channel-name">Amazon 8</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-ama">prime video</div></div><div class="channel-name">Amazon 9</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-ama">prime video</div></div><div class="channel-name">Amazon 10</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-para">Paramount+</div></div><div class="channel-name">Paramount+ 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-para">Paramount+</div></div><div class="channel-name">Paramount+ 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-para">Paramount+</div></div><div class="channel-name">Paramount+ 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-para">Paramount+</div></div><div class="channel-name">Paramount+ 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-para">Paramount+</div></div><div class="channel-name">Paramount+ 5</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#0088ff;">⚽ CONMEBOL</div></div><div class="channel-name">CONMEBOL 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#0088ff;">⚽ CONMEBOL</div></div><div class="channel-name">CONMEBOL 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#0088ff;">⚽ CONMEBOL</div></div><div class="channel-name">CONMEBOL 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#0088ff;">⚽ CONMEBOL</div></div><div class="channel-name">CONMEBOL 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 5</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 6</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 7</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 8</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 9</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 10</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">★EUROSPORT</div></div><div class="channel-name">Eurosport 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">★EUROSPORT 2</div></div><div class="channel-name">Eurosport 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">FISHTV</div></div><div class="channel-name">FishTV</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="font-family:serif;">OFF</div></div><div class="channel-name">OFF</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">X SPORTS</div></div><div class="channel-name">X Sports</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px;">R. Madrid</div></div><div class="channel-name">Real Madrid TV</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00ff00;">SPORTING</div></div><div class="channel-name">Sporting TV</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3366;">SportyNet</div></div><div class="channel-name">Sporty Net 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3366;">SportyNet</div></div><div class="channel-name">Sporty Net 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3366;">SportyNet</div></div><div class="channel-name">Sporty Net 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3366;">SportyNet</div></div><div class="channel-name">Sporty Net 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="font-size:12px;">ZAPPING</div></div><div class="channel-name">Zapping Sports</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0000;">UFC</div></div><div class="channel-name">UFC Fight Pass BR</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#00aa00; padding:2px;">T</div></div><div class="channel-name">Tennis Channel</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#cc00ff;">beIN 1</div></div><div class="channel-name">beIN Sports 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#cc00ff;">beIN 2</div></div><div class="channel-name">beIN Sports 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#cc00ff;">beIN 1</div></div><div class="channel-name">LA: beIN Sports 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0000;">F1 TV</div></div><div class="channel-name">LA: F-1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#cc0000; padding:2px;">E 1</div></div><div class="channel-name">PL: Eleven Sports 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#cc0000; padding:2px;">E 2</div></div><div class="channel-name">PL: Eleven Sports 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">sport.tv 1</div></div><div class="channel-name">PT: Sport TV 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">sport.tv 2</div></div><div class="channel-name">PT: Sport TV 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">sport.tv 3</div></div><div class="channel-name">PT: Sport TV 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">sport.tv 4</div></div><div class="channel-name">PT: Sport TV 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">sport.tv 5</div></div><div class="channel-name">PT: Sport TV 5</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">sport.tv 6</div></div><div class="channel-name">PT: Sport TV 6</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">sport.tv +</div></div><div class="channel-name">PT: Sport TV 7</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">NBA TV</div></div><div class="channel-name">PT: Sport TV NBA</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#cc0000;">MLB</div></div><div class="channel-name">US: MLB Network</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">NBA TV</div></div><div class="channel-name">US: NBA TV</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">GOLF</div></div><div class="channel-name">US: NBC Golf</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0000;">UFC</div></div><div class="channel-name">US: UFC Fight Pass</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN</div></div><div class="channel-name">US: ESPN 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN 2</div></div><div class="channel-name">US: ESPN 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">DEPORTV</div></div><div class="channel-name">ARG: DeporTV</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">DIRECTV</div></div><div class="channel-name">ARG: DirecTV Sports 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">DIRECTV</div></div><div class="channel-name">ARG: DirecTV Sports 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN</div></div><div class="channel-name">ARG: ESPN 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN 2</div></div><div class="channel-name">ARG: ESPN 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN 3</div></div><div class="channel-name">ARG: ESPN 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-espn">ESPN EXTRA</div></div><div class="channel-name">ARG: ESPN Extra</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">FOX SPORTS</div></div><div class="channel-name">ARG: Fox Sport 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">FOX 2</div></div><div class="channel-name">ARG: Fox Sport 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">FOX 3</div></div><div class="channel-name">ARG: Fox Sport 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0000;">FOX PREM</div></div><div class="channel-name">ARG: Fox Sport Premium</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:50%; width:30px; height:30px; line-height:28px;">C</div></div><div class="channel-name">Canal Futebol OnDemand 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:50%; width:30px; height:30px; line-height:28px;">C</div></div><div class="channel-name">Canal Futebol OnDemand 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:50%; width:30px; height:30px; line-height:28px;">C</div></div><div class="channel-name">Canal Futebol OnDemand 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:50%; width:30px; height:30px; line-height:28px;">C</div></div><div class="channel-name">Canal Futebol OnDemand 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:50%; width:30px; height:30px; line-height:28px;">C</div></div><div class="channel-name">Canal Futebol OnDemand 5</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:50%; width:30px; height:30px; line-height:28px;">C</div></div><div class="channel-name">Canal Futebol OnDemand 6</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:50%; width:30px; height:30px; line-height:28px;">C</div></div><div class="channel-name">Canal Futebol OnDemand 7</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:50%; width:30px; height:30px; line-height:28px;">C</div></div><div class="channel-name">Canal Futebol OnDemand 8</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:50%; width:30px; height:30px; line-height:28px;">C</div></div><div class="channel-name">Canal Futebol OnDemand 9</div></div>
             </div>
         </div>
 
         <div class="category-section" id="cat-filmes">
             <div class="category-header"><span>FILMES E SÉRIES</span> <span>49 canais</span></div>
             <div class="channels-grid">
-                <div class="channel-card"><div class="channel-logo logo-hbo">HBO</div><div class="channel-name">HBO</div></div>
-                <div class="channel-card"><div class="channel-logo logo-hbo">HBO<span style="color:#0088ff;">2</span></div><div class="channel-name">HBO 2</div></div>
-                <div class="channel-card"><div class="channel-logo logo-hbo">HBO<br><span style="font-size:10px; font-weight:normal;">family</span></div><div class="channel-name">HBO Family</div></div>
-                <div class="channel-card"><div class="channel-logo logo-telecine">TELE<br>CINE<br><span style="font-size:8px; color:#fff;">ACTION</span></div><div class="channel-name">Telecine Action</div></div>
-                <div class="channel-card"><div class="channel-logo logo-telecine">TELE<br>CINE<br><span style="font-size:8px; color:#fff;">PREMIUM</span></div><div class="channel-name">Telecine Premium</div></div>
-                <div class="channel-card"><div class="channel-logo logo-telecine">TELE<br>CINE<br><span style="font-size:8px; color:#fff;">PIPOCA</span></div><div class="channel-name">Telecine Pipoca</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff3333; background:#fff; border-radius:50%; width:35px; height:35px; display:flex; align-items:center; justify-content:center; font-weight:900;">TNT</div><div class="channel-name">TNT</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff3333; background:#fff; border-radius:50%; width:35px; height:35px; display:flex; align-items:center; justify-content:center; font-weight:900;">TNT</div><div class="channel-name">TNT Séries</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#99ff33; font-weight:900;">◆ MEGAPIX</div><div class="channel-name">Megapix</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ffcc00; font-weight:900;">SPACE</div><div class="channel-name">Space</div></div>
-                <div class="channel-card"><div class="channel-logo" style="font-weight:900; font-size:24px;">AXN</div><div class="channel-name">AXN</div></div>
-                <div class="channel-card"><div class="channel-logo" style="border:2px solid #fff; padding:2px 5px; font-weight:bold;">A&E</div><div class="channel-name">A&E</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff9900; font-weight:900;">STAR</div><div class="channel-name">Star Channel</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff0000; font-weight:bold; font-size:24px;">AMC</div><div class="channel-name">AMC</div></div>
-                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#000; font-weight:900; padding:5px;">CINEMAX</div><div class="channel-name">Cinemax</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-hbo">HBO</div></div><div class="channel-name">HBO</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-hbo">HBO<span style="color:#0088ff;">2</span></div></div><div class="channel-name">HBO 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-hbo">HBO<br><span style="font-size:10px; font-weight:normal;">family</span></div></div><div class="channel-name">HBO Family</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-hbo">HBO<br><span style="font-size:10px; font-weight:normal;">MUNDI</span></div></div><div class="channel-name">HBO Mundi</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-hbo">HBO<span style="color:#cc00ff;">+</span></div></div><div class="channel-name">HBO Plus</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-hbo">HBO<br><span style="font-size:10px; font-weight:normal;">POP</span></div></div><div class="channel-name">HBO Pop</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-hbo">HBO<br><span style="font-size:10px; font-style:italic; font-weight:normal; color:#ff3333;">Signature</span></div></div><div class="channel-name">HBO Signature</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-hbo">HBO<br><span style="font-size:10px; font-weight:normal;">XTREME</span></div></div><div class="channel-name">HBO Xtreme</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-tele">TELE<br>CINE<br><span style="font-size:8px; color:#fff;">ACTION</span></div></div><div class="channel-name">Telecine Action</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-tele">TELE<br>CINE<br><span style="font-size:8px; color:#fff;">CULT</span></div></div><div class="channel-name">Telecine Cult</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-tele">TELE<br>CINE<br><span style="font-size:8px; color:#fff;">FUN</span></div></div><div class="channel-name">Telecine Fun</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-tele">TELE<br>CINE<br><span style="font-size:8px; color:#fff;">PIPOCA</span></div></div><div class="channel-name">Telecine Pipoca</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-tele">TELE<br>CINE<br><span style="font-size:8px; color:#fff;">PREMIUM</span></div></div><div class="channel-name">Telecine Premium</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-tele">TELE<br>CINE<br><span style="font-size:8px; color:#fff;">TOUCH</span></div></div><div class="channel-name">Telecine Touch</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3333; background:#fff; border-radius:50%; width:35px; height:35px; line-height:35px;">TNT</div></div><div class="channel-name">TNT</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3333; background:#fff; border-radius:50%; width:35px; height:35px; line-height:35px;">TNT</div></div><div class="channel-name">TNT Séries</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3333; background:#fff; border-radius:50%; width:35px; height:35px; line-height:35px;">TNT</div></div><div class="channel-name">TNT Novelas</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">CINEMAX</div></div><div class="channel-name">Cinemax</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#99ff33;">◆ MEGAPIX</div></div><div class="channel-name">Megapix</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">SPACE</div></div><div class="channel-name">Space</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px;">Sony</div></div><div class="channel-name">Sony</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="font-size:24px;">AXN</div></div><div class="channel-name">AXN</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:2px solid #fff; padding:2px;">A&E</div></div><div class="channel-name">A&E</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:2px solid #fff; padding:2px;">AMC</div></div><div class="channel-name">AMC</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">WB</div></div><div class="channel-name">Warner Channel</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3333;">UNIVERSAL</div></div><div class="channel-name">Universal Channel</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3333; font-size:24px;">USA</div></div><div class="channel-name">USA</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">STUDIO</div></div><div class="channel-name">Studio Universal</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#cc00ff;">TCM</div></div><div class="channel-name">TCM</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3333;">globoplay</div></div><div class="channel-name">Globoplay Novelas</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:5px;">[adult swim]</div></div><div class="channel-name">Adult Swim</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0066;">urban<br>retro</div></div><div class="channel-name">Urban Retro</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0066;">urban<br>docs</div></div><div class="channel-name">Urban Docs</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:5px; width:30px; height:30px; line-height:28px;">U</div></div><div class="channel-name">Urban Travel</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sky">sky <span style="background:#ff0044; color:#fff; padding:2px;">cinema</span></div></div><div class="channel-name">Cine Sky Action</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sky">sky <span style="background:#ff0044; color:#fff; padding:2px;">cinema</span></div></div><div class="channel-name">Cine Sky Animação</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sky">sky <span style="background:#ff0044; color:#fff; padding:2px;">cinema</span></div></div><div class="channel-name">Cine Sky Aventura</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sky">sky <span style="background:#ff0044; color:#fff; padding:2px;">cinema</span></div></div><div class="channel-name">Cine Sky Comédia</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sky">sky <span style="background:#ff0044; color:#fff; padding:2px;">cinema</span></div></div><div class="channel-name">Cine Sky Documentário</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sky">sky <span style="background:#ff0044; color:#fff; padding:2px;">cinema</span></div></div><div class="channel-name">Cine Sky Família</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sky">sky <span style="background:#ff0044; color:#fff; padding:2px;">cinema</span></div></div><div class="channel-name">Cine Sky Fantasia</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sky">sky <span style="background:#ff0044; color:#fff; padding:2px;">cinema</span></div></div><div class="channel-name">Cine Sky Ficção</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sky">sky <span style="background:#ff0044; color:#fff; padding:2px;">cinema</span></div></div><div class="channel-name">Cine Sky Guerra</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sky">sky <span style="background:#ff0044; color:#fff; padding:2px;">cinema</span></div></div><div class="channel-name">Cine Sky História</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sky">sky <span style="background:#ff0044; color:#fff; padding:2px;">cinema</span></div></div><div class="channel-name">Cine Sky Romance</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sky">sky <span style="background:#ff0044; color:#fff; padding:2px;">cinema</span></div></div><div class="channel-name">Cine Sky Super Herói</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sky">sky <span style="background:#ff0044; color:#fff; padding:2px;">cinema</span></div></div><div class="channel-name">Cine Sky Terror</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:5px; width:30px; height:30px; line-height:28px;">T</div></div><div class="channel-name">Top Filmes</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:5px; width:30px; height:30px; line-height:28px;">T</div></div><div class="channel-name">Top Séries</div></div>
             </div>
         </div>
 
         <div class="category-section" id="cat-abertos">
             <div class="category-header"><span>ABERTOS</span> <span>49 canais</span></div>
             <div class="channels-grid">
-                <div class="channel-card"><div class="channel-logo"><div class="logo-globo"></div></div><div class="channel-name">Globo SP</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="logo-globo"></div></div><div class="channel-name">Globo RJ</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="logo-globo"></div></div><div class="channel-name">Globo Minas</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="logo-globo"></div></div><div class="channel-name">Globo Nordeste</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="logo-globo"></div></div><div class="channel-name">Globo Sul</div></div>
-                <div class="channel-card"><div class="channel-logo" style="border-radius:50%; background:#fff; width:30px; height:30px; display:flex; align-items:center; justify-content:center;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Logo_SBT.svg/20px-Logo_SBT.svg.png" alt=""></div><div class="channel-name">SBT</div></div>
-                <div class="channel-card"><div class="channel-logo" style="border-radius:50%; background:#fff; width:30px; height:30px; display:flex; align-items:center; justify-content:center;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Logo_SBT.svg/20px-Logo_SBT.svg.png" alt=""></div><div class="channel-name">SBT Rio</div></div>
-                <div class="channel-card"><div class="channel-logo" style="border-radius:50%; background:#fff; width:30px; height:30px; display:flex; align-items:center; justify-content:center;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Rede_Record_logo.svg/20px-Rede_Record_logo.svg.png" alt=""></div><div class="channel-name">Record SP</div></div>
-                <div class="channel-card"><div class="channel-logo" style="border-radius:50%; background:#fff; width:30px; height:30px; display:flex; align-items:center; justify-content:center;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Rede_Record_logo.svg/20px-Rede_Record_logo.svg.png" alt=""></div><div class="channel-name">Record RJ</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#00aa00; font-weight:900; font-size:24px; display:flex; align-items:center;"><div style="width:20px;height:20px; border-radius:50%; border:3px solid #00aa00; margin-right:5px;"></div>Band</div><div class="channel-name">Band</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#00ccff; font-weight:bold;">REDE<span style="color:#fff;">TV</span></div><div class="channel-name">Rede TV</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#fff; font-weight:bold;">TV GAZETA</div><div class="channel-name">TV Gazeta</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo SP</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo RJ</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Brasília</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Minas</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Curitiba</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo RPC Foz do Iguaçu</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo RBS Porto Alegre</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo RBS Pelotas</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Fortaleza</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Bahia</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Florianópolis</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Belém</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Nordeste</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo NSC</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Sergipe</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Cascavel</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Blumenau</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Chapecó</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Bauru</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo TEM Sorocaba</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Anhanguera Goiás</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo EPTV Campinas</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo EPTV Central</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Santos</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Verde Mares</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Asa Branca</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Cabo Branco</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Centro América</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Centro Oeste</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Cabugi</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Vales</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Serra Mar</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Mato Grosso</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Morena</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Mirante</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Porto Velho</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-globo"></div></div><div class="channel-name">Globo Manaus</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">RECORD</div></div><div class="channel-name">Record</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">RECORD</div></div><div class="channel-name">Record Bahia</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">RECORD</div></div><div class="channel-name">Record RJ</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">RECORD</div></div><div class="channel-name">Record Nacional</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">sbt</div></div><div class="channel-name">SBT</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aa00;">Band</div></div><div class="channel-name">Band</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00ccff;">REDE<span style="color:#fff;">TV</span></div></div><div class="channel-name">Rede TV</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">RBI</div></div><div class="channel-name">Rede Brasil</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px;">GAZETA</div></div><div class="channel-name">Gazeta TV</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00ccff;">CANAL<br>BRASIL</div></div><div class="channel-name">Canal Brasil</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aa00;">CATVE</div></div><div class="channel-name">CATVE FM</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">telefe</div></div><div class="channel-name">ARG: Telefe</div></div>
             </div>
         </div>
 
         <div class="category-section" id="cat-ondemand">
             <div class="category-header"><span>ON DEMAND</span> <span>30 canais</span></div>
             <div class="channels-grid">
-                <div class="channel-card"><div class="channel-logo" style="font-family:serif; font-size:24px; font-style:italic;">Disney+</div><div class="channel-name">Disney+ 1</div></div>
-                <div class="channel-card"><div class="channel-logo" style="font-family:serif; font-size:24px; font-style:italic;">Disney+</div><div class="channel-name">Disney+ 2</div></div>
-                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#5500aa; padding:2px 10px; border-radius:4px; font-weight:900;">HBO<span style="color:#000;">max</span></div><div class="channel-name">HBO Max 1</div></div>
-                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#5500aa; padding:2px 10px; border-radius:4px; font-weight:900;">HBO<span style="color:#000;">max</span></div><div class="channel-name">HBO Max 2</div></div>
-                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#000; padding:2px 10px; border-radius:4px; font-weight:bold;"> tv</div><div class="channel-name">Apple TV 1</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:bold; font-style:italic;">prime video</div><div class="channel-name">Amazon 1</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:bold; font-style:italic;">prime video</div><div class="channel-name">Amazon 2</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff0000; font-weight:900; font-size:24px;">N</div><div class="channel-name">Netflix 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-disney">Disney+</div></div><div class="channel-name">Disney+ 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-disney">Disney+</div></div><div class="channel-name">Disney+ 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-disney">Disney+</div></div><div class="channel-name">Disney+ 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-disney">Disney+</div></div><div class="channel-name">Disney+ 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-disney">Disney+</div></div><div class="channel-name">Disney+ 5</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-disney">Disney+</div></div><div class="channel-name">Disney+ 6</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-disney">Disney+</div></div><div class="channel-name">Disney+ 7</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-disney">Disney+</div></div><div class="channel-name">Disney+ 8</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-disney">Disney+</div></div><div class="channel-name">Disney+ 9</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-disney">Disney+</div></div><div class="channel-name">Disney+ 10</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#5500aa; padding:2px 10px; border-radius:4px;">HBO<span style="color:#000;">max</span></div></div><div class="channel-name">HBO Max 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#5500aa; padding:2px 10px; border-radius:4px;">HBO<span style="color:#000;">max</span></div></div><div class="channel-name">HBO Max 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#5500aa; padding:2px 10px; border-radius:4px;">HBO<span style="color:#000;">max</span></div></div><div class="channel-name">HBO Max 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#5500aa; padding:2px 10px; border-radius:4px;">HBO<span style="color:#000;">max</span></div></div><div class="channel-name">HBO Max 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#5500aa; padding:2px 10px; border-radius:4px;">HBO<span style="color:#000;">max</span></div></div><div class="channel-name">HBO Max 5</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 10px; border-radius:4px;"> tv</div></div><div class="channel-name">Apple TV 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 10px; border-radius:4px;"> tv</div></div><div class="channel-name">Apple TV 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 10px; border-radius:4px;"> tv</div></div><div class="channel-name">Apple TV 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 10px; border-radius:4px;"> tv</div></div><div class="channel-name">Apple TV 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">CazéTV</div></div><div class="channel-name">CazeTV 01</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">CazéTV</div></div><div class="channel-name">CazeTV 02</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">CazéTV</div></div><div class="channel-name">CazeTV 03</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 3</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 4</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 5</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-nosso">NOSSO<br>ESPORTE</div></div><div class="channel-name">Nosso Esporte 6</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3366;">SportyNet</div></div><div class="channel-name">Sporty Net 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3366;">SportyNet</div></div><div class="channel-name">Sporty Net 2</div></div>
             </div>
         </div>
 
         <div class="category-section" id="cat-noticias">
             <div class="category-header"><span>NOTÍCIAS</span> <span>9 canais</span></div>
             <div class="channels-grid">
-                <div class="channel-card"><div class="channel-logo" style="font-weight:900; font-size:20px;">G<span style="font-weight:normal;">NEWS</span></div><div class="channel-name">Globo News</div></div>
-                <div class="channel-card"><div class="channel-logo" style="background:#cc0000; padding:2px 5px; font-weight:bold; border-radius:4px;">CNN</div><div class="channel-name">CNN Brasil</div></div>
-                <div class="channel-card"><div class="channel-logo" style="background:#cc0000; padding:2px 5px; font-weight:bold; border-radius:4px;">CNN</div><div class="channel-name">CNN Internacional</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#0044cc; font-weight:900;">BAND<span style="color:#fff;">NEWS</span></div><div class="channel-name">Band News</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#0066cc; font-weight:bold;">Record News</div><div class="channel-name">Record News</div></div>
-                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#000; padding:2px 5px; font-weight:bold; border-radius:4px;">sbt news</div><div class="channel-name">SBT News</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ffcc00; font-weight:bold;">Jovem Pan</div><div class="channel-name">Jovem Pan News</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">G<span style="font-weight:normal;">NEWS</span></div></div><div class="channel-name">Globo News</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-cnn">CNN</div></div><div class="channel-name">CNN Brasil</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-cnn">CNN</div></div><div class="channel-name">CNN Internacional</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-cnn">CNN</div></div><div class="channel-name">CNN Espanhol</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#0044cc;">BAND<span style="color:#fff;">NEWS</span></div></div><div class="channel-name">Band News</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#0066cc;">Record News</div></div><div class="channel-name">Record News</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0000;">Jovem Pan</div></div><div class="channel-name">Jovem Pan News</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 5px; border-radius:4px;">sbt news</div></div><div class="channel-name">SBT News</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#cc0000; padding:2px;">BBC</div></div><div class="channel-name">BBC</div></div>
             </div>
         </div>
 
         <div class="category-section" id="cat-infantil">
             <div class="category-header"><span>INFANTIL</span> <span>10 canais</span></div>
             <div class="channels-grid">
-                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#000; font-weight:900; padding:5px; font-size:20px; line-height:1;">CN</div><div class="channel-name">Cartoon Network</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:900;">Discovery <span style="color:#ffcc00;">kids</span></div><div class="channel-name">Discovery Kids</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#cc00ff; font-weight:900; font-size:24px;">Gloob</div><div class="channel-name">Gloob</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff0066; font-weight:bold;">ZooMoo</div><div class="channel-name">ZooMoo</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff6600; font-weight:900;">nick</div><div class="channel-name">Nickelodeon</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#00ccff; font-weight:bold;">Disney CH</div><div class="channel-name">Disney Channel</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:5px; line-height:1;">CN</div></div><div class="channel-name">Cartoon Network</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">Cartoonito</div></div><div class="channel-name">Cartoonito</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">Discovery <span style="color:#ffcc00;">kids</span></div></div><div class="channel-name">Discovery Kids</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#cc00ff; font-size:24px;">Gloob</div></div><div class="channel-name">Gloob</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">TV Globinho</div></div><div class="channel-name">TV Globinho</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3333;">Tooncast</div></div><div class="channel-name">Tooncast</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#99ff33;">Rá Tim Bum</div></div><div class="channel-name">TV Rá Tim Bum!</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0066;">ZooMoo</div></div><div class="channel-name">ZooMoo</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-sky">sky <span style="background:#ff0044; color:#fff; padding:2px;">cinema</span></div></div><div class="channel-name">Cine Sky Kids</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0066;">urban<br>kids</div></div><div class="channel-name">Urban Kids</div></div>
             </div>
         </div>
 
         <div class="category-section" id="cat-docs">
             <div class="category-header"><span>DOCUMENTÁRIOS</span> <span>13 canais</span></div>
             <div class="channels-grid">
-                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:bold;">Discovery</div><div class="channel-name">Discovery Channel</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff6600; font-weight:bold;">h&h</div><div class="channel-name">Discovery H&H</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff3333; font-weight:900;">turbo</div><div class="channel-name">Discovery Turbo</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ffcc00; font-weight:bold; font-size:24px;">H</div><div class="channel-name">History</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ffcc00; font-weight:bold; font-size:18px;">H2</div><div class="channel-name">History 2</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff0000; font-weight:bold; background:#fff; padding:2px 5px;">TLC</div><div class="channel-name">TLC</div></div>
-                <div class="channel-card"><div class="channel-logo" style="border:1px solid #ffcc00; color:#ffcc00; font-weight:bold; padding:2px;">NAT GEO</div><div class="channel-name">National Geographic</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">Animal Planet</div></div><div class="channel-name">Animal Planet</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">Discovery</div></div><div class="channel-name">Discovery Channel</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff6600;">h&h</div></div><div class="channel-name">Discovery H&H</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">Discovery HD</div></div><div class="channel-name">Discovery HD</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">Science</div></div><div class="channel-name">Discovery Science</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00ccff;">Theater</div></div><div class="channel-name">Discovery Theater</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3333;">turbo</div></div><div class="channel-name">Discovery Turbo</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00ccff;">World</div></div><div class="channel-name">Discovery World</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">HGTV</div></div><div class="channel-name">HGTV</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00; font-size:24px;">H</div></div><div class="channel-name">History</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00; font-size:18px;">H2</div></div><div class="channel-name">History 2</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt">Modo Viagem</div></div><div class="channel-name">Modo Viagem</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0000; background:#fff; padding:2px 5px;">TLC</div></div><div class="channel-name">TLC</div></div>
             </div>
         </div>
 
         <div class="category-section" id="cat-variedades">
             <div class="category-header"><span>VARIEDADES</span> <span>10 canais</span></div>
             <div class="channels-grid">
-                <div class="channel-card"><div class="channel-logo" style="color:#aa00ff; font-weight:bold;">gnt</div><div class="channel-name">GNT</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff6699; font-weight:900;">MULTISHOW</div><div class="channel-name">Multishow</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff3333; font-weight:bold;">food</div><div class="channel-name">Food Network</div></div>
-                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#000; font-weight:900; padding:2px 8px;">E!</div><div class="channel-name">E!</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff0066; font-weight:bold;">VIVA</div><div class="channel-name">Viva</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#fff; border: 1px solid #fff; padding:2px;">Sony</div><div class="channel-name">Sony Channel</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#aa00ff;">gnt</div></div><div class="channel-name">GNT</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff6699;">MULTISHOW</div></div><div class="channel-name">Multishow</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3333;">food</div></div><div class="channel-name">Food Network</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3366;">Lifetime</div></div><div class="channel-name">Lifetime</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 8px;">E!</div></div><div class="channel-name">E!</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff9900;">curta!</div></div><div class="channel-name">Curta!</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aa00;">Futura</div></div><div class="channel-name">Futura</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">Prime Box</div></div><div class="channel-name">Prime Box Brasil</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #fff; padding:2px;">WOOHOO</div></div><div class="channel-name">Woohoo</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #fff; padding:2px; color:#ff3333;">WOOHOO</div></div><div class="channel-name">Woohoo Esportes</div></div>
             </div>
         </div>
 
         <div class="category-section" id="cat-musica">
             <div class="category-header"><span>MÚSICA</span> <span>5 canais</span></div>
             <div class="channels-grid">
-                <div class="channel-card"><div class="channel-logo" style="color:#00ccff; font-weight:900; font-size:26px;">BIS</div><div class="channel-name">BIS</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff6699; font-weight:900;">MULTISHOW</div><div class="channel-name">Multishow</div></div>
-                <div class="channel-card"><div class="channel-logo" style="border:1px solid #fff; padding:2px;">WOOHOO</div><div class="channel-name">Woohoo</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff3333; font-weight:900;">MTV</div><div class="channel-name">MTV Brasil</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff6600; font-weight:bold;">Trace</div><div class="channel-name">Trace Brazuca</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00ccff; font-size:26px;">BIS</div></div><div class="channel-name">BIS</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff6699;">MULTISHOW</div></div><div class="channel-name">Multishow</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#cc00ff;">Music Box</div></div><div class="channel-name">Music Box Brasil</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aa00;">TRACE</div></div><div class="channel-name">Trace Brasil</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #fff; padding:2px;">WOOHOO</div></div><div class="channel-name">Woohoo</div></div>
             </div>
         </div>
 
         <div class="category-section" id="cat-cultura">
             <div class="category-header"><span>CULTURA</span> <span>5 canais</span></div>
             <div class="channels-grid">
-                <div class="channel-card"><div class="channel-logo" style="background:#cc0000; color:#fff; font-weight:bold; padding:2px 5px;">arte1</div><div class="channel-name">Arte 1</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:bold;">tvBrasil</div><div class="channel-name">TV Brasil</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#32CD32; font-weight:900;">+ CULTURA</div><div class="channel-name">TV Cultura</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#fff; font-weight:bold;">FUTURA</div><div class="channel-name">Canal Futura</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#00ccff; font-weight:bold;">Travel</div><div class="channel-name">Travel Box</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#cc0000; color:#fff; padding:2px 5px;">arte1</div></div><div class="channel-name">Arte 1</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">Travel Box</div></div><div class="channel-name">Travel Box</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">tvBrasil</div></div><div class="channel-name">TV Brasil</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00ccff;">TV CÂMARA</div></div><div class="channel-name">TV Câmara</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#32CD32;">+ CULTURA</div></div><div class="channel-name">TV Cultura</div></div>
             </div>
         </div>
 
         <div class="category-section" id="cat-agro">
             <div class="category-header"><span>AGRO</span> <span>3 canais</span></div>
             <div class="channels-grid">
-                <div class="channel-card"><div class="channel-logo" style="background:#fff; padding:2px; display:inline-block;"><span style="color:#ff6600;font-weight:900;">AGRO</span><span style="color:#00aa00;font-weight:900;">BRASIL</span></div><div class="channel-name">Agro Brasil</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#00ccff; font-weight:bold;">CANAL RURAL</div><div class="channel-name">Canal Rural</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:bold;">terraviva</div><div class="channel-name">Terra Viva</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; padding:2px;"><span style="color:#ff6600;">AGRO</span><span style="color:#00aa00;">BRASIL</span></div></div><div class="channel-name">Agro Brasil</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00ccff;">CANAL RURAL</div></div><div class="channel-name">Canal Rural</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">terraviva</div></div><div class="channel-name">Terra Viva</div></div>
             </div>
         </div>
 
         <div class="category-section" id="cat-inter">
             <div class="category-header"><span>INTERNACIONAIS</span> <span>4 canais</span></div>
             <div class="channels-grid">
-                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#000; font-weight:bold; padding:2px 8px; border-radius:4px;">Bloomberg</div><div class="channel-name">Bloomberg</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:900; font-size:24px;">DW</div><div class="channel-name">DW</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#fff; font-weight:bold; letter-spacing:2px;">RAI</div><div class="channel-name">RAI</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff0000; font-weight:bold;">TV5</div><div class="channel-name">TV5 Monde</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 8px; border-radius:4px;">Bloomberg</div></div><div class="channel-name">Bloomberg</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff; font-size:24px;">DW</div></div><div class="channel-name">DW</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0000;">Telemundo</div></div><div class="channel-name">Telemundo</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#fff; letter-spacing:2px;">RAI</div></div><div class="channel-name">RAI</div></div>
             </div>
         </div>
 
         <div class="category-section" id="cat-religioso">
             <div class="category-header"><span>RELIGIOSO</span> <span>7 canais</span></div>
             <div class="channels-grid">
-                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:bold;">Canção Nova</div><div class="channel-name">Canção Nova</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ffcc00; font-weight:bold;">Novo Tempo</div><div class="channel-name">Novo Tempo</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ffcc00; font-weight:bold;">APARECIDA</div><div class="channel-name">TV Aparecida</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#00aaff; font-weight:bold;">REDEVIDA</div><div class="channel-name">Rede Vida</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#fff; font-weight:bold;">RIT</div><div class="channel-name">RIT</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">Canção Nova</div></div><div class="channel-name">Canção Nova</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">Novo Tempo</div></div><div class="channel-name">Novo Tempo</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#00aaff;">REDEVIDA</div></div><div class="channel-name">Rede Vida</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">APARECIDA</div></div><div class="channel-name">TV Aparecida</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:5px; width:30px; height:30px; line-height:28px;">B</div></div><div class="channel-name">Boa Vontade</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:5px; width:30px; height:30px; line-height:28px;">G</div></div><div class="channel-name">Gospel Music</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="border:1px solid #ff6600; color:#ff6600; border-radius:5px; width:30px; height:30px; line-height:28px;">T</div></div><div class="channel-name">TV Evangelizar</div></div>
             </div>
         </div>
 
         <div class="category-section" id="cat-adulto">
             <div class="category-header"><span>ADULTO (+18)</span> <span>32 canais</span></div>
             <div class="channels-grid">
-                <div class="channel-card"><div class="channel-logo"><div class="logo-adult">18+</div></div><div class="channel-name">XXX Playboy</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="logo-adult">18+</div></div><div class="channel-name">XXX Porn Star</div></div>
-                <div class="channel-card"><div class="channel-logo" style="background:#fff; color:#000; font-weight:900; padding:2px 5px;">PRIVATE</div><div class="channel-name">XXX Private</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ff3333; font-weight:900;">SEXY HOT</div><div class="channel-name">XXX Sex Hot</div></div>
-                <div class="channel-card"><div class="channel-logo" style="color:#ffcc00; font-weight:bold;">BRAZZERS</div><div class="channel-name">XXX Brazzers</div></div>
-                <div class="channel-card"><div class="channel-logo"><div class="logo-adult">18+</div></div><div class="channel-name">XXX Anal</div></div>
-                <div class="channel-card"><div class="channel-logo" style="background:#ff3333; color:#fff; font-weight:bold; padding:2px 5px; transform:rotate(-10deg);">BANG</div><div class="channel-name">XXX Bang</div></div>
-                <div class="channel-card"><div class="channel-logo" style="background:#000; border-radius:50%; width:35px;height:35px; border:1px solid #333; display:flex; align-items:center; justify-content:center; font-size:8px;">BLACKED</div><div class="channel-name">XXX Blacked</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3333;">Adult Movies</div></div><div class="channel-name">XXX Adult Movies</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX Alba</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult" style="border-color:#555; color:#555;">18+</div></div><div class="channel-name">XXX Anal</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX Asiatic</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#ff3333; color:#fff; padding:2px 5px; transform:rotate(-10deg);">BANG</div></div><div class="channel-name">XXX Bang</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#000; border-radius:50%; width:35px;height:35px; border:1px solid #333; display:flex; align-items:center; justify-content:center; font-size:8px;">BLACKED</div></div><div class="channel-name">XXX Blacked</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ffcc00;">BRAZZERS</div></div><div class="channel-name">XXX Brazzers</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#111; color:#555;">DORCEL</div></div><div class="channel-name">XXX Dorcel</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX DP Ink</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0066;">EROX</div></div><div class="channel-name">XXX Erox</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="font-family:serif;">Family Affairs</div></div><div class="channel-name">XXX Family Affairs</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px;">FOR MEN</div></div><div class="channel-name">XXX For Men</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX French Lover</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0066; border:1px solid #ff0066;">CENSORED</div></div><div class="channel-name">XXX Hot Shows</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult" style="border-color:#555; color:#555;">18+</div></div><div class="channel-name">XXX Japanese Porn</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0066; font-size:24px;">♀♀</div></div><div class="channel-name">XXX Lesbian</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX Nibules</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#ff3333; font-style:italic;">Olala</div></div><div class="channel-name">XXX O-La-La</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX Orgia</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX Overworked</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX Parodies</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX Peitudas</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX Playboy</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX Porn Star</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#000; padding:2px 5px;">PRIVATE</div></div><div class="channel-name">XXX Private</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="background:#fff; color:#00aa00;">PUBLIC</div></div><div class="channel-name">XXX Public Pickups</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX Redlight</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff3333;">SEXY HOT</div></div><div class="channel-name">XXX Sex Hot</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-txt" style="color:#ff0000; transform:rotate(-5deg);">SEXTREME</div></div><div class="channel-name">XXX Sex Prive</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX Teens</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX Venus</div></div>
+                <div class="channel-card"><div class="channel-logo"><div class="l-adult">18+</div></div><div class="channel-name">XXX XY Max</div></div>
             </div>
         </div>
 
@@ -389,7 +600,6 @@
             <p style="margin-bottom:20px;">IPTV para Android • operado desde 2026</p>
             
             <div class="footer-status">
-                <span style="color:#ff3333; font-size:14px;">▶</span>
                 <span class="dot-red"></span> Voltamos amanhã às 08h
             </div>
             
@@ -445,7 +655,7 @@
                     if (filterValue === 'all') {
                         section.style.display = 'block';
                     } else {
-                        // Verifica se o ID da secção corresponde ao filtro (ex: cat-esportes)
+                        // Verifica se o ID da secção corresponde ao filtro
                         if (section.id === 'cat-' + filterValue) {
                             section.style.display = 'block';
                         } else {

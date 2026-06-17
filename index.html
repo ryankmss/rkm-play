@@ -38,12 +38,13 @@
         .close-menu { font-size: 24px; color: var(--text-muted); cursor: pointer; font-weight: bold; }
         .menu-section-title { font-size: 11px; font-weight: bold; color: #666; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; margin-top: 30px; }
         
-        .menu-nav-list li a { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #1a1a1a; font-size: 16px; font-weight: bold; color: #fff; }
-        .menu-nav-list li a.active { color: var(--orange); }
+        /* Efeito de clique nos links do menu */
+        .menu-nav-list li a { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #1a1a1a; font-size: 16px; font-weight: bold; color: #fff; transition: color 0.2s; }
+        .menu-nav-list li a:hover, .menu-nav-list li a:active { color: var(--orange); }
         .menu-nav-list li a span { color: #555; font-weight: normal; font-size: 18px; }
 
         .menu-card { display: flex; align-items: center; gap: 15px; background: #0f0f0f; border: 1px solid #1a1a1a; border-radius: 10px; padding: 15px; margin-bottom: 10px; text-align: left; }
-        .menu-card .feature-icon { width: 35px; height: 35px; font-size: 18px; margin: 0; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .menu-card .feature-icon { width: 35px; height: 35px; font-size: 18px; margin: 0; flex-shrink: 0; display:flex; align-items:center; justify-content:center; }
         .menu-card-title { font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 2px; }
         .menu-card-desc { font-size: 11px; color: var(--text-muted); }
 
@@ -184,14 +185,16 @@
 
     <div class="side-menu" id="side-menu">
         <div class="side-menu-header">
-            <img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" class="logo-img" style="height: 30px;">
+            <a href="index.html">
+                <img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" class="logo-img" style="height: 30px;">
+            </a>
             <div class="close-menu" id="close-menu">✕</div>
         </div>
 
         <div class="menu-section-title">NAVEGAÇÃO</div>
         <ul class="menu-nav-list">
             <li><a href="index.html">Início <span>›</span></a></li>
-            <li><a href="canais.html" class="active">Canais <span>›</span></a></li>
+            <li><a href="canais.html">Canais <span>›</span></a></li>
             <li><a href="#">Esportes <span>›</span></a></li>
             <li><a href="#">Planos <span>›</span></a></li>
             <li><a href="#">Ajuda <span>›</span></a></li>
@@ -238,7 +241,9 @@
 
     <div class="container">
         <header>
-            <img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" class="logo-img">
+            <a href="index.html">
+                <img src="https://i.postimg.cc/NMx2hW3d/RKMPLAY.png" alt="RKM PLAY" class="logo-img">
+            </a>
             <div class="menu-icon" id="open-menu">☰</div>
         </header>
 
@@ -476,7 +481,7 @@
 
         <section class="section-padding">
             <h2 class="h2-title">Baixe e <span class="text-orange">teste grátis</span></h2>
-            <p class="p-subtitle">Instale em menos de 2 minutes. Você ganha <strong style="color:var(--green);">24h de acesso liberado</strong> pra testar tudo — sem código, sem cadastro, sem cartão.</p>
+            <p class="p-subtitle">Instale em menos de 2 minutos. Você ganha <strong style="color:var(--green);">24h de acesso liberado</strong> pra testar tudo — sem código, sem cadastro, sem cartão.</p>
 
             <div class="feature-card" style="display:flex; align-items:center; text-align:left; gap:15px; padding:20px;">
                 <div class="feature-icon" style="margin:0;">📺</div>

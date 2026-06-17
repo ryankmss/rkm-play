@@ -11,7 +11,7 @@
             --card-bg: #111111;
             --border-color: #222222;
             --orange: #FF6600;
-            --green: #25D366; /* Verde de destaque da página de esportes */
+            --green: #25D366; 
             --text-main: #FFFFFF;
             --text-muted: #999999;
         }
@@ -73,7 +73,7 @@
         .stat-number { color: var(--green); font-size: 24px; font-weight: 900; margin-bottom: 5px; }
         .stat-text { color: var(--text-muted); font-size: 12px; }
 
-        /* === CARDS DE CAMPEONATOS === */
+        /* === CARDS DE CAMPEONATOS COM EFEITO DE CLIQUE === */
         .championships { padding: 40px 0; }
         .champ-card { 
             background-color: var(--card-bg); 
@@ -82,13 +82,15 @@
             padding: 20px; 
             margin-bottom: 15px; 
             cursor: pointer;
-            transition: background-color 0.2s ease, border-color 0.2s ease; /* Transição suave */
+            -webkit-tap-highlight-color: transparent; /* Remove sombra padrão do iOS */
+            transition: all 0.2s ease; /* Transição para todas as propriedades (cor e tamanho) */
         }
         
-        /* Efeito de clique e hover pedido */
-        .champ-card:hover, .champ-card:active {
-            background-color: #1f1f1f; /* Tom mais claro */
-            border-color: #333333;
+        /* EFEITO AO TOCAR (MOBILE) OU PASSAR O MOUSE (PC) */
+        .champ-card:active, .champ-card:hover {
+            background-color: #222222; /* Fundo mais cinza claro */
+            border-color: var(--green); /* Borda fica verde pra dar destaque */
+            transform: scale(0.98); /* Dá uma leve afundada no botão */
         }
 
         .champ-logo-box { background-color: #fff; width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; overflow: hidden; padding: 5px; }
@@ -126,9 +128,7 @@
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 1000; cursor: pointer; }
     </style>
 </head>
-<body>
-
-    <div class="top-bar">
+<body ontouchstart=""> <div class="top-bar">
         <marquee behavior="scroll" direction="left" scrollamount="4">
             Baixe o app apenas pelos nossos canais oficiais &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Não compre RKM PLAY em sites desconhecidos
         </marquee>
@@ -424,7 +424,7 @@
                 <h5 style="color: #666; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px;">SUPORTE</h5>
                 <ul style="list-style: none; padding: 0;">
                     <li style="margin-bottom: 15px;"><a href="https://wa.me/5511984334348" target="_blank" style="color: var(--text-muted);">Falar com Atendente</a></li>
-                    <li style="margin-bottom: 10px;"><a href="mailto:Suporte.rkmplay@gmail.com" style="color: var(--text-muted);">Suporte.rkmplay@gmail.com</a></li>
+                    <li style="margin-bottom: 10px;"><a href="mailto:suporte.rkmplay@gmail.com" style="color: var(--text-muted);">suporte.rkmplay@gmail.com</a></li>
                 </ul>
             </div>
 

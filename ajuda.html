@@ -59,7 +59,7 @@
         /* === SUB-HEADER TUTORIAIS === */
         .tutorial-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #1a1a1a; margin-bottom: 30px; position: relative; }
         .btn-tutoriais { background: #111; border: 1px solid #333; color: #fff; padding: 8px 15px; border-radius: 8px; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 8px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-        .btn-tutoriais span { color: var(--orange); }
+        .btn-tutoriais span { color: var(--orange); display: flex; align-items: center; justify-content: center; }
         .current-tutorial-label { font-size: 12px; color: #666; }
 
         /* === MENU SUSPENSO (TUTORIAIS) === */
@@ -176,7 +176,14 @@
         </div>
 
         <div class="tutorial-header">
-            <div class="btn-tutoriais" id="btn-dropdown">Tutoriais <span>v</span></div>
+            <div class="btn-tutoriais" id="btn-dropdown">
+                Tutoriais 
+                <span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 5px;">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </span>
+            </div>
             <div class="current-tutorial-label" id="current-label">Navegação Rápida</div>
             
             <div class="tutorials-dropdown" id="tutorials-dropdown">

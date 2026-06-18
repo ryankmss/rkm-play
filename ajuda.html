@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Central de Ajuda | RKM PLAY</title>
     <style>
+        /* === ROLAGEM SUAVE ATIVADA === */
+        html { scroll-behavior: smooth; }
+
         /* === VARIÁVEIS E GLOBAIS === */
         :root {
             --bg-color: #060606;
@@ -54,13 +57,13 @@
         .menu-support-action { background: var(--green); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
         /* === SUB-HEADER TUTORIAIS === */
-        .tutorial-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #1a1a1a; margin-bottom: 30px; }
-        .btn-tutoriais { background: #111; border: 1px solid #333; color: #fff; padding: 8px 15px; border-radius: 8px; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+        .tutorial-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #1a1a1a; margin-bottom: 30px; position: relative; }
+        .btn-tutoriais { background: #111; border: 1px solid #333; color: #fff; padding: 8px 15px; border-radius: 8px; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 8px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
         .btn-tutoriais span { color: var(--orange); }
         .current-tutorial-label { font-size: 12px; color: #666; }
 
         /* === MENU SUSPENSO (TUTORIAIS) === */
-        .tutorials-dropdown { display: none; position: absolute; top: 70px; left: 20px; width: calc(100% - 40px); background: #0a0a0a; border: 1px solid #222; border-radius: 12px; z-index: 100; padding: 15px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.8); max-height: 70vh; overflow-y: auto; }
+        .tutorials-dropdown { display: none; position: absolute; top: 60px; left: 0; width: 100%; background: #0a0a0a; border: 1px solid #222; border-radius: 12px; z-index: 100; padding: 15px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.8); max-height: 70vh; overflow-y: auto; }
         .tutorials-dropdown.active { display: block; }
         
         .tut-search { margin: 0 15px 15px 15px; position: relative; }
@@ -71,11 +74,10 @@
         .tut-item { display: block; padding: 12px 20px; font-size: 14px; color: #ccc; cursor: pointer; border-left: 2px solid transparent; }
         .tut-item:hover, .tut-item.active { background: #111; color: var(--orange); border-left-color: var(--orange); }
 
-        /* === ÁREA DE CONTEÚDO DOS TUTORIAIS === */
-        .tutorial-content { display: none; animation: fadeIn 0.3s ease; }
-        .tutorial-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
+        /* === ÁREA DE CONTEÚDO DOS TUTORIAIS (TODOS VISÍVEIS) === */
+        .tutorial-content { display: block; padding-top: 20px; margin-bottom: 40px; border-bottom: 1px solid #1a1a1a; padding-bottom: 40px; }
+        .tutorial-content:last-of-type { border-bottom: none; }
+        
         .tut-tag { color: var(--orange); font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: block; }
         .tut-h1 { font-size: 28px; font-weight: 800; line-height: 1.2; margin-bottom: 15px; }
         .tut-desc { color: var(--text-muted); font-size: 14px; margin-bottom: 30px; line-height: 1.6; }
@@ -175,31 +177,27 @@
 
         <div class="tutorial-header">
             <div class="btn-tutoriais" id="btn-dropdown">Tutoriais <span>v</span></div>
-            <div class="current-tutorial-label" id="current-label">TV Box</div>
-        </div>
+            <div class="current-tutorial-label" id="current-label">Navegação Rápida</div>
+            
+            <div class="tutorials-dropdown" id="tutorials-dropdown">
+                <div class="tut-cat-title">INSTALAÇÃO</div>
+                <div class="tut-item" data-target="tut-tvbox-antigo">Já tenho o app antigo</div>
+                <div class="tut-item" data-target="tut-inst-limpa">Instalação limpa</div>
+                <div class="tut-item" data-target="tut-google-tv">Google TV / Fire / BTV</div>
 
-        <div class="tutorials-dropdown" id="tutorials-dropdown">
-            <div class="tut-search">
-                <input type="text" placeholder="Buscar tutorial...">
+                <div class="tut-cat-title">CONFIGURAÇÃO</div>
+                <div class="tut-item" data-target="tut-celular">Celular ou tablet</div>
+                <div class="tut-item" data-target="tut-parental">Controle parental</div>
+                <div class="tut-item" data-target="tut-email">Vincular e-mail</div>
+
+                <div class="tut-cat-title">AJUDA</div>
+                <div class="tut-item" data-target="tut-canais">Como acessar canais</div>
+                <div class="tut-item" data-target="tut-velocidade">Teste de velocidade</div>
+
+                <div class="tut-cat-title">COMPATIBILIDADE</div>
+                <div class="tut-item" data-target="tut-smart">Smart TVs</div>
+                <div class="tut-item" data-target="tut-tvbox">TV Box</div>
             </div>
-
-            <div class="tut-cat-title">INSTALAÇÃO</div>
-            <div class="tut-item" data-target="tut-tvbox-antigo">Já tenho o app antigo</div>
-            <div class="tut-item" data-target="tut-inst-limpa">Instalação limpa</div>
-            <div class="tut-item" data-target="tut-google-tv">Google TV / Fire / BTV</div>
-
-            <div class="tut-cat-title">CONFIGURAÇÃO</div>
-            <div class="tut-item" data-target="tut-celular">Celular ou tablet</div>
-            <div class="tut-item" data-target="tut-parental">Controle parental</div>
-            <div class="tut-item" data-target="tut-email">Vincular e-mail</div>
-
-            <div class="tut-cat-title">AJUDA</div>
-            <div class="tut-item" data-target="tut-canais">Como acessar canais</div>
-            <div class="tut-item" data-target="tut-velocidade">Teste de velocidade</div>
-
-            <div class="tut-cat-title">COMPATIBILIDADE</div>
-            <div class="tut-item" data-target="tut-smart">Smart TVs</div>
-            <div class="tut-item active" data-target="tut-tvbox">TV Box</div>
         </div>
 
         <div class="tutorial-content" id="tut-intro">
@@ -208,7 +206,7 @@
             <p class="tut-desc">Passo a passo para configurar o app em qualquer dispositivo. Vídeos, links diretos e suporte humano se você travar em algum ponto.</p>
         </div>
 
-        <div class="tutorial-content active" id="tut-tvbox">
+        <div class="tutorial-content" id="tut-tvbox">
             <span class="tut-tag">COMPATIBILIDADE</span>
             <h1 class="tut-h1">TV Box compatíveis</h1>
             <p class="tut-desc">Qualquer TV Box com sistema <strong>Android</strong> roda a RKM PLAY. Atendendo aos requisitos abaixo, funciona.</p>
@@ -231,7 +229,7 @@
             </div>
 
             <div class="alert-box">
-                Também funciona em <strong>Amazon Fire TV Stick, Google TV (Chromecast) e BTV</strong> — veja o tutorial específico de instalação.
+                Também funciona em <strong>Amazon Fire TV Stick, Google TV (Chromecast) e BTV</strong> — veja o tutorial específico de instalação abaixo.
             </div>
 
             <div class="support-banner">
@@ -247,7 +245,7 @@
         <div class="tutorial-content" id="tut-tvbox-antigo">
             <span class="tut-tag">INSTALAÇÃO</span>
             <h1 class="tut-h1">TV Box — já tenho o app antigo</h1>
-            <p class="tut-desc">Primeiro precisamos <strong>desinstalar o app antigo</strong>, depois instalar a nova versão. Siga as duas partes na ordem.</p>
+            <p class="tut-desc">Primeiro precisamos <strong>desinstalar o app antigo</strong>, depois instalar a nova versão da RKM PLAY. Siga as duas partes na ordem.</p>
 
             <span class="tut-tag" style="color: #666;">PARTE 1 — DESINSTALAR APP ANTIGO</span>
             <div class="step-row"><div class="step-number">1</div><div class="step-text">Abra as <strong>Configurações</strong> da sua TV Box</div></div>
@@ -264,7 +262,7 @@
                 <strong>Caso extremo:</strong> se não tiver opção de desinstalar, depois de limpar o padrão volte ao menu inicial várias vezes e selecione <strong>Media Box Launcher</strong>, marcando <strong>SEMPRE</strong>.
             </div>
 
-            <span class="tut-tag" style="color: #666; margin-top:40px;">PARTE 2 — INSTALAR NOVO APP</span>
+            <span class="tut-tag" style="color: #666; margin-top:40px;">PARTE 2 — INSTALAR RKM PLAY</span>
             <div class="step-row"><div class="step-number">1</div><div class="step-text">Clique em <strong>Aplicativos</strong> ou <strong>Aplicações</strong></div></div>
             <div class="step-row"><div class="step-number">2</div><div class="step-text">Abra o navegador <strong>Google Chrome</strong></div></div>
             <div class="step-row"><div class="step-number">3</div><div class="step-text">Ative a <strong>setinha</strong> do controle remoto (airmouse)</div></div>
@@ -506,16 +504,15 @@
             document.body.style.overflow = 'auto';
         });
 
-        // Dropdown de Tutoriais
+        // Dropdown de Tutoriais (com navegação âncora suave)
         const btnDropdown = document.getElementById('btn-dropdown');
         const dropdownMenu = document.getElementById('tutorials-dropdown');
         const currentLabel = document.getElementById('current-label');
         const tutItems = document.querySelectorAll('.tut-item');
-        const tutContents = document.querySelectorAll('.tutorial-content');
 
         // Abrir/Fechar dropdown
         btnDropdown.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita fechar imediatamente ao clicar
+            e.stopPropagation();
             dropdownMenu.classList.toggle('active');
         });
 
@@ -526,25 +523,24 @@
             }
         });
 
-        // Trocar de tutorial ao clicar no item do menu
+        // Rolar até o tutorial clicado
         tutItems.forEach(item => {
             item.addEventListener('click', () => {
-                // 1. Atualizar visual do menu
+                // Atualizar menu visualmente
                 tutItems.forEach(i => i.classList.remove('active'));
                 item.classList.add('active');
-                
-                // 2. Atualizar label no topo
                 currentLabel.innerText = item.innerText;
                 
-                // 3. Fechar dropdown
+                // Fechar dropdown
                 dropdownMenu.classList.remove('active');
 
-                // 4. Esconder todos os tutoriais
-                tutContents.forEach(content => content.classList.remove('active'));
-
-                // 5. Mostrar tutorial selecionado
+                // Rolar suavemente até o elemento
                 const targetId = item.getAttribute('data-target');
-                document.getElementById(targetId).classList.add('active');
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             });
         });
     </script>

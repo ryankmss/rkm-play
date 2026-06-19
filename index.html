@@ -119,11 +119,12 @@
         .device-icon { font-size: 32px; margin-bottom: 12px; }
         .device-name { font-size: 13px; font-weight: bold; color: #fff; }
 
-        /* === CARROSSEL DE FUTEBOL E DEPOIMENTOS (Gap 15px -> metade = 7.5px) === */
+        /* === CARROSSEIS (FUTEBOL, CANAIS E EM ALTA) === */
         .carousel-wrapper { overflow: hidden; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 10px 0 20px 0; }
         .carousel-track { display: flex; gap: 15px; width: max-content; }
         .carousel-track:hover { animation-play-state: paused !important; }
         
+        /* Animações Direcionais */
         .scroll-left { animation: anim-scroll-left 25s linear infinite; }
         .scroll-right { animation: anim-scroll-right 25s linear infinite; }
 
@@ -132,7 +133,7 @@
 
         .logo-box { background: #fff; border-radius: 10px; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; padding: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         
-        /* === EM ALTA (Gap 10px -> metade = 5px) === */
+        /* === EM ALTA === */
         .posters-carousel-wrapper { overflow: hidden; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 5px 0; }
         .posters-track { display: flex; gap: 10px; width: max-content; }
         .posters-track.left { animation: scroll-left-posters 25s linear infinite; }
@@ -269,19 +270,19 @@
 
         <section class="stats-grid">
             <div>
-                <div class="stat-number">+360</div>
+                <div class="stat-number counter" data-target="360" data-prefix="+">0</div>
                 <div class="stat-text">Canais ao vivo</div>
             </div>
             <div>
-                <div class="stat-number">+8.000</div>
+                <div class="stat-number counter" data-target="8000" data-prefix="+">0</div>
                 <div class="stat-text">Filmes Full HD</div>
             </div>
             <div>
-                <div class="stat-number">+2.000</div>
+                <div class="stat-number counter" data-target="2000" data-prefix="+">0</div>
                 <div class="stat-text">Séries atualizadas</div>
             </div>
             <div>
-                <div class="stat-number">24/7</div>
+                <div class="stat-number counter" data-target="24" data-suffix="/7">0</div>
                 <div class="stat-text">Suporte Humano</div>
             </div>
         </section>
@@ -748,6 +749,7 @@
     </a>
 
     <script>
+        // Funcionalidade do Menu Lateral
         const openMenuBtn = document.getElementById('open-menu');
         const closeMenuBtn = document.getElementById('close-menu');
         const sideMenu = document.getElementById('side-menu');
@@ -760,6 +762,53 @@
         closeMenuBtn.addEventListener('click', () => {
             sideMenu.classList.remove('active');
             document.body.style.overflow = 'auto';
+        });
+
+        // ==========================================
+        // Animação de Contagem dos Números (Stats)
+        // ==========================================
+        const counters = document.querySelectorAll('.counter');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    const prefix = counter.getAttribute('data-prefix') || '';
+                    const suffix = counter.getAttribute('data-suffix') || '';
+                    const duration = 2000; // 2 segundos de animação
+                    const frameRate = 1000 / 60; // ~60 frames por segundo
+                    const totalFrames = Math.round(duration / frameRate);
+                    const increment = target / totalFrames;
+                    
+                    let current = 0;
+                    
+                    const updateCounter = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(updateCounter);
+                        }
+                        
+                        // Formata os números no padrão brasileiro (ex: 8.000)
+                        let formattedNumber = Math.floor(current).toLocaleString('pt-BR');
+                        counter.innerText = prefix + formattedNumber + suffix;
+                        
+                    }, frameRate);
+                    
+                    // Para a observação depois de rodar a animação a primeira vez
+                    observer.unobserve(counter);
+                }
+            });
+        }, observerOptions);
+
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
         });
     </script>
 </body>

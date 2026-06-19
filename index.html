@@ -114,9 +114,34 @@
         /* === COMPATIBILIDADE GRID === */
         .devices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
         @media (max-width: 380px) { .devices-grid { grid-template-columns: repeat(2, 1fr); } }
-        .device-card { background: #111; border: 1px solid #222; border-radius: 12px; padding: 25px 10px; text-align: center; transition: all 0.2s ease; display: block; color: inherit; }
-        .device-card:active { border-color: var(--orange); transform: scale(0.95); }
-        .device-icon { font-size: 32px; margin-bottom: 12px; }
+        
+        .device-card { 
+            background: #111; 
+            border: 1px solid #222; 
+            border-radius: 12px; 
+            padding: 25px 10px; 
+            text-align: center; 
+            transition: all 0.3s ease; /* Transição mais suave e longa */
+            display: block; 
+            color: inherit; 
+        }
+        
+        /* Efeito de Sombreado ao passar o mouse */
+        .device-card:hover {
+            border-color: var(--orange);
+            box-shadow: 0 8px 25px rgba(255, 102, 0, 0.2); /* Sombreado laranja suave */
+            transform: translateY(-5px); /* Efeito de flutuação (sobe um pouquinho) */
+        }
+        
+        .device-card:active { 
+            border-color: var(--orange); 
+            transform: scale(0.95); 
+            box-shadow: 0 4px 10px rgba(255, 102, 0, 0.1);
+        }
+
+        .device-icon { font-size: 32px; margin-bottom: 12px; transition: transform 0.3s ease; }
+        .device-card:hover .device-icon { transform: scale(1.1); } /* Aumenta o ícone levemente no hover */
+        
         .device-name { font-size: 13px; font-weight: bold; color: #fff; }
 
         /* === CARROSSEIS (FUTEBOL, CANAIS E EM ALTA) === */

@@ -18,7 +18,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.5; padding-bottom: 80px; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none; color: inherit; -webkit-tap-highlight-color: transparent; }
         ul { list-style: none; }
 
         .container { max-width: 500px; margin: 0 auto; padding: 0 20px; overflow: hidden; }
@@ -52,7 +52,6 @@
         .menu-support-icon { color: var(--green); }
         .menu-support-title { font-size: 14px; font-weight: bold; color: var(--green); margin-bottom: 2px; }
         .menu-support-desc { font-size: 12px; color: #888; }
-        .menu-support-action { background: var(--green); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
         /* === TYPOGRAPHY & TAGS === */
         .section-tag { display: inline-block; border: 1px solid var(--orange); color: var(--orange); padding: 5px 15px; border-radius: 20px; font-size: 10px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
@@ -137,6 +136,14 @@
         .poster-title { font-size: 11px; font-weight: bold; text-align: center; width: 100%; text-shadow: 0 1px 3px rgba(0,0,0,0.8); z-index: 2; line-height: 1.2; }
         .poster-item::before { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 50%); z-index: 1; }
 
+        /* === COMPATIBILIDADE GRID (NOVA SEÇÃO) === */
+        .devices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
+        @media (max-width: 380px) { .devices-grid { grid-template-columns: repeat(2, 1fr); } }
+        .device-card { background: #111; border: 1px solid #222; border-radius: 12px; padding: 25px 10px; text-align: center; transition: all 0.2s ease; display: block; color: inherit; }
+        .device-card:active { border-color: var(--orange); transform: scale(0.95); }
+        .device-icon { font-size: 32px; margin-bottom: 12px; }
+        .device-name { font-size: 13px; font-weight: bold; color: #fff; }
+
         /* === COMO FUNCIONA (STEPS) === */
         .step-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px 20px; margin-bottom: 15px; text-align: center; }
         .step-num { width: 30px; height: 30px; border: 1px solid var(--orange); color: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 15px auto; font-size: 14px; }
@@ -162,9 +169,7 @@
 
         /* === FOOTER === */
         footer { padding: 40px 0; font-size: 13px; color: var(--text-muted); border-top: 1px solid #1f1f1f; }
-        .footer-status { display: flex; align-items: center; gap: 10px; background: #111; display: inline-flex; padding: 8px 16px; border-radius: 20px; margin: 20px 0 30px 0; font-size: 12px; }
-        .dot-red { width: 8px; height: 8px; background: #ff3b30; border-radius: 50%; }
-
+        
         /* === WHATSAPP FLOATING === */
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 1000; cursor: pointer; }
         .whatsapp-float svg { width: 32px; height: 32px; fill: #fff; }
@@ -195,7 +200,7 @@
             <div class="feature-icon">📺</div>
             <div>
                 <div class="menu-card-title">Baixar App TV</div>
-                <div class="menu-card-desc">Smart TV • TV Box • Android 7.0+</div>
+                <div class="menu-card-desc">Smart TV • TV Box</div>
             </div>
         </div>
         
@@ -203,7 +208,7 @@
             <div class="feature-icon">📱</div>
             <div>
                 <div class="menu-card-title">Baixar App Mobile</div>
-                <div class="menu-card-desc">Smartphone • Tablet • Android 7.0+</div>
+                <div class="menu-card-desc">Smartphone • Tablet</div>
             </div>
         </div>
 
@@ -441,29 +446,34 @@
         </section>
 
         <section class="section-padding">
-            <div class="section-tag-muted">COMPATIBILIDADE</div>
-            <h2 class="h2-title">Funciona em qualquer <span class="text-orange">aparelho Android</span></h2>
-            <p class="p-subtitle">TV Box, Smart TV com Android, smartphones, tablets — qualquer tela com sistema Android roda a RKM PLAY.</p>
+            <h2 class="h1-title" style="margin-bottom: 20px;">Compatível com todos os <span class="text-orange">seus dispositivos</span></h2>
+            <p class="p-subtitle" style="margin-bottom: 40px;">Assista em qualquer lugar, a qualquer hora, em qualquer tela.</p>
 
-            <div class="feature-card">
-                <div class="feature-icon">📺</div>
-                <div class="feature-title">TV Box Android</div>
-                <div class="feature-desc">Android 7.0+, 2GB RAM, 8GB storage</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🖥️</div>
-                <div class="feature-title">Smart TV Android</div>
-                <div class="feature-desc">Xiaomi, TCL, Philco, Multilaser e mais</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📱</div>
-                <div class="feature-title">Celular ou tablet</div>
-                <div class="feature-desc">Android 7.0 ou superior</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💻</div>
-                <div class="feature-title">Computador</div>
-                <div class="feature-desc">Windows com emulador Android</div>
+            <div class="devices-grid">
+                <a href="ajuda.html#tut-smart" class="device-card">
+                    <div class="device-icon">📺</div>
+                    <div class="device-name">Smart TV</div>
+                </a>
+                <a href="ajuda.html#tut-celular" class="device-card">
+                    <div class="device-icon">📱</div>
+                    <div class="device-name">Android</div>
+                </a>
+                <a href="ajuda.html#tut-iphone" class="device-card">
+                    <div class="device-icon">🍎</div>
+                    <div class="device-name">iPhone</div>
+                </a>
+                <a href="ajuda.html#tut-tvbox" class="device-card">
+                    <div class="device-icon">📦</div>
+                    <div class="device-name">TV Box</div>
+                </a>
+                <a href="ajuda.html#tut-notebook" class="device-card">
+                    <div class="device-icon">💻</div>
+                    <div class="device-name">Notebook</div>
+                </a>
+                <a href="ajuda.html#tut-celular" class="device-card">
+                    <div class="device-icon">📟</div>
+                    <div class="device-name">Tablet</div>
+                </a>
             </div>
         </section>
 
@@ -483,12 +493,12 @@
                 <div class="feature-icon" style="margin:0;">📱</div>
                 <div>
                     <div class="feature-title" style="margin:0;">Baixar App Mobile</div>
-                    <div class="feature-desc" style="font-size:12px;">Smartphone • Tablet • Android 7.0+</div>
+                    <div class="feature-desc" style="font-size:12px;">Smartphone • Tablet • iPhone</div>
                 </div>
             </div>
 
             <div style="display:flex; align-items:center; justify-content:center; gap:10px; color:#555; font-size:12px; margin-top:20px;">
-                <span style="color:#a4c639;">👾</span> Exclusivo para dispositivos Android — baixe apenas pelos canais oficiais
+                <span style="color:#a4c639;">👾</span> Disponível em múltiplos dispositivos — baixe apenas pelos canais oficiais
             </div>
         </section>
 
@@ -538,7 +548,7 @@
 
             <div class="depoimento-card">
                 <div class="stars">★★★★★</div>
-                <div class="depoimento-text">"Comprei o anual e não me arrependo. Economizei bastante em comparação aos streamings separados e funciona perfeitamente no Fire TV Stick. Suporte excelente."</div>
+                <div class="depoimento-text">"Comprei o anual e não me arrependo. Economizei bastante em comparação aos streamings separados e funciona perfeitamente. Suporte excelente."</div>
                 <div class="depoimento-author">
                     <div class="avatar">P</div>
                     <div class="author-info">
@@ -564,8 +574,8 @@
                     <div class="faq-answer">Temos uma política de satisfação. Pode testar primeiro e se após assinar tiver problemas técnicos comprovados, o suporte ajudará ou fará o reembolso conforme a política.</div>
                 </details>
                 <details>
-                    <summary>Funciona na minha TV?</summary>
-                    <div class="faq-answer">Funciona perfeitamente em Smart TVs com sistema Android, TV Boxes, Fire TV Stick e outros dispositivos compatíveis.</div>
+                    <summary>Funciona em quais dispositivos?</summary>
+                    <div class="faq-answer">Funciona em Smart TVs, TV Boxes, Amazon Fire TV, smartphones Android, iPhones, Tablets e Notebooks/PCs.</div>
                 </details>
             </div>
         </section>
@@ -637,7 +647,7 @@
                     <p style="margin-bottom: 15px;">© 2024–2026 RKM PLAY · todos os direitos reservados</p>
                     <p style="margin-bottom: 25px;"><a href="#" style="color: #555;">Termos e privacidade</a></p>
                     <p style="color: #777; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                        <span style="color: #a4c639; font-size: 16px;">👾</span> Exclusivo para dispositivos Android
+                        <span style="color: #a4c639; font-size: 16px;">👾</span> Disponível para Smart TV, Celular, TV Box e PC
                     </p>
                 </div>
             </div>

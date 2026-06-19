@@ -61,7 +61,8 @@
         .p-subtitle { color: var(--text-muted); font-size: 15px; margin-bottom: 30px; }
 
         /* === BUTTONS === */
-        .btn { display: block; width: 100%; padding: 18px; border-radius: 8px; font-size: 16px; font-weight: bold; text-align: center; cursor: pointer; border: none; margin-bottom: 15px; }
+        .btn { display: block; width: 100%; padding: 18px; border-radius: 8px; font-size: 16px; font-weight: bold; text-align: center; cursor: pointer; border: none; margin-bottom: 15px; transition: transform 0.1s; }
+        .btn:active { transform: scale(0.98); }
         .btn-orange { background-color: var(--orange); color: #000; }
         .btn-dark { background-color: #1a1a1a; color: #fff; border: 1px solid #333; }
         .btn-green-outline { background-color: transparent; color: var(--green); border: 1px solid var(--green); }
@@ -110,32 +111,6 @@
         .feature-title { font-size: 16px; font-weight: bold; color: #fff; margin-bottom: 10px; }
         .feature-desc { font-size: 14px; color: var(--text-muted); }
 
-        /* === FUTEBOL CARROSSEL === */
-        .carousel-wrapper { overflow: hidden; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 10px 0 40px 0; }
-        .carousel-track { display: flex; gap: 15px; width: max-content; animation: scroll-left 20s linear infinite; }
-        .carousel-track:hover { animation-play-state: paused; }
-        .logo-box { background: #fff; border-radius: 10px; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; padding: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        
-        /* === ANIMAÇÕES DE SCROLL === */
-        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 7.5px)); } }
-        @keyframes scroll-left-posters { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 5px)); } }
-        @keyframes scroll-right-posters { 0% { transform: translateX(calc(-50% - 5px)); } 100% { transform: translateX(0); } }
-
-        /* === CANAIS === */
-        .channels-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 30px 0; }
-        .channel-item { background: #151515; border-radius: 8px; height: 60px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 12px; border: 1px solid #222; }
-
-        /* === EM ALTA === */
-        .posters-carousel-wrapper { overflow: hidden; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 5px 0; }
-        .posters-track { display: flex; gap: 10px; width: max-content; }
-        .posters-track.left { animation: scroll-left-posters 25s linear infinite; }
-        .posters-track.right { animation: scroll-right-posters 25s linear infinite; }
-        .posters-track:hover { animation-play-state: paused; }
-        
-        .poster-item { background-color: #222; border-radius: 8px; width: 120px; height: 180px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 8px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
-        .poster-title { font-size: 11px; font-weight: bold; text-align: center; width: 100%; text-shadow: 0 1px 3px rgba(0,0,0,0.8); z-index: 2; line-height: 1.2; }
-        .poster-item::before { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 50%); z-index: 1; }
-
         /* === COMPATIBILIDADE GRID (NOVA SEÇÃO) === */
         .devices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
         @media (max-width: 380px) { .devices-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -144,12 +119,37 @@
         .device-icon { font-size: 32px; margin-bottom: 12px; }
         .device-name { font-size: 13px; font-weight: bold; color: #fff; }
 
+        /* === CARROSSEIS (FUTEBOL, CANAIS E EM ALTA) === */
+        .carousel-wrapper { overflow: hidden; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 10px 0 20px 0; }
+        .carousel-track { display: flex; gap: 15px; width: max-content; }
+        .carousel-track:hover { animation-play-state: paused !important; }
+        
+        /* Animações Direcionais */
+        .scroll-left { animation: anim-scroll-left 25s linear infinite; }
+        .scroll-right { animation: anim-scroll-right 25s linear infinite; }
+
+        @keyframes anim-scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 7.5px)); } }
+        @keyframes anim-scroll-right { 0% { transform: translateX(calc(-50% - 7.5px)); } 100% { transform: translateX(0); } }
+
+        .logo-box { background: #fff; border-radius: 10px; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; padding: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .poster-item { background-color: #222; border-radius: 8px; width: 120px; height: 180px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 8px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
+        .poster-title { font-size: 11px; font-weight: bold; text-align: center; width: 100%; text-shadow: 0 1px 3px rgba(0,0,0,0.8); z-index: 2; line-height: 1.2; }
+        .poster-item::before { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 50%); z-index: 1; }
+
+        /* === CANAIS (GRID FIXA) === */
+        .channels-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 30px 0; }
+        .channel-item { background: #151515; border-radius: 8px; height: 60px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 12px; border: 1px solid #222; }
+
         /* === COMO FUNCIONA (STEPS) === */
         .step-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px 20px; margin-bottom: 15px; text-align: center; }
         .step-num { width: 30px; height: 30px; border: 1px solid var(--orange); color: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 15px auto; font-size: 14px; }
 
-        /* === DEPOIMENTOS === */
-        .depoimento-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; margin-bottom: 15px; text-align: center; }
+        /* === DEPOIMENTOS INFINITOS === */
+        .depoimentos-wrapper { overflow: hidden; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 10px 0 30px 0; }
+        .depoimentos-track { display: flex; gap: 15px; width: max-content; animation: anim-scroll-left 35s linear infinite; }
+        .depoimentos-track:hover { animation-play-state: paused; }
+        
+        .depoimento-card { width: 320px; flex-shrink: 0; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; text-align: center; white-space: normal; }
         .stars { color: #FFD700; font-size: 18px; margin-bottom: 15px; letter-spacing: 2px; }
         .depoimento-text { font-size: 14px; color: var(--text-muted); font-style: italic; margin-bottom: 20px; line-height: 1.6; }
         .depoimento-author { display: flex; align-items: center; justify-content: center; gap: 10px; }
@@ -169,10 +169,7 @@
 
         /* === FOOTER === */
         footer { padding: 40px 0; font-size: 13px; color: var(--text-muted); border-top: 1px solid #1f1f1f; }
-        
-        /* === WHATSAPP FLOATING === */
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 1000; cursor: pointer; }
-        .whatsapp-float svg { width: 32px; height: 32px; fill: #fff; }
     </style>
 </head>
 <body>
@@ -195,20 +192,18 @@
         </ul>
 
         <div class="menu-section-title">BAIXAR O APP</div>
-        
         <div class="menu-card">
             <div class="feature-icon">📺</div>
             <div>
                 <div class="menu-card-title">Baixar App TV</div>
-                <div class="menu-card-desc">Smart TV • TV Box</div>
+                <div class="menu-card-desc">Smart TV • TV Box • Android 7.0+</div>
             </div>
         </div>
-        
         <div class="menu-card">
             <div class="feature-icon">📱</div>
             <div>
                 <div class="menu-card-title">Baixar App Mobile</div>
-                <div class="menu-card-desc">Smartphone • Tablet</div>
+                <div class="menu-card-desc">Smartphone • Tablet • iPhone</div>
             </div>
         </div>
 
@@ -314,7 +309,7 @@
             <div class="economy-box">
                 <h4>VOCÊ ECONOMIZA</h4>
                 <div class="eco-val">R$ 274,40 / mês</div>
-                <div class="eco-desc">No ano: <strong>R$ 3.292,80</strong> de economia • No anual de R$ 229,90 a economia chega a <strong>R$ 3.421,70</strong></div>
+                <div class="eco-desc">No ano: <strong>R$ 3.292,80</strong> de economia • No anual a economia chega a <strong>R$ 3.421,70</strong></div>
                 <div class="eco-test">Não acredita? <strong>Teste por 24h antes de pagar.</strong> Sem código, sem cadastro, sem cartão.</div>
                 
                 <a href="https://wa.me/5511984334348" target="_blank" class="btn btn-green-outline">Testar gratuitamente →</a>
@@ -365,8 +360,8 @@
             <h2 class="h2-title">Todos os campeonatos <span class="text-orange">na sua tela</span></h2>
             <p class="p-subtitle">Brasileirão, Champions League, Copa do Mundo, Libertadores, Premier League e mais — tudo ao vivo, em Full HD, sem travar.</p>
             
-            <div class="carousel-wrapper">
-                <div class="carousel-track">
+            <div class="carousel-wrapper" style="padding-bottom: 5px;">
+                <div class="carousel-track scroll-left">
                     <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">BRASILEIRÃO</span></div>
                     <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">CHAMPIONS</span></div>
                     <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LIBERTADORES</span></div>
@@ -377,6 +372,21 @@
                     <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LIBERTADORES</span></div>
                     <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">PREMIER L.</span></div>
                     <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LALIGA</span></div>
+                </div>
+            </div>
+
+            <div class="carousel-wrapper" style="padding-top: 5px; margin-bottom: 20px;">
+                <div class="carousel-track scroll-right">
+                    <div class="logo-box"><span style="color:#32CD32; font-weight:900; font-size:11px;">PREMIERE</span></div>
+                    <div class="logo-box"><span style="color:#ff3333; font-weight:900; font-size:14px;">sportv</span></div>
+                    <div class="logo-box"><span style="color:#ff0000; font-weight:900; font-size:18px; font-style:italic;">ESPN</span></div>
+                    <div class="logo-box"><span style="color:#fff; font-weight:900; font-size:12px; background:#ff3333; padding:2px 4px; border-radius:4px;">TNT SPORTS</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:900; font-size:12px;">BANDSPORTS</span></div>
+                    <div class="logo-box"><span style="color:#32CD32; font-weight:900; font-size:11px;">PREMIERE</span></div>
+                    <div class="logo-box"><span style="color:#ff3333; font-weight:900; font-size:14px;">sportv</span></div>
+                    <div class="logo-box"><span style="color:#ff0000; font-weight:900; font-size:18px; font-style:italic;">ESPN</span></div>
+                    <div class="logo-box"><span style="color:#fff; font-weight:900; font-size:12px; background:#ff3333; padding:2px 4px; border-radius:4px;">TNT SPORTS</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:900; font-size:12px;">BANDSPORTS</span></div>
                 </div>
             </div>
 
@@ -415,7 +425,7 @@
             <p class="p-subtitle">Os filmes e séries que todo mundo está assistindo, atualizados toda semana.</p>
 
             <div class="posters-carousel-wrapper">
-                <div class="posters-track left">
+                <div class="posters-track scroll-left">
                     <div class="poster-item" style="background:#1a202c;"><div class="poster-title">THE BOYS</div></div>
                     <div class="poster-item" style="background:#2d3748;"><div class="poster-title">BRIDGERTON</div></div>
                     <div class="poster-item" style="background:#2c1b18;"><div class="poster-title">HOUSE OF THE DRAGON</div></div>
@@ -430,7 +440,7 @@
             </div>
 
             <div class="posters-carousel-wrapper" style="margin-top: 5px;">
-                <div class="posters-track right">
+                <div class="posters-track scroll-right">
                     <div class="poster-item" style="background:#1a1a2e;"><div class="poster-title">JOVEM SHERLOCK</div></div>
                     <div class="poster-item" style="background:#0f172a;"><div class="poster-title">THE GOOD DOCTOR</div></div>
                     <div class="poster-item" style="background:#222831;"><div class="poster-title">PLANETA DOS MACACOS</div></div>
@@ -529,31 +539,101 @@
             </div>
         </section>
 
-        <section class="section-padding">
+        <section class="section-padding" style="overflow: hidden;">
             <div class="section-tag-muted">DEPOIMENTOS REAIS</div>
             <h2 class="h2-title">O que nossos clientes <span class="text-orange">dizem</span></h2>
-            <p class="p-subtitle">Pessoas que economizaram trocando os streamings tradicionais pela RKM PLAY.</p>
+            <p class="p-subtitle" style="margin-bottom: 20px;">Pessoas que economizaram trocando os streamings tradicionais pela RKM PLAY.</p>
 
-            <div class="depoimento-card">
-                <div class="stars">★★★★★</div>
-                <div class="depoimento-text">"Já usei vários apps de streaming, mas a RKM PLAY tem de longe a melhor qualidade de sinal. Não trava, a imagem é nítida e a quantidade de canais é impressionante."</div>
-                <div class="depoimento-author">
-                    <div class="avatar">C</div>
-                    <div class="author-info">
-                        <div class="author-name">Carlos M.</div>
-                        <div class="author-meta">Cliente desde 2024 • Curitiba/PR</div>
+            <div class="depoimentos-wrapper">
+                <div class="depoimentos-track">
+                    <div class="depoimento-card">
+                        <div class="stars">★★★★★</div>
+                        <div class="depoimento-text">"Já usei vários apps de streaming, mas a RKM PLAY tem de longe a melhor qualidade de sinal. Não trava e a quantidade de canais é impressionante."</div>
+                        <div class="depoimento-author">
+                            <div class="avatar">C</div>
+                            <div class="author-info">
+                                <div class="author-name">Carlos M.</div>
+                                <div class="author-meta">Cliente desde 2024 • Curitiba/PR</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    <div class="depoimento-card">
+                        <div class="stars">★★★★★</div>
+                        <div class="depoimento-text">"Comprei o anual e não me arrependo. Economizei bastante em comparação aos streamings separados e funciona perfeitamente. Suporte excelente."</div>
+                        <div class="depoimento-author">
+                            <div class="avatar">P</div>
+                            <div class="author-info">
+                                <div class="author-name">Patrícia S.</div>
+                                <div class="author-meta">Cliente desde 2023 • São Paulo/SP</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="depoimento-card">
+                        <div class="stars">★★★★★</div>
+                        <div class="depoimento-text">"A qualidade da imagem na minha Smart TV é sensacional. Acabaram os travamentos nos dias de jogos. Instalação foi super rápida."</div>
+                        <div class="depoimento-author">
+                            <div class="avatar">R</div>
+                            <div class="author-info">
+                                <div class="author-name">Ricardo F.</div>
+                                <div class="author-meta">Cliente desde 2024 • Belo Horizonte/MG</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="depoimento-card">
+                        <div class="stars">★★★★★</div>
+                        <div class="depoimento-text">"Aplicativo super fácil de mexer. Consegui colocar na TV do meu pai e ele adorou as novelas antigas. Melhor investimento que fiz."</div>
+                        <div class="depoimento-author">
+                            <div class="avatar">A</div>
+                            <div class="author-info">
+                                <div class="author-name">Ana T.</div>
+                                <div class="author-meta">Cliente desde 2023 • Rio de Janeiro/RJ</div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="depoimento-card">
-                <div class="stars">★★★★★</div>
-                <div class="depoimento-text">"Comprei o anual e não me arrependo. Economizei bastante em comparação aos streamings separados e funciona perfeitamente. Suporte excelente."</div>
-                <div class="depoimento-author">
-                    <div class="avatar">P</div>
-                    <div class="author-info">
-                        <div class="author-name">Patrícia S.</div>
-                        <div class="author-meta">Cliente desde 2023 • São Paulo/SP</div>
+                    <div class="depoimento-card">
+                        <div class="stars">★★★★★</div>
+                        <div class="depoimento-text">"Já usei vários apps de streaming, mas a RKM PLAY tem de longe a melhor qualidade de sinal. Não trava e a quantidade de canais é impressionante."</div>
+                        <div class="depoimento-author">
+                            <div class="avatar">C</div>
+                            <div class="author-info">
+                                <div class="author-name">Carlos M.</div>
+                                <div class="author-meta">Cliente desde 2024 • Curitiba/PR</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="depoimento-card">
+                        <div class="stars">★★★★★</div>
+                        <div class="depoimento-text">"Comprei o anual e não me arrependo. Economizei bastante em comparação aos streamings separados e funciona perfeitamente. Suporte excelente."</div>
+                        <div class="depoimento-author">
+                            <div class="avatar">P</div>
+                            <div class="author-info">
+                                <div class="author-name">Patrícia S.</div>
+                                <div class="author-meta">Cliente desde 2023 • São Paulo/SP</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="depoimento-card">
+                        <div class="stars">★★★★★</div>
+                        <div class="depoimento-text">"A qualidade da imagem na minha Smart TV é sensacional. Acabaram os travamentos nos dias de jogos. Instalação foi super rápida."</div>
+                        <div class="depoimento-author">
+                            <div class="avatar">R</div>
+                            <div class="author-info">
+                                <div class="author-name">Ricardo F.</div>
+                                <div class="author-meta">Cliente desde 2024 • Belo Horizonte/MG</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="depoimento-card">
+                        <div class="stars">★★★★★</div>
+                        <div class="depoimento-text">"Aplicativo super fácil de mexer. Consegui colocar na TV do meu pai e ele adorou as novelas antigas. Melhor investimento que fiz."</div>
+                        <div class="depoimento-author">
+                            <div class="avatar">A</div>
+                            <div class="author-info">
+                                <div class="author-name">Ana T.</div>
+                                <div class="author-meta">Cliente desde 2023 • Rio de Janeiro/RJ</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -634,15 +714,12 @@
             </div>
 
             <div style="text-align: left; border-top: 1px solid #1a1a1a; padding-top: 30px;">
-                
                 <div style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid #332211; background: #1a0a00; color: var(--orange); padding: 8px 16px; border-radius: 20px; font-size: 11px; font-weight: bold; margin-bottom: 20px;">
                     <span style="width: 6px; height: 6px; background: var(--green); border-radius: 50%;"></span> SITE OFICIAL VERIFICADO
                 </div>
-                
                 <p style="color: #666; font-size: 12px; line-height: 1.6; margin-bottom: 40px;">
                     A RKM PLAY é vendida exclusivamente através dos nossos canais oficiais e do suporte via WhatsApp (11) 98433-4348. Qualquer outro site, domínio ou vendedor não autorizado é golpe — não baixe o aplicativo de fontes desconhecidas.
                 </p>
-
                 <div style="color: #555; font-size: 12px; text-align: center;">
                     <p style="margin-bottom: 15px;">© 2024–2026 RKM PLAY · todos os direitos reservados</p>
                     <p style="margin-bottom: 25px;"><a href="#" style="color: #555;">Termos e privacidade</a></p>

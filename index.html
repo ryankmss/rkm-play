@@ -111,10 +111,14 @@
         .feature-title { font-size: 16px; font-weight: bold; color: #fff; margin-bottom: 10px; }
         .feature-desc { font-size: 14px; color: var(--text-muted); }
 
-        /* === COMPATIBILIDADE 5 DISPOSITIVOS === */
-        .devices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
-        @media (max-width: 380px) { .devices-grid { grid-template-columns: repeat(2, 1fr); } }
-        
+        /* === COMPATIBILIDADE 5 DISPOSITIVOS (FLEXBOX CENTRALIZADO) === */
+        .devices-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 15px; 
+            margin-bottom: 20px; 
+        }
         .device-card { 
             background: #111; 
             border: 1px solid #222; 
@@ -124,7 +128,13 @@
             transition: all 0.3s ease; 
             display: block; 
             color: inherit; 
+            width: calc(33.333% - 10px); /* 3 cards por linha no máximo */
+            min-width: 100px;
         }
+        @media (max-width: 380px) { 
+            .device-card { width: calc(50% - 10px); } 
+        }
+        
         .device-card:hover {
             border-color: var(--orange);
             box-shadow: 0 8px 25px rgba(255, 102, 0, 0.2); 
@@ -132,7 +142,7 @@
         }
         .device-card:active { 
             border-color: var(--orange); 
-            transform: scale(0.95); 
+            transform: scale(0.95) translateY(0); 
             box-shadow: 0 4px 10px rgba(255, 102, 0, 0.1);
         }
         .device-icon { font-size: 32px; margin-bottom: 12px; transition: transform 0.3s ease; }
@@ -144,6 +154,7 @@
         .carousel-track { display: flex; gap: 15px; width: max-content; }
         .carousel-track:hover { animation-play-state: paused !important; }
         
+        /* Animações Direcionais */
         .scroll-left { animation: anim-scroll-left 25s linear infinite; }
         .scroll-right { animation: anim-scroll-right 25s linear infinite; }
 
@@ -495,21 +506,21 @@
                     <div class="device-icon">📺</div>
                     <div class="device-name">Smart TV</div>
                 </a>
-                <a href="ajuda.html#tut-celular" class="device-card">
-                    <div class="device-icon">📱</div>
-                    <div class="device-name">Android</div>
-                </a>
-                <a href="ajuda.html#tut-iphone" class="device-card">
-                    <div class="device-icon">🍎</div>
-                    <div class="device-name">iPhone</div>
-                </a>
                 <a href="ajuda.html#tut-tvbox" class="device-card">
                     <div class="device-icon">📦</div>
                     <div class="device-name">TV Box</div>
                 </a>
+                <a href="ajuda.html#tut-celular" class="device-card">
+                    <div class="device-icon">📱</div>
+                    <div class="device-name">Android</div>
+                </a>
                 <a href="ajuda.html#tut-notebook" class="device-card">
                     <div class="device-icon">💻</div>
                     <div class="device-name">Notebook</div>
+                </a>
+                <a href="ajuda.html#tut-iphone" class="device-card">
+                    <div class="device-icon">🍎</div>
+                    <div class="device-name">iPhone</div>
                 </a>
             </div>
         </section>

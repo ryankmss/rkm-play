@@ -111,7 +111,7 @@
         .feature-title { font-size: 16px; font-weight: bold; color: #fff; margin-bottom: 10px; }
         .feature-desc { font-size: 14px; color: var(--text-muted); }
 
-        /* === COMPATIBILIDADE GRID (NOVA SEÇÃO) === */
+        /* === COMPATIBILIDADE GRID === */
         .devices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
         @media (max-width: 380px) { .devices-grid { grid-template-columns: repeat(2, 1fr); } }
         .device-card { background: #111; border: 1px solid #222; border-radius: 12px; padding: 25px 10px; text-align: center; transition: all 0.2s ease; display: block; color: inherit; }
@@ -119,12 +119,11 @@
         .device-icon { font-size: 32px; margin-bottom: 12px; }
         .device-name { font-size: 13px; font-weight: bold; color: #fff; }
 
-        /* === CARROSSEIS (FUTEBOL, CANAIS E EM ALTA) === */
+        /* === CARROSSEL DE FUTEBOL E DEPOIMENTOS (Gap 15px -> metade = 7.5px) === */
         .carousel-wrapper { overflow: hidden; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 10px 0 20px 0; }
         .carousel-track { display: flex; gap: 15px; width: max-content; }
         .carousel-track:hover { animation-play-state: paused !important; }
         
-        /* Animações Direcionais */
         .scroll-left { animation: anim-scroll-left 25s linear infinite; }
         .scroll-right { animation: anim-scroll-right 25s linear infinite; }
 
@@ -132,6 +131,17 @@
         @keyframes anim-scroll-right { 0% { transform: translateX(calc(-50% - 7.5px)); } 100% { transform: translateX(0); } }
 
         .logo-box { background: #fff; border-radius: 10px; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; padding: 10px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        
+        /* === EM ALTA (Gap 10px -> metade = 5px) === */
+        .posters-carousel-wrapper { overflow: hidden; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 5px 0; }
+        .posters-track { display: flex; gap: 10px; width: max-content; }
+        .posters-track.left { animation: scroll-left-posters 25s linear infinite; }
+        .posters-track.right { animation: scroll-right-posters 25s linear infinite; }
+        .posters-track:hover { animation-play-state: paused; }
+        
+        @keyframes scroll-left-posters { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 5px)); } }
+        @keyframes scroll-right-posters { 0% { transform: translateX(calc(-50% - 5px)); } 100% { transform: translateX(0); } }
+
         .poster-item { background-color: #222; border-radius: 8px; width: 120px; height: 180px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 8px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
         .poster-title { font-size: 11px; font-weight: bold; text-align: center; width: 100%; text-shadow: 0 1px 3px rgba(0,0,0,0.8); z-index: 2; line-height: 1.2; }
         .poster-item::before { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 50%); z-index: 1; }
@@ -170,6 +180,7 @@
         /* === FOOTER === */
         footer { padding: 40px 0; font-size: 13px; color: var(--text-muted); border-top: 1px solid #1f1f1f; }
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 1000; cursor: pointer; }
+        .whatsapp-float svg { width: 32px; height: 32px; fill: #fff; }
     </style>
 </head>
 <body>
@@ -196,7 +207,7 @@
             <div class="feature-icon">📺</div>
             <div>
                 <div class="menu-card-title">Baixar App TV</div>
-                <div class="menu-card-desc">Smart TV • TV Box • Android 7.0+</div>
+                <div class="menu-card-desc">Smart TV • TV Box</div>
             </div>
         </div>
         <div class="menu-card">
@@ -361,21 +372,6 @@
             <p class="p-subtitle">Brasileirão, Champions League, Copa do Mundo, Libertadores, Premier League e mais — tudo ao vivo, em Full HD, sem travar.</p>
             
             <div class="carousel-wrapper" style="padding-bottom: 5px;">
-                <div class="carousel-track scroll-left">
-                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">BRASILEIRÃO</span></div>
-                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">CHAMPIONS</span></div>
-                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LIBERTADORES</span></div>
-                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">PREMIER L.</span></div>
-                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LALIGA</span></div>
-                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">BRASILEIRÃO</span></div>
-                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">CHAMPIONS</span></div>
-                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LIBERTADORES</span></div>
-                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">PREMIER L.</span></div>
-                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LALIGA</span></div>
-                </div>
-            </div>
-
-            <div class="carousel-wrapper" style="padding-top: 5px; margin-bottom: 20px;">
                 <div class="carousel-track scroll-right">
                     <div class="logo-box"><span style="color:#32CD32; font-weight:900; font-size:11px;">PREMIERE</span></div>
                     <div class="logo-box"><span style="color:#ff3333; font-weight:900; font-size:14px;">sportv</span></div>
@@ -387,6 +383,21 @@
                     <div class="logo-box"><span style="color:#ff0000; font-weight:900; font-size:18px; font-style:italic;">ESPN</span></div>
                     <div class="logo-box"><span style="color:#fff; font-weight:900; font-size:12px; background:#ff3333; padding:2px 4px; border-radius:4px;">TNT SPORTS</span></div>
                     <div class="logo-box"><span style="color:#000; font-weight:900; font-size:12px;">BANDSPORTS</span></div>
+                </div>
+            </div>
+
+            <div class="carousel-wrapper" style="padding-top: 5px; margin-bottom: 20px;">
+                <div class="carousel-track scroll-left">
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">BRASILEIRÃO</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">CHAMPIONS</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LIBERTADORES</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">PREMIER L.</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LALIGA</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">BRASILEIRÃO</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">CHAMPIONS</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LIBERTADORES</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">PREMIER L.</span></div>
+                    <div class="logo-box"><span style="color:#000; font-weight:bold; font-size:10px;">LALIGA</span></div>
                 </div>
             </div>
 
@@ -425,7 +436,7 @@
             <p class="p-subtitle">Os filmes e séries que todo mundo está assistindo, atualizados toda semana.</p>
 
             <div class="posters-carousel-wrapper">
-                <div class="posters-track scroll-left">
+                <div class="posters-track left">
                     <div class="poster-item" style="background:#1a202c;"><div class="poster-title">THE BOYS</div></div>
                     <div class="poster-item" style="background:#2d3748;"><div class="poster-title">BRIDGERTON</div></div>
                     <div class="poster-item" style="background:#2c1b18;"><div class="poster-title">HOUSE OF THE DRAGON</div></div>
@@ -440,7 +451,7 @@
             </div>
 
             <div class="posters-carousel-wrapper" style="margin-top: 5px;">
-                <div class="posters-track scroll-right">
+                <div class="posters-track right">
                     <div class="poster-item" style="background:#1a1a2e;"><div class="poster-title">JOVEM SHERLOCK</div></div>
                     <div class="poster-item" style="background:#0f172a;"><div class="poster-title">THE GOOD DOCTOR</div></div>
                     <div class="poster-item" style="background:#222831;"><div class="poster-title">PLANETA DOS MACACOS</div></div>
@@ -545,7 +556,7 @@
             <p class="p-subtitle" style="margin-bottom: 20px;">Pessoas que economizaram trocando os streamings tradicionais pela RKM PLAY.</p>
 
             <div class="depoimentos-wrapper">
-                <div class="depoimentos-track">
+                <div class="depoimentos-track scroll-left">
                     <div class="depoimento-card">
                         <div class="stars">★★★★★</div>
                         <div class="depoimento-text">"Já usei vários apps de streaming, mas a RKM PLAY tem de longe a melhor qualidade de sinal. Não trava e a quantidade de canais é impressionante."</div>

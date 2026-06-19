@@ -128,7 +128,7 @@
             transition: all 0.3s ease; 
             display: block; 
             color: inherit; 
-            width: calc(33.333% - 10px); /* 3 cards por linha no máximo */
+            width: calc(33.333% - 10px); 
             min-width: 100px;
         }
         @media (max-width: 380px) { 
@@ -210,7 +210,29 @@
 
         /* === FOOTER === */
         footer { padding: 40px 0; font-size: 13px; color: var(--text-muted); border-top: 1px solid #1f1f1f; }
-        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 1000; cursor: pointer; }
+        
+        /* === WHATSAPP FLOATING (COM EFEITO PULSANTE/BRILHANTE) === */
+        @keyframes pulse-whatsapp {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        .whatsapp-float { 
+            position: fixed; 
+            bottom: 20px; 
+            right: 20px; 
+            width: 60px; 
+            height: 60px; 
+            background-color: var(--green); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            z-index: 1000; 
+            cursor: pointer;
+            animation: pulse-whatsapp 2s infinite; /* Efeito adicionado aqui */
+        }
         .whatsapp-float svg { width: 32px; height: 32px; fill: #fff; }
     </style>
 </head>
@@ -683,15 +705,15 @@
             <p class="p-subtitle">As perguntas que todo mundo faz quando descobre a RKM PLAY.</p>
 
             <div class="faq-container">
-                <details>
+                <details name="faq">
                     <summary>Como funciona o teste grátis?</summary>
                     <div class="faq-answer">Pode baixar a nossa aplicação e terá acesso durante 24 horas para experimentar todos os canais, filmes e séries sem compromisso.</div>
                 </details>
-                <details>
+                <details name="faq">
                     <summary>Se eu assinar e não gostar, perco meu dinheiro?</summary>
                     <div class="faq-answer">Temos uma política de satisfação. Pode testar primeiro e se após assinar tiver problemas técnicos comprovados, o suporte ajudará ou fará o reembolso conforme a política.</div>
                 </details>
-                <details>
+                <details name="faq">
                     <summary>Funciona em quais dispositivos?</summary>
                     <div class="faq-answer">Funciona em Smart TVs, TV Boxes, Amazon Fire TV, smartphones Android, iPhones, Tablets e Notebooks/PCs.</div>
                 </details>
